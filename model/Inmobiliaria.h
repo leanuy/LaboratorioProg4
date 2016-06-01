@@ -5,6 +5,13 @@
 #ifndef LAB6_INMOBILIARIA_H
 #define LAB6_INMOBILIARIA_H
 
+#include <string>
+
+#include "DataMensaje.h"
+#include "Conversacion.h"
+#include "Propiedad.h"
+#include "IObserver.h"
+
 using namespace std;
 
 class Inmobiliaria: public Usuario {

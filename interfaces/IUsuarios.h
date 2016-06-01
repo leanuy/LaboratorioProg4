@@ -10,10 +10,10 @@ using namespace std;
 
 class IUsuarios {
 public:
-    virtual void IngresarInmobiliaria(String nombre, String mail, String direccion) = 0;
-    virtual void ReportesInmobiliaria() = 0;
-    virtual void CheckEmail(mail: String) = 0;
-    virtual void DarAltaInteresado(String nombre, String apellido, int email) = 0;
+    virtual void IngresarInmobiliaria(string nombre, string mail, string direccion) = 0;
+    virtual string ReportesInmobiliaria() = 0;
+    virtual void CheckEmail(string mail) = 0;
+    virtual void DarAltaInteresado(string nombre, string apellido, int email) = 0;
 
 };
 

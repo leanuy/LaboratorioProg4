@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Inmobiliaria {
+class Inmobiliaria: public Usuario {
 private:
     string nombre;
     string direccion;

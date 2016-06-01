@@ -6,6 +6,10 @@
 #define LAB3_FACTORY_H
 
 
+#include "interfaces/IConversaciones.h"
+#include "interfaces/IPropiedades.h"
+#include "interfaces/ILog.h"
+
 class Factory {
 private:
     static Factory * instance;

@@ -5,7 +5,8 @@
 
 #include "DataZona.h"
 #include "DataDepartamento.h"
-
+#include <map>
+#include <listt>
 
 using namespace std;
 
@@ -13,12 +14,13 @@ class Departamento {
 private:
 	string id;
 	string nombre;
+	map<string,Zona*>* zonas;
 public:
-    Departamento(String nombre, String id);
+    Departamento(string nombre,string id);
     DataDepartamento CrearDataDepartamento();
-    //Set DataZona ListarZonas()
-    void SeleccionarZona(String idZona);
-    Propiedad BuscarPropiedad(Propiedad idPropiedad);
+    list<DataZona> ListarZonas();
+    Zona* SeleccionarZona(string idZona);
+    Propiedad* BuscarPropiedad(string idPropiedad);
     ~Departamento();
 };
 

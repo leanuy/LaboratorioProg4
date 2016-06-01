@@ -10,12 +10,16 @@ set(SOURCE_FILES main.cpp
         interfaces/ILog.h
         interfaces/IPropiedades.cpp
         interfaces/IPropiedades.h
+        interfaces/IUsuarios.cpp
+        interfaces/IUsuarios.h
         controllers/ConversacionesController.cpp
         controllers/ConversacionesController.h
         controllers/LogController.cpp
         controllers/LogController.h
         controllers/PropiedadesController.cpp
         controllers/PropiedadesController.h
+        controllers/UsuariosController.cpp
+        controllers/UsuariosController.h
         model/Alquiler.cpp
         model/Alquiler.h
         model/Apartamento.cpp

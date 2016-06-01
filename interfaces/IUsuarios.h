@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //LAB6_IPROPIEDADES_H
+#endif //LAB6_IUSUARIOS_H

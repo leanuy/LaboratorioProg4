@@ -1,51 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Factory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/LogController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/LogController.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/PropiedadesController.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/ConversacionesController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/ConversacionesController.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/controllers/PropiedadesController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Venta.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Venta.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Casa.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Casa.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/IPropiedades.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/IConversaciones.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/ILog.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/IConversaciones.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/ILog.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/interfaces/IPropiedades.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Factory.cpp" isTestSource="false" />
-    </content>
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
-        <CLASSES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
-          <root url="file:///usr/include" />
-          <root url="file:///usr/local/include" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
-          <root url="file:///usr/include" />
-          <root url="file:///usr/local/include" />
-        </SOURCES>
+        <CLASSES />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

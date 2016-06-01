@@ -28,10 +28,16 @@ set(SOURCE_FILES main.cpp
         model/Casa.h
         model/Edificio.cpp
         model/Edificio.h
+        model/Departamento.cpp
+        model/Departamento.h
+        model/Zona.cpp
+        model/Zona.h
         model/Propiedad.cpp
         model/Propiedad.h
         model/Venta.cpp
         model/Venta.h
+        model/Inmobiliaria.cpp
+        model/Inmobiliaria.h
         Factory.cpp
         Factory.h
         model/Usuario.cpp model/Usuario.h)

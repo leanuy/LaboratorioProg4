@@ -9,6 +9,7 @@
 #include "interfaces/IConversaciones.h"
 #include "interfaces/IPropiedades.h"
 #include "interfaces/ILog.h"
+#include "interfaces/IUsuarios.h"
 
 class Factory {
 private:

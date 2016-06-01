@@ -7,8 +7,6 @@
 #include "../interfaces/ILog.h"
 
 class LogController:public ILog {
-private:
-    Usuario * BuscarUsuario(string email);
 public:
     bool IngresarEmail(string email);
     bool SetearPassword(string psw1; string psw2);

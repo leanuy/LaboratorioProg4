@@ -12,15 +12,15 @@ using namespace std;
 
 class Zona {
 private:
-	codigo: String
-	nombre: String
+	string codigo;
+	string nombre;
 public:
-    Zona(String nombre, String codigo);
+    Zona(string nombre, string codigo);
     DataZona CrearDataZona();
     //Set DataPropiedadExtendida ListarPropiedadExtendidas()
-    void SeleccionarPropiedad(String idPropiedad);
-    //Set DataEdificio DevolverEdificios(String nombreEdificio)
-    DataEdificio DevolverEdificio(String nombreEdificio);
+    void SeleccionarPropiedad(string idPropiedad);
+    //Set DataEdificio DevolverEdificios(string nombreEdificio)
+    DataEdificio DevolverEdificio(string nombreEdificio);
     DataDepartamento ObtenerDepartamento();
     void ObtenerEdificio(Edificio e);
     Propiedad BuscarPropiedad(Propiedad idPropiedad);

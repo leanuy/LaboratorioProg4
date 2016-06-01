@@ -12,8 +12,8 @@ using namespace std;
 
 class Zona {
 private:
-	codigo: string;
-	nombre: string;
+	string codigo;
+	string nombre;
 public:
     Zona(string nombre, string codigo);
     DataZona CrearDataZona();

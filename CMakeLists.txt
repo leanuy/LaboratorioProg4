@@ -34,5 +34,5 @@ set(SOURCE_FILES main.cpp
         model/Venta.h
         Factory.cpp
         Factory.h
-        )
+        model/Usuario.cpp model/Usuario.h)
 add_executable(Lab3 ${SOURCE_FILES})

@@ -51,7 +51,7 @@ public:
     void InsertarNuevoMensaje(string mensaje);
     DataDepartamento ObtenerDepartamento();
     void Actualizar(DataPropiedad p);
-    ~Propiedad();
+    virtual ~Propiedad() = 0;
 };
 
 

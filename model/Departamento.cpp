@@ -12,11 +12,12 @@ DataDepartamento Departamento::CrearDataDepartamento(){
 
 list<DataZona> Departamento::ListarZonas(){
     list data = new list();
-    DataZona current;
     zonas::iterator it = zonas->begin();
     while(it != zonas->end()){
-        current(it->get)  // cargar los data zona con los getter de zona
+        data.insert(it->CrearDataZona());// cargar los data zona con los getter de zona
+        it++;
     }
+    return data;
 }
 
 Zona* Departamento::SeleccionarZona(string idZona){

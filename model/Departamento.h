@@ -5,8 +5,10 @@
 
 #include "DataZona.h"
 #include "DataDepartamento.h"
+#include "Propiedad.h"
+#include "Zona.h"
 #include <map>
-#include <listt>
+#include <list>
 
 using namespace std;
 
@@ -18,7 +20,7 @@ private:
 public:
     Departamento(string nombre,string id);
     DataDepartamento CrearDataDepartamento();
-    list<DataZona> ListarZonas();
+    list<DataZona>* ListarZonas();
     Zona* SeleccionarZona(string idZona);
     Propiedad* BuscarPropiedad(string idPropiedad);
     ~Departamento();

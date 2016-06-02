@@ -44,9 +44,9 @@ public:
     void setM2Totales(float m2);
 
 
-    void linkConversacion(Conversacion* c);
-    DataPropiedad crearDataPropiedadExtendida();
-    bool existeConversacion();
+    void LinkConversacion(Conversacion* c);
+    DataPropiedad CrearDataPropiedad();
+    bool ExisteConversacion();
     //SET(DataMensaje) ListarMensajes();
     void InsertarNuevoMensaje(string mensaje);
     DataDepartamento ObtenerDepartamento();

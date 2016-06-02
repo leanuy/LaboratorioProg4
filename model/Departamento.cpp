@@ -10,22 +10,27 @@ DataDepartamento Departamento::CrearDataDepartamento(){
     return DataDepartamento(this->nombre,this->id);
 }
 
-list<DataZona> Departamento::ListarZonas(){
-    list data = new list();
-    zonas::iterator it = zonas->begin();
+list<DataZona>* Departamento::ListarZonas(){
+    list<DataZona>* data = new list();
+    list<DataZona>::iterator iter = data->begin();
+    map<string,Zona*>::iterator it = zonas->begin();
     while(it != zonas->end()){
-        data.insert(it->CrearDataZona());// cargar los data zona con los getter de zona
+        data->insert(iter,it->second->CrearDataZona());
         it++;
     }
     return data;
 }
 
 Zona* Departamento::SeleccionarZona(string idZona){
-
+    map<string,Zona*>::iterator it = zonas->find(idZona);
+    if(it == zonas->end()){
+        return NULL;
+    }
+    return it->second;
 }
 
 Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
-
+    //iterar en todas las zonas y parar si encuentra el departamento.. pending
 }
 
 Departamento::~Departamento(){

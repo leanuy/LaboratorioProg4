@@ -4,9 +4,13 @@
 #include <string>
 
 #include "DataEdificio.h"
-#include "DataPropiedadExtendida.h"
+#include "DataPropiedad.h"
 #include "DataApartamento.h"
+#include "Propiedad.h"
+#include "Edificio.h"
+#include "Departamento.h"
 #include <list>
+#include <map>
 
 
 using namespace std;
@@ -15,20 +19,26 @@ class Zona {
 private:
 	string codigo;
 	string nombre;
-    map<string,Propiedad*>* propiedades;
-    Departamento* depto;
-    map<string,Edificio*>* edificios;
+    map<string,Propiedad*> propiedades;
+	Departamento* depto;
+    map<string,Edificio*> edificios;
 public:
-    Zona(string nombre,string codigo);
+    Zona(string codigo,string nombre);
+	~Zona();
+
+	void setNombre(string name);
+	string getNombre();
+	void setCodigo(string code);
+	string getCodigo();
+
     DataZona CrearDataZona();
-    list<DataPropiedad> ListarPropiedadExtendidas();
+    list<DataPropiedad>* ListarPropiedadExtendidas();
     Propiedad* SeleccionarPropiedad(string idPropiedad);
-    list<DataEdificio> DevolverEdificios(string nombreEdificio);
+    list<DataEdificio>* DevolverEdificios(string nombreEdificio);
     DataEdificio DevolverEdificio(string nombreEdificio);
     Departamento* ObtenerDepartamento();
-    void AsignarEdificio(Edificio* e);
+    void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
     Propiedad* BuscarPropiedad(string idPropiedad);
-    ~Zona();
 };
 
 

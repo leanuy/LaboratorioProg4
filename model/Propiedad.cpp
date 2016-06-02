@@ -8,15 +8,15 @@ Propiedad::Propiedad() {
 
 }
 
-void Propiedad::linkConversacion(Conversacion *c) {
+void Propiedad::LinkConversacion(Conversacion *c) {
 
 }
 
-DataPropiedad Propiedad::crearDataPropiedadExtendida() {
+DataPropiedad Propiedad::CrearDataPropiedad() {
     return NULL;
 }
 
-bool Propiedad::existeConversacion() {
+bool Propiedad::ExisteConversacion() {
     return false;
 }
 

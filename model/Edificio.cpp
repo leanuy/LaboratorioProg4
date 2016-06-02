@@ -51,3 +51,7 @@ void Edificio::setZona(Zona *z) {
 Zona* Edificio::getZona() {
     return this->zonaDelEdificio;
 }
+
+DataEdificio Edificio::CrearDataEdificio() {
+    return DataEdificio(this->nombre,this->pisos,this->gastosComunes);
+}

@@ -16,10 +16,10 @@ private:
     string nombre;
     int pisos;
     float gastosComunes;
-    //coleccion apartamentos...
+    map<string,Apartamento*> apartamentos;
     Zona* zonaDelEdificio;
 public:
-    Edificio(string nombre,int pisos,float gastos);
+    Edificio(string nombre,int pisos,float gastos,Zona* zone);
     ~Edificio();
     void setNombre(string name);
     string getNombre();
@@ -29,6 +29,7 @@ public:
     float getGastoComunes();
     void setZona(Zona* z);
     Zona* getZona();
+    DataEdificio CrearDataEdificio();
 
 
     void addApartamento(Apartamento* apto);  // agregar al dcd

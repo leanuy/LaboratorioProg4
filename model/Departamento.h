@@ -5,12 +5,14 @@
 
 #include "../datatypes/DataZona.h"
 #include "../datatypes/DataDepartamento.h"
-#include "Propiedad.h"
-#include "Zona.h"
+#include "../model/Propiedad.h"
+#include "../model/Zona.h"
 #include <map>
 #include <list>
 
 using namespace std;
+
+class Zona;
 
 class Departamento {
 private:

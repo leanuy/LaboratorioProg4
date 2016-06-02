@@ -2,7 +2,7 @@
 // Created by Santi on 01/06/2016.
 //
 
-#include "interesado.h"
-Interesado::Interesado(String nombre, String apellido){}
-void Interesado::NuevaProp(String codigo){}
+#include "../model/Interesado.h"
+Interesado::Interesado(string nombre, string apellido){}
+void Interesado::NuevaProp(string codigo){}
 void Interesado::LinkConversacion(Conversacion c){}

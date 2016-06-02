@@ -2,6 +2,9 @@
 #define LAB6_PROPIEDADESCONTROLLER_H
 
 #include <string>
+#include <map>
+#include "../interfaces/IUsuarios.h"
+#include "../datatypes/DataInmobiliaria.h"
 
 using namespace std;
 
@@ -9,9 +12,9 @@ class UsuariosController: public IUsuarios {
 
 public:
 
-    void IngresarInmobiliaria(String nombre, String mail, String direccion) = 0;
-    void ReportesInmobiliaria() = 0;
-    void CheckEmail(mail: String) = 0;
-    void DarAltaInteresado(String nombre, String apellido, int email) = 0;
+    void IngresarInmobiliaria(string nombre, string mail, string direccion);
+    map<string,DataInmobiliaria> ReportesInmobiliaria();
+    void CheckEmail(string mail);
+    void DarAltaInteresado(string nombre, string apellido, int email);
 };
 #endif //LAB6_PROPIEDADESCONTROLLER_H

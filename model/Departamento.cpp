@@ -11,7 +11,7 @@ DataDepartamento Departamento::CrearDataDepartamento(){
 }
 
 list<DataZona>* Departamento::ListarZonas(){
-    list<DataZona>* data = new list();
+    list<DataZona>* data = new list<DataZona>;
     list<DataZona>::iterator iter = data->begin();
     map<string,Zona*>::iterator it = zonas->begin();
     while(it != zonas->end()){

@@ -1,14 +1,13 @@
 #include "Mensaje.h"
-#include <iomanip>
-#include <ctime>
 
 Mensaje::Mensaje(string mensaje){
-    this->esInteresado = sesion->tipo("interesado");
-    auto t = ;
-    this->time = *localtime(&time(nullptr));
+    this->esInteresado = false;
+//    this->esInteresado = sesion->tipo("interesado"); todo: usar variable de sesion global
+    this->fecha = "";
     this->texto = mensaje;
 }
-DataMensaje Mensaje::CrearDataMensaje(
-        data = new DataMensaje()
-);
-Mensaje::~Mensaje();
+DataMensaje* Mensaje::CrearDataMensaje(){
+    DataMensaje *data = new DataMensaje();
+    return data;
+}
+Mensaje::~Mensaje(){}

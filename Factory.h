@@ -11,9 +11,10 @@
 #include "interfaces/ILog.h"
 #include "interfaces/IUsuarios.h"
 
+
 class Factory {
 private:
-    static Factory * instance;
+    Factory * instance;
 public:
     static Factory * getInstance();
     ILog getILog();

@@ -37,6 +37,6 @@ bool Usuario::AsignarPassword(string pass1, string pass2) {
     }
 }
 
-bool Usuario::ChekPassword(string pass) {
+bool Usuario::CheckPassword(string pass) {
     return !pass.compare(this->contrasenia);
 }

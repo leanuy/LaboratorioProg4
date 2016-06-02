@@ -5,11 +5,14 @@
 #ifndef LAB3_LOGCONTROLLER_H
 #define LAB3_LOGCONTROLLER_H
 #include "../interfaces/ILog.h"
+#include "../model/Usuario.h"
 
 class LogController:public ILog {
+private:
+    Usuario* usr;
 public:
     bool IngresarEmail(string email);
-    bool SetearPassword(string psw1; string psw2);
+    bool SetearPassword(string psw1, string psw2);
     void IngresarPassword(string psw);
     void CerrarSesion();
 

@@ -4,11 +4,10 @@
 
 #include "Edificio.h"
 
-Edificio::Edificio(string nombre, int pisos, float gastos,Zona* zone) {
+Edificio::Edificio(string nombre, int pisos, float gastos) {
     this->nombre = nombre;
     this->pisos = pisos;
     this->gastosComunes = gastos;
-    this->zonaDelEdificio = zone;
     // la coleccion de apartamentos no se inicializa. se agrega al edificio cuando se agrega un apto.
 }
 
@@ -40,10 +39,11 @@ float Edificio::getGastoComunes() {
     return this->gastosComunes;
 }
 
-void Edificio::addApartamento(Apartamento *apto) {
+/*void Edificio::addApartamento(Apartamento *apto) {
     //Agregar apto a la coleccion.
-}
+}*/
 
+/*
 void Edificio::setZona(Zona *z) {
     this->zonaDelEdificio = z;
 }
@@ -51,6 +51,7 @@ void Edificio::setZona(Zona *z) {
 Zona* Edificio::getZona() {
     return this->zonaDelEdificio;
 }
+*/
 
 DataEdificio Edificio::CrearDataEdificio() {
     return DataEdificio(this->nombre,this->pisos,this->gastosComunes);

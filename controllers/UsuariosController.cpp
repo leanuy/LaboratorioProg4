@@ -4,15 +4,15 @@
 
 #include "UsuariosController.h"
 
-void UsuariosController::IngresarInmobiliaria(String nombre, String mail, String direccion){
+void UsuariosController::IngresarInmobiliaria(string nombre, string mail, string direccion){
 
 }
-void UsuariosController::ReportesInmobiliaria(){
+map<string,DataInmobiliaria> UsuariosController::ReportesInmobiliaria(){
 	
 }
-void UsuariosController::CheckEmail(mail: String){
+void UsuariosController::CheckEmail(string mail){
 	
 }
-void UsuariosController::DarAltaInteresado(String nombre, String apellido, int email){
+void UsuariosController::DarAltaInteresado(string nombre, string apellido, int email){
 	
 }

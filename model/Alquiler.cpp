@@ -18,7 +18,7 @@ float Alquiler::getPrecio() {
 }
 
 void Alquiler::setPrecio(string preci) {
-    this->precio = preci;
+    this->precio = stof(preci);
 }
 
 Propiedad *Alquiler::getPropiedad() {

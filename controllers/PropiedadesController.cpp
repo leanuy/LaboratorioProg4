@@ -32,8 +32,8 @@ void PropiedadesController::ponerEnVenta(float precio) {
 
 }
 
-string PropiedadesController::getCodigPropiedad() {
-    return __cxx11::basic_string<char, char_traits<_CharT>, allocator<_CharT>>();
+string PropiedadesController::getCodigPropiedad() { //fixme: WTF!!!!!!
+//    return __cxx11::basic_string<char, char_traits<_CharT>, allocator<_CharT>>();
 }
 
 void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
@@ -41,10 +41,10 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
 }
 
 DataPropiedad PropiedadesController::verPropiedad(string codigoPropiedad) {
-    return nullptr;
+    return zActual->SeleccionarPropiedad(codigoPropiedad);
 }
 
-void PropiedadesController::actualizarPropiedad(::PropiedadesController::DataPropiedad p) {
+void PropiedadesController::actualizarPropiedad(DataPropiedad p) {
 
 }
 

@@ -6,7 +6,9 @@
 #define LAB6_PROPIEDAD_H
 
 #include <string>
-#include "Conversacion.h"
+#include "../model/Conversacion.h"
+#include "../datatypes/DataDepartamento.h"
+#include "../datatypes/DataPropiedad.h"
 
 
 
@@ -38,10 +40,10 @@ public:
     void setGarage(bool garage);
     string getDireccion();
     void setDireccion(string dir);
-    float getM2Edificados();
-    void setM2Edificados(float m2);
-    float getM2Totales();
-    void setM2Totales(float m2);
+    float getMetrosCuadradosEdificados();
+    void setMetrosCuadradosEdificados(float m2);
+    float getMetrosCuadradosTotales();
+    void setMetrosCuadradosTotales(float m2);
 
 
     void LinkConversacion(Conversacion* c);

@@ -5,16 +5,19 @@
 #ifndef LAB3_MENSAJE_H
 #define LAB3_MENSAJE_H
 
+#include <string>
+#include "../datatypes/DataMensaje.h"
+
+using namespace std;
 
 class Mensaje {
 private:
     bool esInteresado;
-    Fecha fecha;
-    Hora hora;
+    string fecha;
     string texto;
 public:
     Mensaje(string mensaje);
-    DataMensaje CrearDataMensaje();
+    DataMensaje* CrearDataMensaje();
     ~Mensaje();
 };
 

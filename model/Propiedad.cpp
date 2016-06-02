@@ -13,7 +13,17 @@ void Propiedad::LinkConversacion(Conversacion *c) {
 }
 
 DataPropiedad Propiedad::CrearDataPropiedad() {
-    return NULL;
+    DataPropiedad * data = new DataPropiedad();
+    data->setCodigo(this->codigo);
+    data->setAmbientes(this->ambientes);
+    data->setDormitorios(this->dormitorios);
+    data->setBanios(this->banios);
+    data->setGarage(this->garage);
+    data->setDireccion(this->direccion);
+    data->setDireccion(this->direccion);
+    data->setMetrosCuadradosEdificados(this->metrosCuadradosEdificados);
+    data->setMetrosCuadradosTotales(this->metrosCuadradosTotales);
+    data->setCantidadMensajes(0); //agus: calcular cantidad de mensajes
 }
 
 bool Propiedad::ExisteConversacion() {
@@ -84,18 +94,18 @@ void Propiedad::setDireccion(string dir) {
     this->direccion = dir;
 }
 
-float Propiedad::getM2Edificados() {
+float Propiedad::getMetrosCuadradosEdificados() {
     return this->metrosCuadradosEdificados;
 }
 
-void Propiedad::setM2Edificados(float m2) {
+void Propiedad::setMetrosCuadradosEdificados(float m2) {
     this->metrosCuadradosEdificados = m2;
 }
 
-float Propiedad::getM2Totales() {
+float Propiedad::getMetrosCuadradosTotales() {
     return this->metrosCuadradosTotales;
 }
 
-void Propiedad::getM2Totales(float m2) {
+void Propiedad::setMetrosCuadradosTotales(float m2) {
     this->metrosCuadradosTotales = m2;
 }

@@ -2,22 +2,26 @@
 // Created by Santiago Serantes on 6/1/16.
 //
 #include <iostream>
-#include "LogController.h"
+#include <string>
+#include "../controllers/LogController.h"
+#include "../model/Usuario.h"
+#include "../Database.h"
 
 // tengo que poner que el usuario es privado?
 
 
-Usuario * usr;
 bool LogController::IngresarEmail(string email) {
-    usr = find_usr(email);
-    return usr->FirstTime();
+    Database* db = Database::getInstance();
+    map<string, Usuario*>::iterator it = db->getUsuarios()->find(email);
+    return it->second->FirstTime();
+
 };
 
-bool LogController::SetearPassword(string psw1; string psw2){
+bool LogController::SetearPassword(string psw1, string psw2){
     bool distintas;
     distintas = usr->AsignarPassword(psw1, psw2);
     if (distintas){
-        LogIn(usr);
+//        LogIn(usr);
         usr = NULL;
         return (true);
     }
@@ -26,16 +30,16 @@ bool LogController::SetearPassword(string psw1; string psw2){
     }
 };
 
-void LogController::IngresarPassword(String psw) {
+void LogController::IngresarPassword(string psw) {
     bool correcta;
-    correcta = usr->CheckPassword();
+    correcta = usr->CheckPassword(psw);
     if (correcta){
-        LogIn(usr);
+//        LogIn(usr);
         usr = NULL;
     };
 };
 
 void LogController::CerrarSesion()
 {
-    LogOut();
+//    LogOut();
 };

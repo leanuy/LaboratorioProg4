@@ -6,8 +6,10 @@
 
 #define LAB3_CONVERSACIONESCONTROLLER_H
 
-#include "IConversaciones.h"
+#include "../interfaces/IConversaciones.h"
+#include "../model/Departamento.h"
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -20,24 +22,24 @@ private:
 public:
     ConversacionesController();
 
-    void set_dActual(Departamento* d);
+   /* void set_dActual(Departamento* d);
     void set_zActual(Zona* z);
     void set_pActual(Propiedad* p);
     void set_cActual(Conversacion* c);
     Departamento* get_dActual();
     Zona* get_zActual();
     Propiedad* get_pActual();
-    Conversacion* get_cActual();
+    Conversacion* get_cActual();*/
 
-    void ListarDepartamentos();//agus:Agregar tipo de devolucion
+    list<DataDepartamento> ListarDepartamentos();
     void SeleccionarDepartamento(string idDepartamento);
-    void ListarZonas();//agus:Agregar tipo de devolucion
+    list<DataZona> ListarZonas();
     void SeleccionarZona(string idZona);
-    void ListarPropiedades();//agus:Agregar tipo de devolucion
+    list<DataPropiedad> ListarPropiedades();
     void SeleccionarPropiedad(string idPropiedad);
-    void ListarConversaciones();//agus:Agregar tipo de devolucion
+    list<DataConversacion> ListarConversaciones();
     void SeleccionarConversacion(string idConversacion);
-    void ListarMensajes();//agus:Agregar tipo de devolucion
+    list<DataMensaje> ListarMensajes();
     void AgregarMensaje(string mensaje);
     ~ConversacionesController();
 };

@@ -3,21 +3,28 @@
 //
 
 #include "Factory.h"
-#include "interfaces/ILog.h"
+#include "controllers/ConversacionesController.h"
+#include "controllers/LogController.h"
+#include "controllers/PropiedadesController.h"
+#include "controllers/UsuariosController.h"
 
 Factory * Factory::instance = NULL;
 Factory * Factory::getInstance(){
+    if(this->instance == NULL){
+        this->instance = new Factory;
+    }
+    return *this->instance;
+}
 
-};
 ILog Factory::getILog(){
-    return LogController.getInstance();
-};
+    return *new LogController();
+}
 IPropiedades Factory::getIPropiedades(){
-    return PropiedadesController.getInstance();
-};
+    return *new PropiedadesController;
+}
 IConversaciones Factory::getIConversaciones(){
-    return ConversacionesController.getInstance();
-};
+    return *new ConversacionesController;
+}
 IUsuarios Factory::getIUsuarios(){
-    return UsuariosController.getInstance();
-};
+    return *new UsuariosController;
+}

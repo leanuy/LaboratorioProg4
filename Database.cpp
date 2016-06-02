@@ -4,11 +4,11 @@
 
 #include "Database.h"
 
-Database Database::getInstance(){
-    if(this->instance == NULL){
+static Database* Database::getInstance(){
+    if(instance == NULL){
         this->instance = new Database();
     }
-    return *this->instance;
+    return this->instance;
 }
 map<string, Departamento*>* Database::getDepartamentos(){
     return this->departamentos;
@@ -16,4 +16,4 @@ map<string, Departamento*>* Database::getDepartamentos(){
 map<string, Usuario*>* Database::getUsuarios(){
     return this->usuarios;
 }
-~Database();
+Database::~Database(){}

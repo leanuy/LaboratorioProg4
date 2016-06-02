@@ -46,9 +46,9 @@ list <DataPropiedad>* Zona::ListarPropiedadExtendidas() {
     return ;
 }
 
-Propiedad* Zona::SeleccionarPropiedad(string idPropiedad) {
-    Propiedad* z = propiedades[idPropiedad];
-    return z;
+DataPropiedad Zona::SeleccionarPropiedad(string idPropiedad) {
+    Propiedad* p = this->BuscarPropiedad(idPropiedad);
+    return p->CrearDataPropiedad();
 }
 
 list <DataEdificio>* Zona::DevolverEdificios(string nombreEdificio) {
@@ -78,7 +78,7 @@ void Zona::AsignarEdificio(Edificio *e) {
     }
 }
 
-Propiedad *Zona::BuscarPropiedad(string idPropiedad) {
+Propiedad* Zona::BuscarPropiedad(string idPropiedad) {
     map<string,Propiedad*>::iterator iter = propiedades.find(idPropiedad);
     if(iter == propiedades.end()){
         return NULL;

@@ -6,15 +6,19 @@
 #define LAB6_DATABASE_H
 
 #include <map>
+#include <string>
+#include "model/Departamento.h"
+#include "model/Usuario.h"
+#include "model/Edificio.h"
 
 class Database {
 private:
-    Database instance;
+    Database* instance;
     map<string, Departamento*>* departamentos;
     map<string, Usuario*>* usuarios;
     map<string, Edificio*>* edificiosN_A;
 public:
-    Database getInstance();
+    static Database* getInstance();
     map<string, Departamento*>* getDepartamentos();
     map<string, Usuario*>* getUsuarios();
     ~Database();

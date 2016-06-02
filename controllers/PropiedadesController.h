@@ -6,10 +6,11 @@
 #define LAB6_PROPIEDADESCONTROLLER_H
 
 #include <string>
+#include "../interfaces/IPropiedades.h"
 #include "../model/Propiedad.h"
-#include "Zona.h"
+#include "../model/Zona.h"
 #include "../model/Edificio.h"
-#include "Departamento.h"
+#include "../model/Departamento.h"
 
 
 

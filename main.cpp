@@ -1,4 +1,7 @@
-//
-// Created by agus on 01/06/16.
-//
+#include "Database.h"
 
+#include "interfaces/ILog.h"
+
+void main(){
+
+}

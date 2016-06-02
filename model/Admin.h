@@ -5,7 +5,10 @@
 #ifndef LAB6_ADMIN_H
 #define LAB6_ADMIN_H
 
-class Admin:public Usuario{
+#include "../model/Usuario.h"
 
+class Admin:public Usuario{
+public:
+    Admin();
 };
 #endif //LAB6_ADMIN_H

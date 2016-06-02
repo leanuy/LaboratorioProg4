@@ -12,10 +12,22 @@ set(SOURCE_FILES main.cpp
         controllers/PropiedadesController.h
         controllers/UsuariosController.cpp
         controllers/UsuariosController.h
+        datatypes/DataApartamento.cpp
+        datatypes/DataApartamento.h
+        datatypes/DataCasa.cpp
+        datatypes/DataCasa.h
+        datatypes/DataConversacion.cpp
+        datatypes/DataConversacion.h
         datatypes/DataDepartamento.cpp
         datatypes/DataDepartamento.h
         datatypes/DataEdificio.cpp
         datatypes/DataEdificio.h
+        datatypes/DataInmobiliaria.cpp
+        datatypes/DataInmobiliaria.h
+        datatypes/DataMensaje.cpp
+        datatypes/DataMensaje.h
+        datatypes/DataPropiedad.cpp
+        datatypes/DataPropiedad.h
         datatypes/DataZona.cpp
         datatypes/DataZona.h
         interfaces/IConversaciones.cpp
@@ -26,8 +38,8 @@ set(SOURCE_FILES main.cpp
         interfaces/IPropiedades.h
         interfaces/IUsuarios.cpp
         interfaces/IUsuarios.h
-        model/admin.cpp
-        model/admin.h
+        model/Admin.cpp
+        model/Admin.h
         model/Alquiler.cpp
         model/Alquiler.h
         model/Apartamento.cpp

@@ -6,17 +6,19 @@
 #define LAB6_INTERESADO_H
 
 #include <string>
+#include "../model/Conversacion.h"
+#include "../model/Usuario.h"
 
-#include "Conversacion"
+using namespace std;
 
 class Interesado: public Usuario{
 private:
-    String nombre;
-    String apellido;
+    string nombre;
+    string apellido;
     int edad;
 public:
-    Interesado(String nombre, String apellido);
-    void NuevaProp(String codigo);
+    Interesado(string nombre, string apellido);
+    void NuevaProp(string codigo);
     void LinkConversacion(Conversacion c);
 };
 #endif //LAB6_INTERESADO_H

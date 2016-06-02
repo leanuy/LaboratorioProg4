@@ -12,7 +12,7 @@ using namespace std;
 class ILog {
 public:
     virtual bool IngresarEmail(string email)=0;
-    virtual bool SetearPassword(string psw1; string psw2)=0;
+    virtual bool SetearPassword(string psw1, string psw2)=0;
     virtual void IngresarPassword(string psw)=0;
     virtual void CerrarSesion()=0;
 };

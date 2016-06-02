@@ -1,15 +1,18 @@
 #ifndef LAB3_CONVERSACION_H
 #define LAB3_CONVERSACION_H
 
-#include <stack>
+#include <queue>
+#include <string>
+#include "../model/Mensaje.h"
+#include "../datatypes/DataMensaje.h"
 
 class Conversacion {
 private:
-    stack<Mensaje> mensajes;
+    queue<Mensaje*>* mensajes;
 public:
     Conversacion();
     int CantidadMensajes();
-    stack<DataMensaje> ListarMensajes();
+    queue<DataMensaje> ListarMensajes();
     void AgregarMensaje(string mensaje);
     ~Conversacion();
 };

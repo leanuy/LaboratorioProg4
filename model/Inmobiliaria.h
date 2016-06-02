@@ -7,10 +7,10 @@
 
 #include <string>
 
-#include "DataMensaje.h"
-#include "Conversacion.h"
-#include "Propiedad.h"
-#include "IObserver.h"
+#include "../datatypes/DataMensaje.h"
+#include "../model/Conversacion.h"
+#include "../model/Propiedad.h"
+#include "../model/Usuario.h"
 
 using namespace std;
 
@@ -25,11 +25,8 @@ public:
     void LinkConversacion(Conversacion c);
     //Set DataMensaje ListarMensajes();
     void InsertarNuevoMensaje(string mensaje);
-    void Alquilar(float precio, Propiedad p);
-    void Vender(float precio, Propiedad p);
-    void AddObserver(IObserver o);
-    void RemoveObserver(IObserver o);
-    void NotifyAll(String codigo);
+    void Alquilar(float precio, Propiedad &p);
+    void Vender(float precio, Propiedad &p);
     ~Inmobiliaria();
 };
 

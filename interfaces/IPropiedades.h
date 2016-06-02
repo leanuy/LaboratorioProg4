@@ -7,12 +7,12 @@
 
 #include <string>
 
-#include "DataDepartamento.h"
-#include "DataCasa.h"
-#include "DataApartamento.h"
-#include "DataPropiedad.h"
-#include "DataZona.h"
-#include "DataEfidicio.h"
+#include "../datatypes/DataDepartamento.h"
+#include "../datatypes/DataCasa.h"
+#include "../datatypes/DataApartamento.h"
+#include "../datatypes/DataPropiedad.h"
+#include "../datatypes/DataZona.h"
+#include "../datatypes/DataEdificio.h"
 
 
 using namespace std;

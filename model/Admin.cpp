@@ -1,6 +1,6 @@
 //
 // Created by Santi on 01/06/2016.
 //
-#include "Admin.h"
+#include "../model/Admin.h"
 
 Admin::Admin(){}

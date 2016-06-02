@@ -5,9 +5,11 @@
 #ifndef LAB6_EDIFICIO_H
 #define LAB6_EDIFICIO_H
 
-#include "Apartamento.h"
 #include <string>
-#include "Zona.h"
+#include <map>
+#include "../datatypes/DataEdificio.h"
+//#include "../model/Apartamento.h"
+//#include "../model/Zona.h"
 
 using namespace std;
 
@@ -16,10 +18,9 @@ private:
     string nombre;
     int pisos;
     float gastosComunes;
-    map<string,Apartamento*> apartamentos;
-    Zona* zonaDelEdificio;
+//    map<string,Apartamento*> apartamentos;
 public:
-    Edificio(string nombre,int pisos,float gastos,Zona* zone);
+    Edificio(string nombre,int pisos,float gastos);
     ~Edificio();
     void setNombre(string name);
     string getNombre();
@@ -27,12 +28,12 @@ public:
     int getPisos();
     void setGastosComunes(float gastos);
     float getGastoComunes();
-    void setZona(Zona* z);
-    Zona* getZona();
+//    void setZona(Zona* z);
+//    Zona* getZona();
     DataEdificio CrearDataEdificio();
 
 
-    void addApartamento(Apartamento* apto);  // agregar al dcd
+//    void addApartamento(Apartamento* apto);  // agregar al dcd
 };
 
 

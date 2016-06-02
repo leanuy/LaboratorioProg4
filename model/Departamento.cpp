@@ -16,6 +16,7 @@ list<DataZona>* Departamento::ListarZonas(){
     map<string,Zona*>::iterator it = zonas->begin();
     while(it != zonas->end()){
         data->insert(iter,it->second->CrearDataZona());
+        iter = data->begin();
         it++;
     }
     return data;
@@ -31,6 +32,13 @@ Zona* Departamento::SeleccionarZona(string idZona){
 
 Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
     //iterar en todas las zonas y parar si encuentra el departamento.. pending
+    map<string,Zona*>::iterator it = zonas->begin();
+    Propiedad* ret = NULL;
+    while((it != zonas->end())&&(ret == NULL)){
+        ret = (*it->second).BuscarPropiedad(idPropiedad);
+        it++;
+    }
+    return ret;
 }
 
 Departamento::~Departamento(){

@@ -6,6 +6,7 @@
 #define LAB6_PROPIEDAD_H
 
 #include <string>
+
 #include "../model/Conversacion.h"
 #include "../datatypes/DataDepartamento.h"
 #include "../datatypes/DataPropiedad.h"

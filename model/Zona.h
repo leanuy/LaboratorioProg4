@@ -24,7 +24,7 @@ private:
     map<string,Propiedad*> propiedades;
 	Departamento* depto;
     map<string,Edificio*> edificios;
-	Propiedad* BuscarPropiedad(string idPropiedad);
+
 public:
     Zona(string codigo,string nombre);
 	~Zona();
@@ -41,6 +41,7 @@ public:
     DataEdificio DevolverEdificio(string nombreEdificio);
     Departamento* ObtenerDepartamento();
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
+	Propiedad* BuscarPropiedad(string idPropiedad);
 };
 
 

@@ -2,6 +2,16 @@
 
 #include "interfaces/ILog.h"
 
-void main(){
 
+
+int main(){
+
+
+
+
+
+
+
+
+    return 0;
 }

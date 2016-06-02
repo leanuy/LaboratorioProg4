@@ -12,6 +12,7 @@ private:
     Database instance;
     map<string, Departamento*>* departamentos;
     map<string, Usuario*>* usuarios;
+    map<string, Edificio*>* edificiosN_A;
 public:
     Database getInstance();
     map<string, Departamento*>* getDepartamentos();

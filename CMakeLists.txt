@@ -36,9 +36,17 @@ set(SOURCE_FILES main.cpp
         model/Propiedad.h
         model/Venta.cpp
         model/Venta.h
+        model/Usuario.cpp
+        model/Usuario.h
         model/Inmobiliaria.cpp
         model/Inmobiliaria.h
+        model/Interesado.cpp
+        model/Interesado.h
+        model/admin.cpp
+        model/admin.h
         Factory.cpp
         Factory.h
-        model/Usuario.cpp model/Usuario.h model/DataEdificio.cpp model/DataEdificio.h model/DataZona.cpp model/DataZona.h model/DataDepartamento.cpp model/DataDepartamento.h)
+        Database.cpp
+        Database.h
+        )
 add_executable(Lab3 ${SOURCE_FILES})

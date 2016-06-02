@@ -4,14 +4,6 @@ project(lab6)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES main.cpp
-        interfaces/IConversaciones.cpp
-        interfaces/IConversaciones.h
-        interfaces/ILog.cpp
-        interfaces/ILog.h
-        interfaces/IPropiedades.cpp
-        interfaces/IPropiedades.h
-        interfaces/IUsuarios.cpp
-        interfaces/IUsuarios.h
         controllers/ConversacionesController.cpp
         controllers/ConversacionesController.h
         controllers/LogController.cpp
@@ -20,30 +12,48 @@ set(SOURCE_FILES main.cpp
         controllers/PropiedadesController.h
         controllers/UsuariosController.cpp
         controllers/UsuariosController.h
+        datatypes/DataDepartamento.cpp
+        datatypes/DataDepartamento.h
+        datatypes/DataEdificio.cpp
+        datatypes/DataEdificio.h
+        datatypes/DataZona.cpp
+        datatypes/DataZona.h
+        interfaces/IConversaciones.cpp
+        interfaces/IConversaciones.h
+        interfaces/ILog.cpp
+        interfaces/ILog.h
+        interfaces/IPropiedades.cpp
+        interfaces/IPropiedades.h
+        interfaces/IUsuarios.cpp
+        interfaces/IUsuarios.h
+        model/admin.cpp
+        model/admin.h
         model/Alquiler.cpp
         model/Alquiler.h
         model/Apartamento.cpp
         model/Apartamento.h
         model/Casa.cpp
         model/Casa.h
-        model/Edificio.cpp
-        model/Edificio.h
+        model/Conversacion.cpp
+        model/Conversacion.h
         model/Departamento.cpp
         model/Departamento.h
-        model/Zona.cpp
-        model/Zona.h
-        model/Propiedad.cpp
-        model/Propiedad.h
-        model/Venta.cpp
-        model/Venta.h
-        model/Usuario.cpp
-        model/Usuario.h
+        model/Edificio.cpp
+        model/Edificio.h
         model/Inmobiliaria.cpp
         model/Inmobiliaria.h
         model/Interesado.cpp
         model/Interesado.h
-        model/admin.cpp
-        model/admin.h
+        model/Mensaje.cpp
+        model/Mensaje.h
+        model/Propiedad.cpp
+        model/Propiedad.h
+        model/Usuario.cpp
+        model/Usuario.h
+        model/Venta.cpp
+        model/Venta.h
+        model/Zona.cpp
+        model/Zona.h
         Factory.cpp
         Factory.h
         Database.cpp

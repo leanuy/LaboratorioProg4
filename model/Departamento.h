@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "DataZona.h"
-#include "DataDepartamento.h"
+#include "../datatypes/DataZona.h"
+#include "../datatypes/DataDepartamento.h"
 #include "Propiedad.h"
 #include "Zona.h"
 #include <map>

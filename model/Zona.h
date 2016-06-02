@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "DataEdificio.h"
+#include "../datatypes/DataEdificio.h"
 #include "DataPropiedad.h"
 #include "DataApartamento.h"
 #include "Propiedad.h"

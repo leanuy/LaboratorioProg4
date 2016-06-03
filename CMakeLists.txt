@@ -70,5 +70,7 @@ set(SOURCE_FILES main.cpp
         Factory.h
         Database.cpp
         Database.h
+        Sesion.cpp
+        Sesion.h
         )
 add_executable(Lab3 ${SOURCE_FILES})

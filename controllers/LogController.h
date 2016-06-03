@@ -6,6 +6,7 @@
 #define LAB3_LOGCONTROLLER_H
 #include "../interfaces/ILog.h"
 #include "../model/Usuario.h"
+#include "../Sesion.h"
 
 class LogController:public ILog {
 private:

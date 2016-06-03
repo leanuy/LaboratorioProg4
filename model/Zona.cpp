@@ -32,12 +32,12 @@ DataZona Zona::CrearDataZona() {
 
 list <DataPropiedad>* Zona::ListarPropiedadExtendidas() {
     list* l = new list();
-    map::iterator it = propiedades.begin();
+    map<string,Propiedad*>::iterator it = propiedades.begin();
     while(it != propiedades.end()){
-        if(dynamic_cast<Casa*>(*it)){
-            l->insert(                      // problema
+        if(dynamic_cast<Casa*>(it->second){
+            l->insert(                      // problema crear data casa
         }else{
-
+                    // crear datapartamento
         }
         l->insert(it->)
         it++;

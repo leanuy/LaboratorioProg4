@@ -8,7 +8,7 @@ string DataConversacion::getInteresado() {
     return this->interesado;
 }
 
-DataConversacion::~Conversacion() {
+DataConversacion::~DataConversacion() {
 
 }
 

@@ -11,13 +11,13 @@
 #include "../datatypes/DataDepartamento.h"
 #include "../datatypes/DataPropiedad.h"
 #include "../model/Zona.h"
-#include "Inmobiliaria.h"
+#include "../model/Inmobiliaria.h"
 
 
 using namespace std;
 
 class Zona;
-
+class Inmobiliaria;
 class Propiedad {
 private:
     string codigo;

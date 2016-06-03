@@ -21,3 +21,27 @@ void Inmobiliaria::InsertarNuevoMensaje(string mensaje){}
 void Inmobiliaria::Alquilar(float precio, Propiedad &p){}
 void Inmobiliaria::Vender(float precio, Propiedad &p){}
 Inmobiliaria::~Inmobiliaria(){}
+
+int Inmobiliaria::CantidadMensajes() {
+    return 0;
+}
+
+bool Inmobiliaria::ExisteConversacion() {
+    return false;
+}
+
+string Inmobiliaria::getNombre() {
+    return this->nombre;
+}
+
+void Inmobiliaria::setNombre(string name) {
+    this->nombre = name;
+}
+
+string Inmobiliaria::getDireccion() {
+    return this->direccion;
+}
+
+void Inmobiliaria::setDireccion(string dir) {
+    this->direccion = dir;
+}

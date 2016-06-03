@@ -13,8 +13,11 @@
 #include "../model/Usuario.h"
 #include "../datatypes/DataConversacion.h"
 
-using namespace std;
+#include <list>
+#include <map>
 
+using namespace std;
+class Propiedad;
 class Inmobiliaria: public Usuario {
 private:
     string nombre;
@@ -24,6 +27,10 @@ public:
     Inmobiliaria(string nombre, string direccion);
     int CantidadMensajes();
     bool ExisteConversacion();
+    string getNombre();
+    void setNombre(string name);
+    string getDireccion();
+    void setDireccion(string dir);
     void LinkConversacion(Conversacion c);
     //Set DataMensaje ListarMensajes()
     list<DataConversacion> ListarConversaciones();

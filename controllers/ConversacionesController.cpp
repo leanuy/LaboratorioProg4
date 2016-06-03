@@ -43,7 +43,7 @@ void ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
 }
 list<DataConversacion> ConversacionesController::ListarConversaciones(){
-    return this->pActual->getInmobiliaria()->
+   // return this->pActual->getInmobiliaria()-> Fixme
 }
 void ConversacionesController::SeleccionarConversacion(string idConversacion){}
 list<DataMensaje> ConversacionesController::ListarMensajes(){}//agus:Agregar tipo de devolucion

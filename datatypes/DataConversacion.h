@@ -11,7 +11,7 @@ private:
 public:
     DataConversacion(string interesado);
     string getInteresado();
-    ~Conversacion();
+    ~DataConversacion();
 };
 
 

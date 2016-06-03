@@ -12,7 +12,7 @@
 
 bool LogController::IngresarEmail(string email) {
     Database* db = Database::getInstance();
-    map<string, Usuario*>::iterator it = db->getUsuarios()->find(email);
+    map<string,Usuario*>::iterator it = db->getUsuarios().find(email);
     return it->second->FirstTime();
 
 };

@@ -33,7 +33,7 @@ Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
     map<string,Zona*>::iterator it = zonas.begin();
     Propiedad* ret = NULL;
     while((it != zonas.end())&&(ret == NULL)){
-        ret = (*it->second).BuscarPropiedad(idPropiedad);
+        ret = (*it->second).SeleccionarPropiedad(idPropiedad);
         it++;
     }
     return ret;

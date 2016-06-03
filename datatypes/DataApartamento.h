@@ -6,7 +6,9 @@
 #define LAB6_DATAAPARTAMENTO_H
 
 
-class DataApartamento {
+#include "DataPropiedad.h"
+
+class DataApartamento: public DataPropiedad {
 
 };
 

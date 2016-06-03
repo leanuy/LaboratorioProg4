@@ -4,7 +4,8 @@
 
 #ifndef LAB6_CASA_H
 #define LAB6_CASA_H
-#include "Propiedad.h"
+#include "../model/Propiedad.h"
+#include "../datatypes/DataCasa.h"
 #include <string>
 
 using namespace std;
@@ -17,6 +18,7 @@ public:
          float m2Verdes);
     float getMetrosCuadradosVerdes();
     void setMetrosCuadradosVerdes(float m2verdes);
+    DataCasa CrearDataCasa();
     ~Casa();
 };
 

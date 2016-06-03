@@ -1,5 +1,6 @@
 #include "Zona.h"
 #include "Casa.h"
+#include "Apartamento.h"
 
 Zona::Zona(string codigo,string nombre) {
     this->nombre = nombre;
@@ -26,24 +27,31 @@ string Zona::getCodigo() {
     return this->codigo;
 }
 
+void Zona::setDepartamento(Departamento *departamento) {
+    this->departamento = departamento;
+}
+
+Departamento* Zona::getDepartamento() {
+    return this->departamento;
+}
+
 DataZona Zona::CrearDataZona() {
     return DataZona(this->codigo,this->nombre);
 }
 
 list <DataPropiedad>* Zona::ListarPropiedadExtendidas() {
-    list* l = new list();
-    map<string,Propiedad*>::iterator it = propiedades.begin();
+    list<DataPropiedad>* l = new list<DataPropiedad>;
+    map<string,Propiedad*>::iterator it = this->propiedades.begin();
     while(it != propiedades.end()){
-        if(dynamic_cast<Casa*>(it->second){
-            l->insert(                      // problema crear data casa
+        if(dynamic_cast<Casa*>(it->second)){
+            l->push_back(dynamic_cast<Casa*>(it->second)->CrearDataCasa());
         }else{
-                    // crear datapartamento
+            l->push_back(dynamic_cast<Apartamento*>(it->second)->CrearDataApartamento());
         }
-        l->insert(it->)
         it++;
     }
 
-    return ;
+    return l;
 }
 
 DataPropiedad Zona::SeleccionarPropiedad(string idPropiedad) {
@@ -52,7 +60,7 @@ DataPropiedad Zona::SeleccionarPropiedad(string idPropiedad) {
 }
 
 list <DataEdificio>* Zona::DevolverEdificios(string nombreEdificio) {
-    list<DataEdificio>* l = new list();
+    list<DataEdificio>* l = new list<DataEdificio>;
     list<DataEdificio>::iterator ite = l->begin();
     map<string,Edificio*>::iterator it = edificios.begin();
     while(it != edificios.end()){

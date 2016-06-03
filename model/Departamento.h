@@ -13,6 +13,7 @@
 using namespace std;
 
 class Zona;
+class Propiedad;
 
 class Departamento {
 private:

@@ -11,8 +11,8 @@ Casa::Casa(int ambientes, int dormitorios, int banios, bool garage, string direc
     this->setBanios(banios);
     this->setGarage(garage);
     this->setDireccion(direccion);
-    this->setM2Edificados(m2Edificados);
-    this->setM2Totales(m2Totales);
+    this->setMetrosCuadradosTotales(m2Edificados);
+    this->setMetrosCuadradosTotales(m2Totales);
     this->setMetrosCuadradosVerdes(m2Verdes);
 }
 
@@ -22,6 +22,10 @@ float Casa::getMetrosCuadradosVerdes() {
 
 void Casa::setMetrosCuadradosVerdes(float m2verdes) {
     this->metrosCuadradosVerdes = m2verdes;
+}
+
+DataCasa CrearDataCasa(){
+
 }
 
 Casa::~Casa() {

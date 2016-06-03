@@ -3,12 +3,13 @@
 //
 
 #include "Database.h"
-
-static Database* Database::getInstance(){
+Database* Database::instance = NULL;
+Database::Database() { }
+Database* Database::getInstance(){
     if(instance == NULL){
-        this->instance = new Database();
+        instance = new Database();
     }
-    return this->instance;
+    return instance;
 }
 map<string, Departamento*>* Database::getDepartamentos(){
     return this->departamentos;

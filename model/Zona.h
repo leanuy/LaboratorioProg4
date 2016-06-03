@@ -16,13 +16,14 @@
 using namespace std;
 
 class Departamento;
+class Propiedad;
 
 class Zona {
 private:
 	string codigo;
 	string nombre;
     map<string,Propiedad*> propiedades;
-	Departamento* depto;
+	Departamento* departamento;
     map<string,Edificio*> edificios;
 
 public:
@@ -33,6 +34,8 @@ public:
 	string getNombre();
 	void setCodigo(string code);
 	string getCodigo();
+	void setDepartamento(Departamento* departamento);
+	Departamento* getDepartamento();
 
     DataZona CrearDataZona();
     list<DataPropiedad>* ListarPropiedadExtendidas();

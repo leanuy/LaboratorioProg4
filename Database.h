@@ -13,7 +13,8 @@
 
 class Database {
 private:
-    Database* instance;
+    static Database* instance;
+    Database();
     map<string, Departamento*>* departamentos;
     map<string, Usuario*>* usuarios;
     map<string, Edificio*>* edificiosN_A;

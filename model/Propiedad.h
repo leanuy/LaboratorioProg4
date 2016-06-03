@@ -10,10 +10,13 @@
 #include "../model/Conversacion.h"
 #include "../datatypes/DataDepartamento.h"
 #include "../datatypes/DataPropiedad.h"
+#include "../model/Zona.h"
 
 
 
 using namespace std;
+
+class Zona;
 
 class Propiedad {
 private:
@@ -25,6 +28,7 @@ private:
     string direccion;
     float metrosCuadradosEdificados;
     float metrosCuadradosTotales;
+    Zona* zona;
 
 public:
     Propiedad();
@@ -45,7 +49,8 @@ public:
     void setMetrosCuadradosEdificados(float m2);
     float getMetrosCuadradosTotales();
     void setMetrosCuadradosTotales(float m2);
-
+    Zona* getZona();
+    void setZona(Zona * zona);
 
     void LinkConversacion(Conversacion* c);
     DataPropiedad CrearDataPropiedad();

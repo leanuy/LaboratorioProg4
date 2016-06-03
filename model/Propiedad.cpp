@@ -35,7 +35,7 @@ void Propiedad::InsertarNuevoMensaje(string mensaje) {
 }
 
 DataDepartamento Propiedad::ObtenerDepartamento() {
-    return nullptr;
+    return this->getZona()->getDepartamento()->CrearDataDepartamento();
 }
 
 void Propiedad::Actualizar(DataPropiedad p) {
@@ -108,4 +108,12 @@ float Propiedad::getMetrosCuadradosTotales() {
 
 void Propiedad::setMetrosCuadradosTotales(float m2) {
     this->metrosCuadradosTotales = m2;
+}
+
+Zona* Propiedad::getZona(){
+    return this->zona;
+}
+
+void Propiedad::setZona(Zona* zona){
+    this->zona = zona;
 }

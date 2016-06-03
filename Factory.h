@@ -14,13 +14,14 @@
 
 class Factory {
 private:
-    Factory * instance;
+    static Factory * instance;
+    Factory();
 public:
     static Factory * getInstance();
-    ILog getILog();
-    IPropiedades getIPropiedades();
-    IConversaciones getIConversaciones();
-    IUsuarios getIUsuarios();
+    ILog* getILog();
+    IPropiedades* getIPropiedades();
+    IConversaciones* getIConversaciones();
+    IUsuarios* getIUsuarios();
 };
 
 

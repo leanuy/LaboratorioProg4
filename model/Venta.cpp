@@ -18,7 +18,7 @@ float Venta::getPrecio() {
 }
 
 void Venta::setPrecio(string preci) {
-    this->precio = preci;
+    this->precio = stof(preci);
 }
 
 Propiedad *Venta::getPropiedad() {

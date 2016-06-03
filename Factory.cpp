@@ -8,23 +8,24 @@
 #include "controllers/PropiedadesController.h"
 #include "controllers/UsuariosController.h"
 
-Factory * Factory::instance = NULL;
-Factory * Factory::getInstance(){
-    if(this->instance == NULL){
-        this->instance = new Factory;
+Factory* Factory::instance = NULL;
+Factory::Factory() { }
+Factory* Factory::getInstance(){
+    if(instance == NULL){
+        instance = new Factory();
     }
-    return *this->instance;
+    return instance;
 }
 
-ILog Factory::getILog(){
-    return *new LogController();
+ILog* Factory::getILog(){
+    return new LogController();
 }
-IPropiedades Factory::getIPropiedades(){
-    return *new PropiedadesController;
+IPropiedades* Factory::getIPropiedades(){
+    return new PropiedadesController;
 }
-IConversaciones Factory::getIConversaciones(){
-    return *new ConversacionesController;
+IConversaciones* Factory::getIConversaciones(){
+    return new ConversacionesController;
 }
-IUsuarios Factory::getIUsuarios(){
-    return *new UsuariosController;
+IUsuarios* Factory::getIUsuarios(){
+    return new UsuariosController;
 }

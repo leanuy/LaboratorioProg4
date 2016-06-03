@@ -6,10 +6,12 @@
 
 #define LAB3_CONVERSACIONESCONTROLLER_H
 
+#include "../Database.h"
 #include "../interfaces/IConversaciones.h"
 #include "../model/Departamento.h"
 #include <string>
 #include <list>
+#include <map>
 
 using namespace std;
 

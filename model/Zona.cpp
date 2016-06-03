@@ -39,24 +39,19 @@ DataZona Zona::CrearDataZona() {
     return DataZona(this->codigo,this->nombre);
 }
 
-list <DataPropiedad>* Zona::ListarPropiedadExtendidas() {
-    list<DataPropiedad>* l = new list<DataPropiedad>;
+list<DataPropiedad> Zona::ListarPropiedadExtendidas() {
+    list<DataPropiedad> l;
     map<string,Propiedad*>::iterator it = this->propiedades.begin();
     while(it != propiedades.end()){
         if(dynamic_cast<Casa*>(it->second)){
-            l->push_back(dynamic_cast<Casa*>(it->second)->CrearDataCasa());
+            l.push_back(dynamic_cast<Casa*>(it->second)->CrearDataCasa());
         }else{
-            l->push_back(dynamic_cast<Apartamento*>(it->second)->CrearDataApartamento());
+            l.push_back(dynamic_cast<Apartamento*>(it->second)->CrearDataApartamento());
         }
         it++;
     }
 
     return l;
-}
-
-DataPropiedad Zona::SeleccionarPropiedad(string idPropiedad) {
-    Propiedad* p = this->BuscarPropiedad(idPropiedad);
-    return p->CrearDataPropiedad();
 }
 
 list <DataEdificio>* Zona::DevolverEdificios(string nombreEdificio) {
@@ -86,7 +81,7 @@ void Zona::AsignarEdificio(Edificio *e) {
     }
 }
 
-Propiedad* Zona::BuscarPropiedad(string idPropiedad) {
+Propiedad* Zona::SeleccionarPropiedad(string idPropiedad) {
     map<string,Propiedad*>::iterator iter = propiedades.find(idPropiedad);
     if(iter == propiedades.end()){
         return NULL;

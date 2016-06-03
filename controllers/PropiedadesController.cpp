@@ -41,7 +41,7 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
 }
 
 DataPropiedad PropiedadesController::verPropiedad(string codigoPropiedad) {
-    return zActual->SeleccionarPropiedad(codigoPropiedad);
+    return zActual->SeleccionarPropiedad(codigoPropiedad)->CrearDataPropiedad();
 }
 
 void PropiedadesController::actualizarPropiedad(DataPropiedad p) {

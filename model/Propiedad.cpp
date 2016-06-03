@@ -117,3 +117,9 @@ Zona* Propiedad::getZona(){
 void Propiedad::setZona(Zona* zona){
     this->zona = zona;
 }
+Inmobiliaria* Propiedad::getInmobiliaria(){
+    return this->inmobiliaria;
+}
+void Propiedad::setInmobiliaria(Inmobiliaria * inmobiliaria){
+    this->inmobiliaria = inmobiliaria;
+}

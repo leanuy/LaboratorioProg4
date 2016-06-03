@@ -3,12 +3,20 @@
 //
 
 #include "Inmobiliaria.h"
+#include "../Database.h"
 
 Inmobiliaria::Inmobiliaria(string nombre, string direccion){}
-int Inmobiliaria::CantidadMensajes(){}
-bool Inmobiliaria::ExisteConversacion(){}
 void Inmobiliaria::LinkConversacion(Conversacion c){}
 //Set DataMensaje Inmobiliaria::ListarMensajes(){}
+list<DataConversacion> Inmobiliaria::ListarConversaciones(){
+    list<DataConversacion> l;
+    map<string,Conversacion*>::iterator it = this->conversaciones.begin();
+    while(it != this->conversaciones.end()){
+        l.push_back(it->second->CrearDataConversacion(it->first));
+        it++;
+    }
+    return l;
+}
 void Inmobiliaria::InsertarNuevoMensaje(string mensaje){}
 void Inmobiliaria::Alquilar(float precio, Propiedad &p){}
 void Inmobiliaria::Vender(float precio, Propiedad &p){}

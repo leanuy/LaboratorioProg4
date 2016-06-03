@@ -1,5 +1,18 @@
-//
-// Created by agus on 02/06/16.
-//
-
 #include "DataConversacion.h"
+
+DataConversacion::DataConversacion(string interesado) {
+    this->interesado = interesado;
+}
+
+string DataConversacion::getInteresado() {
+    return this->interesado;
+}
+
+DataConversacion::~Conversacion() {
+
+}
+
+
+
+
+

@@ -11,3 +11,9 @@ void Conversacion::AgregarMensaje(string mensaje){
     this->mensajes->push(new Mensaje(mensaje));
 }
 Conversacion::~Conversacion(){}
+
+DataConversacion Conversacion::CrearDataConversacion(string interesado) {
+    DataConversacion data = DataConversacion(interesado);
+
+}
+

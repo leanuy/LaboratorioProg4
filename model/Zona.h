@@ -38,13 +38,12 @@ public:
 	Departamento* getDepartamento();
 
     DataZona CrearDataZona();
-    list<DataPropiedad>* ListarPropiedadExtendidas();
-    DataPropiedad SeleccionarPropiedad(string idPropiedad);
+    list<DataPropiedad> ListarPropiedadExtendidas();
+    Propiedad* SeleccionarPropiedad(string idPropiedad);
     list<DataEdificio>* DevolverEdificios(string nombreEdificio);
     DataEdificio DevolverEdificio(string nombreEdificio);
     Departamento* ObtenerDepartamento();
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
-	Propiedad* BuscarPropiedad(string idPropiedad);
 };
 
 

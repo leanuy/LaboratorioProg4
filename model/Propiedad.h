@@ -11,7 +11,7 @@
 #include "../datatypes/DataDepartamento.h"
 #include "../datatypes/DataPropiedad.h"
 #include "../model/Zona.h"
-
+#include "Inmobiliaria.h"
 
 
 using namespace std;
@@ -28,6 +28,7 @@ private:
     string direccion;
     float metrosCuadradosEdificados;
     float metrosCuadradosTotales;
+    Inmobiliaria* inmobiliaria;
     Zona* zona;
 
 public:
@@ -51,6 +52,8 @@ public:
     void setMetrosCuadradosTotales(float m2);
     Zona* getZona();
     void setZona(Zona * zona);
+    Inmobiliaria* getInmobiliaria();
+    void setInmobiliaria(Inmobiliaria * inmobiliaria);
 
     void LinkConversacion(Conversacion* c);
     DataPropiedad CrearDataPropiedad();

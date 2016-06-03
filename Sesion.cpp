@@ -4,8 +4,14 @@
 
 #include "Sesion.h"
 
-Sesion* Sesion::user = NULL;
-Sesion::Sesion{};
+Sesion* Sesion::instance = NULL;
+Sesion::Sesion(){}
+Sesion* Sesion::getInstance(){
+    if(instance == NULL){
+        instance = new Sesion();
+    }
+    return instance;
+}
 
 Usuario* Sesion::getUsuario(){
     return user;

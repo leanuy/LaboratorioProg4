@@ -9,11 +9,13 @@
 
 class Sesion {
 private:
-    static Usuario* user;
+    static Sesion* instance;
+    Usuario* user;
     Sesion(); // Lo necesito??
 public:
-    static Usuario* getUsuario();
+    static Sesion* getInstance();
     void LogIn(Usuario* usr);
+    Usuario* getUsuario();
     void LogOut();
 };
 

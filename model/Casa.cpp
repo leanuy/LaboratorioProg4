@@ -31,3 +31,9 @@ DataCasa CrearDataCasa(){
 Casa::~Casa() {
 
 }
+
+DataCasa Casa::CrearDataCasa() {
+    //todo: Implement CrearDataCasa.
+}
+
+

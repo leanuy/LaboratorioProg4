@@ -9,8 +9,8 @@ Interesado::Interesado(string nombre, string apellido,int edad){
 
 }
 
-void Interesado::LinkConversacion(Conversacion c){
-
+void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){
+    this->conversaciones.insert(pair<string, Conversacion*>(idInmobiliaria, conversacion));
 }
 
 Interesado::~Interesado(){
@@ -39,5 +39,8 @@ int Interesado::getEdad(){
 
 void Interesado::setEdad(int age){
 
+}
+bool Interesado::esTipo(string tipo){
+    return tipo == "interesado";
 }
 

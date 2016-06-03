@@ -82,10 +82,10 @@ void Zona::AsignarEdificio(Edificio *e) {
 }
 
 Propiedad* Zona::SeleccionarPropiedad(string idPropiedad) {
-    map<string,Propiedad*>::iterator iter = propiedades.find(idPropiedad);
-    if(iter == propiedades.end()){
+    map<string,Propiedad*>::iterator it = propiedades.find(idPropiedad);
+    if(it == propiedades.end()){
         return NULL;
+        //todo: thow exeption no se encontro la propiedad que se intento seleccionar
     }
-    Propiedad* p = iter->second;
-    return p;
+    return it->second;
 }

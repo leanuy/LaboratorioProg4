@@ -23,26 +23,22 @@ private:
     Conversacion* cActual;
 public:
     ConversacionesController();
-
-   /* void set_dActual(Departamento* d);
-    void set_zActual(Zona* z);
-    void set_pActual(Propiedad* p);
-    void set_cActual(Conversacion* c);
-    Departamento* get_dActual();
-    Zona* get_zActual();
-    Propiedad* get_pActual();
-    Conversacion* get_cActual();*/
-
+    //Interesado
     list<DataDepartamento> ListarDepartamentos();
     void SeleccionarDepartamento(string idDepartamento);
+    //Interesado
     list<DataZona> ListarZonas();
     void SeleccionarZona(string idZona);
+    //Interesado
     list<DataPropiedad> ListarPropiedades();
     void SeleccionarPropiedad(string idPropiedad);
+    //Inmobiliaria
     list<DataConversacion> ListarConversaciones();
-    void SeleccionarConversacion(string idConversacion);
-    list<DataMensaje> ListarMensajes();
+    void SeleccionarConversacion(string idInteresado);
+    //Interesado e Inmobiliaria (indiferente, no es necesario hacer casteo)
+    queue<DataMensaje> ListarMensajes();
     void AgregarMensaje(string mensaje);
+
     ~ConversacionesController();
 };
 

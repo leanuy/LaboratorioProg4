@@ -1,12 +1,17 @@
-//
-// Created by agus on 02/06/16.
-//
-
 #ifndef LAB6_DATAMENSAJE_H
 #define LAB6_DATAMENSAJE_H
 
+#include <string>
+
+using namespace std;
 
 class DataMensaje {
+private:
+    bool isOwner;
+    string texto;
+public:
+    DataMensaje(bool isOwnser, string mensaje);
+    ~DataMensaje();
 
 };
 

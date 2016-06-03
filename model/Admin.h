@@ -10,5 +10,6 @@
 class Admin: public Usuario{
 public:
     Admin();
+    bool esTipo(string tipo);
 };
 #endif //LAB6_ADMIN_H

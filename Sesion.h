@@ -9,12 +9,18 @@
 
 class Sesion {
 private:
-    static Usuario* user;
+    static Sesion* instance;
+    Usuario* user;
     Sesion(); // Lo necesito??
+    Usuario* getUsuario();
 public:
-    static Usuario* getUsuario();
+    static Sesion* getInstance();
     void LogIn(Usuario* usr);
+    bool isLogged();
+    bool esTipo(string tipo);
     void LogOut();
+
+    friend class ConversacionesController;
 };
 
 

@@ -1,13 +1,12 @@
 #include "Mensaje.h"
+#include "../Sesion.h"
 
-Mensaje::Mensaje(string mensaje){
-    this->esInteresado = false;
-//    this->esInteresado = sesion->tipo("interesado"); todo: usar variable de sesion global
-    this->fecha = "";
+Mensaje::Mensaje(bool esInteresado, string mensaje){
+    this->esInteresado = esInteresado;
     this->texto = mensaje;
 }
-DataMensaje* Mensaje::CrearDataMensaje(){
-    DataMensaje *data = new DataMensaje();
-    return data;
+DataMensaje Mensaje::CrearDataMensaje(){
+    Sesion* sesion = Sesion::getInstance();
+    return DataMensaje(this->esInteresado, this->texto);
 }
 Mensaje::~Mensaje(){}

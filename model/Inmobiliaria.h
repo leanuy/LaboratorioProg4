@@ -25,18 +25,17 @@ private:
     map<string, Conversacion*> conversaciones;
 public:
     Inmobiliaria(string nombre, string direccion);
-    int CantidadMensajes();
     bool ExisteConversacion();
     string getNombre();
     void setNombre(string name);
     string getDireccion();
     void setDireccion(string dir);
-    void LinkConversacion(Conversacion c);
-    //Set DataMensaje ListarMensajes()
+    void AddConversacion(string idInteresado, Conversacion* conversacion);
     list<DataConversacion> ListarConversaciones();
-    void InsertarNuevoMensaje(string mensaje);
+    Conversacion* SeleccionarConversacion(string idConversacion);
     void Alquilar(float precio, Propiedad &p);
     void Vender(float precio, Propiedad &p);
+    bool esTipo(string tipo);
     ~Inmobiliaria();
 };
 

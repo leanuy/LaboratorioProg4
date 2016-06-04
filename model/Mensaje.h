@@ -6,6 +6,7 @@
 #define LAB3_MENSAJE_H
 
 #include <string>
+#include <ctime>
 #include "../datatypes/DataMensaje.h"
 
 using namespace std;
@@ -13,11 +14,11 @@ using namespace std;
 class Mensaje {
 private:
     bool esInteresado;
-    string fecha;
+    time_t TOA;
     string texto;
 public:
-    Mensaje(string mensaje);
-    DataMensaje* CrearDataMensaje();
+    Mensaje(bool esInteresado, string mensaje);
+    DataMensaje CrearDataMensaje();
     ~Mensaje();
 };
 

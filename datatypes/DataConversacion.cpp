@@ -1,7 +1,8 @@
 #include "DataConversacion.h"
 
-DataConversacion::DataConversacion(string interesado) {
+DataConversacion::DataConversacion(string interesado, time_t lastUpdate) {
     this->interesado = interesado;
+    this->lastUpdate = lastUpdate;
 }
 
 string DataConversacion::getInteresado() {
@@ -10,6 +11,10 @@ string DataConversacion::getInteresado() {
 
 DataConversacion::~DataConversacion() {
 
+}
+
+time_t DataConversacion::getLastUpdate() {
+    return this->lastUpdate;
 }
 
 

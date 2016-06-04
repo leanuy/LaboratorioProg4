@@ -26,6 +26,8 @@ public:
     bool FirstTime();
     bool AsignarPassword(string pass1,string pass2);
     bool CheckPassword(string pass);
+
+    virtual bool esTipo(string tipo)=0;
 };
 
 

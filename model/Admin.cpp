@@ -4,3 +4,6 @@
 #include "../model/Admin.h"
 
 Admin::Admin(){}
+bool Admin::esTipo(string tipo){
+    return tipo == "admin";
+}

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <queue>
 #include "../datatypes/DataDepartamento.h"
 #include "../datatypes/DataZona.h"
 #include "../datatypes/DataPropiedad.h"

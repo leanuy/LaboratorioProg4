@@ -1,17 +1,14 @@
 
 #include "ConversacionesController.h"
-ConversacionesController::ConversacionesController(){}
+#include "../Sesion.h"
+#include "../model/Interesado.h"
 
-/*
-void ConversacionesController::set_dActual(Departamento* d){ this->dActual = d; }
-Departamento* ConversacionesController::get_dActual(){ return this->dActual; }
-void ConversacionesController::set_zActual(Zona* z){ this->zActual = z; }
-Zona* ConversacionesController::get_zActual(){ return this->zActual; }
-void ConversacionesController::set_pActual(Propiedad* p){ this->pActual = p; }
-Propiedad* ConversacionesController::get_pActual(){ return this->pActual; }
-void ConversacionesController::set_cActual(Conversacion* c){ this->cActual = c; }
-Conversacion* ConversacionesController::get_cActual(){ return this->cActual; }
-*/
+ConversacionesController::ConversacionesController(){
+    this->dActual = NULL;
+    this->zActual = NULL;
+    this->pActual = NULL;
+    this->cActual = NULL;
+}
 
 list<DataDepartamento> ConversacionesController::ListarDepartamentos(){
     Database * db = Database::getInstance();
@@ -25,10 +22,12 @@ list<DataDepartamento> ConversacionesController::ListarDepartamentos(){
 }
 void ConversacionesController::SeleccionarDepartamento(string idDepartamento){
     Database * db = Database::getInstance();
-    this->dActual = db->getDepartamentos().find(idDepartamento)->second;
-    if(this->dActual == db->getDepartamentos().end()->second){
-        //todo: throw exeption
+    map<string, Departamento*>::iterator it = db->getDepartamentos().find(idDepartamento);
+    if(it == db->getDepartamentos().end()){
+        this->dActual = NULL;
+        //todo: throw exeption de que no se enconto el departamento que se intento seleccionar
     }
+    this->dActual = it->second;
 }
 list<DataZona> ConversacionesController::ListarZonas(){
     return dActual->ListarZonas();
@@ -41,11 +40,36 @@ list<DataPropiedad> ConversacionesController::ListarPropiedades(){
 }
 void ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
+    Sesion* sesion = Sesion::getInstance();
+    Interesado* interesado = dynamic_cast<Interesado*>(sesion->getUsuario());
+    this->cActual = this->pActual->getInmobiliaria()->SeleccionarConversacion(interesado->getEmail());
+    if(this->cActual == NULL){
+        this->cActual = new Conversacion;
+        this->pActual->getInmobiliaria()->AddConversacion(interesado->getEmail(), this->cActual);
+        interesado->AddConversacion(this->pActual->getInmobiliaria()->getEmail(), this->cActual);
+    }
 }
+
 list<DataConversacion> ConversacionesController::ListarConversaciones(){
-   // return this->pActual->getInmobiliaria()-> Fixme
+    Sesion* sesion = Sesion::getInstance();
+    Inmobiliaria* inmobiliaria = dynamic_cast<Inmobiliaria*>(sesion->getUsuario());
+    list<DataConversacion> l = inmobiliaria->ListarConversaciones();
+    return l;
+
 }
-void ConversacionesController::SeleccionarConversacion(string idConversacion){}
-list<DataMensaje> ConversacionesController::ListarMensajes(){}//agus:Agregar tipo de devolucion
-void ConversacionesController::AgregarMensaje(string mensaje){}
-ConversacionesController::~ConversacionesController(){}
+void ConversacionesController::SeleccionarConversacion(string idInteresado){
+    Sesion* sesion = Sesion::getInstance();
+    Inmobiliaria* inmobiliaria = dynamic_cast<Inmobiliaria*>(sesion->getUsuario());
+    this->cActual = inmobiliaria->SeleccionarConversacion(idInteresado);
+}
+list<DataMensaje> ConversacionesController::ListarMensajes(){
+    return this->cActual->ListarMensajes();
+}
+void ConversacionesController::AgregarMensaje(string mensaje){
+    Sesion* sesion = Sesion::getInstance();
+    this->cActual->AgregarMensaje(sesion->getUsuario()->esTipo("interesado"), mensaje);
+    this->cActual->setLastUpdate();
+}
+ConversacionesController::~ConversacionesController(){
+    //No se crea memoria dinamica que deba ser destruida al destruir el controller.
+}

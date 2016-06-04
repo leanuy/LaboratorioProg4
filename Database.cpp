@@ -13,4 +13,7 @@ map<string, Departamento*> Database::getDepartamentos(){
 map<string, Usuario*> Database::getUsuarios(){
     return this->usuarios;
 }
+void Database::AddUsuario(Usuario* usuario){
+    this->usuarios.insert(this->usuarios.begin(), pair<string, Usuario*>(usuario->getEmail(), usuario));
+}
 Database::~Database(){}

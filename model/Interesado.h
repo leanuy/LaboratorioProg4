@@ -6,6 +6,7 @@
 #define LAB6_INTERESADO_H
 
 #include <string>
+#include <map>
 #include "../model/Conversacion.h"
 #include "../model/Usuario.h"
 
@@ -17,9 +18,10 @@ private:
     string nombre;
     string apellido;
     int edad;
+    map<string, Conversacion*> conversaciones;
 public:
     Interesado(string nombre, string apellido,int edad);
-    void LinkConversacion(Conversacion c);
+    void AddConversacion(string idInmobiliaria, Conversacion* conversacion);
     ~Interesado();
     string getNombre();
     void setNombre(string name);
@@ -27,5 +29,7 @@ public:
     void setApellido(string apell);
     int getEdad();
     void setEdad(int age);
+
+    bool esTipo(string tipo);
 };
 #endif //LAB6_INTERESADO_H

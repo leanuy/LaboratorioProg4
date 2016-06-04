@@ -1,19 +1,35 @@
-
+#include <map>
 #include "Conversacion.h"
 Conversacion::Conversacion(){
-    this->mensajes = new queue<Mensaje*>;
+    this->lastUpdate = time(NULL);
 }
 int Conversacion::CantidadMensajes(){
-    this->mensajes->size();
+    this->mensajes.size();
 }
-queue<DataMensaje> Conversacion::ListarMensajes(){}
-void Conversacion::AgregarMensaje(string mensaje){
-    this->mensajes->push(new Mensaje(mensaje));
+list<DataMensaje> Conversacion::ListarMensajes(){
+    list<DataMensaje> q;
+    list<Mensaje*>::iterator it = this->mensajes.begin();
+    int cnt = 0;
+    while (it != this->mensajes.end() && cnt <5)
+        q.push_back((*it)->CrearDataMensaje());
 }
-Conversacion::~Conversacion(){}
+void Conversacion::AgregarMensaje(bool esInteresado, string mensaje){
+    this->mensajes.push_front(new Mensaje(esInteresado, mensaje));
+}
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {
-    DataConversacion data = DataConversacion(interesado);
-
+    DataConversacion data = DataConversacion(interesado, this->lastUpdate);
 }
 
+void Conversacion::setLastUpdate() {
+    this->lastUpdate = time(NULL);
+}
+
+time_t Conversacion::getLastUpdate() {
+    return this->lastUpdate;
+}
+
+Conversacion::~Conversacion(){
+    if(this->mensajes.size() > 0)
+        this->mensajes.clear();
+}

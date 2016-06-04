@@ -4,8 +4,14 @@
 
 #include "Sesion.h"
 
-Sesion* Sesion::user = NULL;
-Sesion::Sesion{};
+Sesion* Sesion::instance = NULL;
+Sesion::Sesion(){}
+Sesion* Sesion::getInstance(){
+    if(instance == NULL){
+        instance = new Sesion();
+    }
+    return instance;
+}
 
 Usuario* Sesion::getUsuario(){
     return user;
@@ -16,3 +22,12 @@ void Sesion::LogIn(Usuario* usr){
 void Sesion::LogOut(){
     user = NULL;
 }
+
+bool Sesion::esTipo(string tipo){
+    return user->esTipo(tipo);
+}
+
+bool Sesion::isLogged() {
+    return this->user != NULL;
+}
+

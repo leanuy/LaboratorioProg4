@@ -61,5 +61,13 @@ Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
 }
 
 Propiedad *PropiedadesController::buscarPropiedad(string codigoPropiedad) {
-    return nullptr;
+    Database* db = Database::getInstance();
+    map<string,Departamento*> deptos = db->getDepartamentos();
+    map<string,Departamento*>::iterator it = deptos.begin();
+    Propiedad* p = NULL;
+    while((it != deptos.end())&&(p == NULL)){
+        p = it->second->BuscarPropiedad(codigoPropiedad);
+        it++;
+    }
+    return p;
 }

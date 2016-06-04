@@ -22,7 +22,10 @@ public:
     static Database* getInstance();
     map<string, Departamento*> getDepartamentos();
     map<string, Usuario*> getUsuarios();
+    map<string, Edificio*> getEdificios();
     void AddUsuario(Usuario* usuario);
+    void AddEdificio(Edificio* edificio);
+    Edificio* RemoveEdificio(string idEdificio);
     ~Database();
 };
 

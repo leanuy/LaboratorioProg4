@@ -1,7 +1,7 @@
 #ifndef LAB3_CONVERSACION_H
 #define LAB3_CONVERSACION_H
 
-#include <queue>
+#include <list>
 #include <string>
 #include <ctime>
 #include "../model/Mensaje.h"
@@ -10,13 +10,13 @@
 
 class Conversacion {
 private:
-    queue<Mensaje*>* mensajes;
+    list<Mensaje*> mensajes;
     time_t lastUpdate;
 public:
     Conversacion();
     DataConversacion CrearDataConversacion(string interesado);
     int CantidadMensajes();
-    queue<DataMensaje> ListarMensajes();
+    list<DataMensaje> ListarMensajes();
     void AgregarMensaje(bool esInteresado, string mensaje);
     void setLastUpdate();
     time_t getLastUpdate();

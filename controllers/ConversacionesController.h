@@ -36,7 +36,7 @@ public:
     list<DataConversacion> ListarConversaciones();
     void SeleccionarConversacion(string idInteresado);
     //Interesado e Inmobiliaria (indiferente, no es necesario hacer casteo)
-    queue<DataMensaje> ListarMensajes();
+    list<DataMensaje> ListarMensajes();
     void AgregarMensaje(string mensaje);
 
     ~ConversacionesController();

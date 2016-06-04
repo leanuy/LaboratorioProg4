@@ -62,7 +62,7 @@ void ConversacionesController::SeleccionarConversacion(string idInteresado){
     Inmobiliaria* inmobiliaria = dynamic_cast<Inmobiliaria*>(sesion->getUsuario());
     this->cActual = inmobiliaria->SeleccionarConversacion(idInteresado);
 }
-queue<DataMensaje> ConversacionesController::ListarMensajes(){
+list<DataMensaje> ConversacionesController::ListarMensajes(){
     return this->cActual->ListarMensajes();
 }
 void ConversacionesController::AgregarMensaje(string mensaje){

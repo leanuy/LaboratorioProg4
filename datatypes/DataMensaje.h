@@ -7,10 +7,10 @@ using namespace std;
 
 class DataMensaje {
 private:
-    bool isOwner;
+    bool esInteresado;
     string texto;
 public:
-    DataMensaje(bool isOwnser, string mensaje);
+    DataMensaje(bool esInteresado, string mensaje);
     ~DataMensaje();
 
 };

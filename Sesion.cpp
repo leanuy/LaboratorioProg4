@@ -22,3 +22,12 @@ void Sesion::LogIn(Usuario* usr){
 void Sesion::LogOut(){
     user = NULL;
 }
+
+bool Sesion::esTipo(string tipo){
+    return user->esTipo(tipo);
+}
+
+bool Sesion::isLogged() {
+    return this->user != NULL;
+}
+

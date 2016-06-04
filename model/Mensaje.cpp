@@ -7,6 +7,6 @@ Mensaje::Mensaje(bool esInteresado, string mensaje){
 }
 DataMensaje Mensaje::CrearDataMensaje(){
     Sesion* sesion = Sesion::getInstance();
-    return DataMensaje(this->esInteresado == sesion->getUsuario()->esTipo("interesado"), this->texto);
+    return DataMensaje(this->esInteresado, this->texto);
 }
 Mensaje::~Mensaje(){}

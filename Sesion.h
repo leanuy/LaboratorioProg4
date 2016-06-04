@@ -12,11 +12,15 @@ private:
     static Sesion* instance;
     Usuario* user;
     Sesion(); // Lo necesito??
+    Usuario* getUsuario();
 public:
     static Sesion* getInstance();
     void LogIn(Usuario* usr);
-    Usuario* getUsuario();
+    bool isLogged();
+    bool esTipo(string tipo);
     void LogOut();
+
+    friend class ConversacionesController;
 };
 
 

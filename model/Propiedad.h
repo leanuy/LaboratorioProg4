@@ -30,6 +30,8 @@ private:
     float metrosCuadradosTotales;
     Inmobiliaria* inmobiliaria;
     Zona* zona;
+    Venta* venta;
+    Alquiler* alquiler;
 
 public:
     Propiedad();
@@ -54,6 +56,10 @@ public:
     void setZona(Zona * zona);
     Inmobiliaria* getInmobiliaria();
     void setInmobiliaria(Inmobiliaria * inmobiliaria);
+    Alquiler* getAlquiler();
+    void setAlquiler(Alquiler* a);
+    Venta* getVenta();
+    void setVenta(Venta* v);
 
     void LinkConversacion(Conversacion* c);
     DataPropiedad CrearDataPropiedad();

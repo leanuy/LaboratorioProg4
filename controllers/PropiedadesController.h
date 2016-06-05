@@ -17,6 +17,7 @@
 #include "../Sesion.h"
 #include "../model/Alquiler.h"
 #include "../model/Venta.h"
+#include <typeinfo>
 
 
 
@@ -32,7 +33,7 @@ private:
 
 
     Edificio* SeleccionarEdificioPriv(string idEdificio);
-    Propiedad* buscarPropiedad(string codigoPropiedad);
+    Propiedad* buscarPropiedadPriv(string codigoPropiedad);
     string generarCodigo();
 public:
     PropiedadesController();
@@ -48,6 +49,7 @@ public:
     void ponerEnAlquiler(float precio);
     void ponerEnVenta(float precio);
     string getCodigPropiedad();
+    DataPropiedad BuscarPropiedad(string codigo);
     void EliminarPropiedad(string codigoPropiedad);
     DataPropiedad verPropiedad(string codigoPropiedad);
     void actualizarPropiedad(DataPropiedad p);

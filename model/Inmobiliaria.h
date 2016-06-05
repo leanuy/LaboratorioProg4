@@ -15,6 +15,8 @@
 
 #include <list>
 #include <map>
+#include "../model/Venta.h"
+#include "../model/Alquiler.h"
 
 using namespace std;
 class Propiedad;
@@ -23,6 +25,9 @@ private:
     string nombre;
     string direccion;
     map<string, Conversacion*> conversaciones;
+    map<string,Alquiler*> alquileres;
+    map<string,Venta*> ventas;
+
 public:
     Inmobiliaria(string nombre, string direccion);
     bool ExisteConversacion();
@@ -33,8 +38,8 @@ public:
     void AddConversacion(string idInteresado, Conversacion* conversacion);
     list<DataConversacion> ListarConversaciones();
     Conversacion* SeleccionarConversacion(string idConversacion);
-    void Alquilar(float precio, Propiedad &p);
-    void Vender(float precio, Propiedad &p);
+    void Alquilar(float precio, Propiedad* p);
+    void Vender(float precio, Propiedad* p);
     bool esTipo(string tipo);
     ~Inmobiliaria();
 };

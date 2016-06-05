@@ -1,7 +1,9 @@
 #include "Inmobiliaria.h"
 #include "../Database.h"
 
-Inmobiliaria::Inmobiliaria(string nombre, string direccion){}
+Inmobiliaria::Inmobiliaria(string nombre, string direccion){
+//todo hacer constructores de este..de interesado.. de admin..
+}
 
 void Inmobiliaria::AddConversacion(string idInteresado, Conversacion* conversacion){
     this->conversaciones.insert(pair<string, Conversacion*>(idInteresado, conversacion));
@@ -27,9 +29,34 @@ Conversacion* Inmobiliaria::SeleccionarConversacion(string idConversacion){
     }
     return it->second;
 }
-void Inmobiliaria::Alquilar(float precio, Propiedad &p){}
-void Inmobiliaria::Vender(float precio, Propiedad &p){}
-Inmobiliaria::~Inmobiliaria(){}
+void Inmobiliaria::Alquilar(float precio, Propiedad* p){
+    Alquiler* a = new Alquiler(precio,p);
+    p->setAlquiler(a);
+    //add a la coleccion de alquileres
+    map<string,Alquiler*>::iterator it = alquileres.find(p->getCodigo());
+    if(it != alquileres.end()){
+        delete a;  // en teoria no deberia suceder y deberia quedar en end el iterador
+        throw std::invalid_argument("Ya existe el alquiler");
+    }
+    alquileres[p->getCodigo()] = a;
+}
+
+void Inmobiliaria::Vender(float precio, Propiedad* p){
+    Venta* v = new Venta(precio,p);
+    p->setVenta(v);
+    //add a la collecion de venta
+    map<string,Venta*>::iterator it = ventas.find(p->getCodigo());
+    if(it != ventas.end()){
+        delete v;  // en teoria no deberia suceder y deberia quedar en end el iterador
+        throw std::invalid_argument("Ya existe la venta");
+    }
+    ventas[p->getCodigo()] = v;
+}
+
+Inmobiliaria::~Inmobiliaria(){
+
+
+}
 
 
 bool Inmobiliaria::ExisteConversacion() {
@@ -53,5 +80,6 @@ void Inmobiliaria::setDireccion(string dir) {
 }
 
 bool Inmobiliaria::esTipo(string tipo){
-    return tipo == "inmobiliaria";
+    //return tipo == "inmobiliaria"; fixme
+     return (tipo.compare("inmobiliaria") == 0);
 }

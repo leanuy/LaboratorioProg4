@@ -25,6 +25,8 @@ private:
     map<string,Propiedad*> propiedades;
 	Departamento* departamento;
     map<string,Edificio*> edificios;
+	//agregar coleccion de zonas limite.
+
 
 public:
     Zona(string codigo,string nombre);
@@ -46,6 +48,7 @@ public:
     Departamento* ObtenerDepartamento();
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
 	void AgregarPropiedad(Propiedad* p);
+	void eliminarPropiedad(string codigo);
 };
 
 

@@ -4,9 +4,6 @@
 
 #include "Usuario.h"
 
-Usuario::Usuario() {
-
-}
 
 void Usuario::setEmail(string mail) {
     this->email = mail;

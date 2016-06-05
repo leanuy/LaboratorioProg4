@@ -62,19 +62,26 @@ void PropiedadesController::ingresarCasa(DataCasa casa) {
 }
 
 void PropiedadesController::ponerEnAlquiler(float precio) {
-
+    Sesion* s = Sesion::getInstance();
+    Inmobiliaria* inmo = (Inmobiliaria*)s->getUsuario();
+    inmo->Alquilar(precio,pActual);
 }
 
 void PropiedadesController::ponerEnVenta(float precio) {
-
+    Sesion* s = Sesion::getInstance();
+    Inmobiliaria* inmo = (Inmobiliaria*)s->getUsuario();
+    inmo->Vender(precio,pActual);
 }
 
-string PropiedadesController::getCodigPropiedad() { //fixme: WTF!!!!!!
-//    return __cxx11::basic_string<char, char_traits<_CharT>, allocator<_CharT>>();
+string PropiedadesController::getCodigPropiedad() {
+    return pActual->getCodigo();
 }
 
 void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
-
+    this->pActual = buscarPropiedadPriv(codigoPropiedad);
+    Zona* z;
+    z = this->pActual->getZona();
+    z->eliminarPropiedad(codigoPropiedad);
 }
 
 DataPropiedad PropiedadesController::verPropiedad(string codigoPropiedad) {
@@ -82,7 +89,16 @@ DataPropiedad PropiedadesController::verPropiedad(string codigoPropiedad) {
 }
 
 void PropiedadesController::actualizarPropiedad(DataPropiedad p) {
-
+    this->pActual->setAmbientes(p.getAmbientes());
+    this->pActual->setDormitorios(p.getDormitorios());
+    this->pActual->setBanios(p.getBanios());
+    this->pActual->setGarage(p.getGarage());
+    this->pActual->setDireccion(p.getDireccion());
+    this->pActual->setMetrosCuadradosEdificados(p.getMetrosCuadradosEdificados());
+    this->pActual->setMetrosCuadradosTotales(p.getMetrosCuadradosTotales());
+// fixme HAy que castear a datacasa y sacarle los metros cuadrados verdes.
+    this->pActual = NULL; //desvinculo la propiedad actual del controlador
+    // la propiedad ya quedo actualizada.
 }
 
 Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
@@ -97,7 +113,7 @@ Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
     return p;
 }
 
-Propiedad *PropiedadesController::buscarPropiedad(string codigoPropiedad) {
+Propiedad *PropiedadesController::buscarPropiedadPriv(string codigoPropiedad) {
     Database* db = Database::getInstance();
     map<string,Departamento*> deptos = db->getDepartamentos();
     map<string,Departamento*>::iterator it = deptos.begin();
@@ -107,7 +123,7 @@ Propiedad *PropiedadesController::buscarPropiedad(string codigoPropiedad) {
         it++;
     }
     if(it == deptos.end()){
-        throw std::invalid_argument( "El edificio no se encuentra en el sistema o aun no fue asigando a una zona" );
+        throw std::invalid_argument( "La propiedad no se encuentra en el sistema" );
     }
     return p;
 }
@@ -125,4 +141,9 @@ PropiedadesController::PropiedadesController() {
 
 PropiedadesController::~PropiedadesController() {
 
+}
+
+DataPropiedad PropiedadesController::BuscarPropiedad(string codigo) {
+    this->pActual = buscarPropiedadPriv(codigo);
+    return this->pActual->CrearDataPropiedad();
 }

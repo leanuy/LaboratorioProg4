@@ -15,7 +15,6 @@ private:
     string contrasenia;
     bool firstLogin;
 public:
-    Usuario();
     virtual ~Usuario() = 0;
 
     void setEmail(string mail);

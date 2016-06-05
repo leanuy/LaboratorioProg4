@@ -105,3 +105,14 @@ void Zona::AgregarPropiedad(Propiedad *p) {
         propiedades[p->getCodigo()] = p;
     }
 }
+
+void Zona::eliminarPropiedad(string codigo) {
+    map<string,Propiedad*>::iterator iter = propiedades.find(codigo);
+    if(iter == propiedades.end()){
+        //una vez que tenga la propiedad debo ir a su inmobiliaria y sacarle el alquiler o venta.. luego
+        //sacarla de la inmobiliaria por ultimo eliminarla de la zona y dejar el puntero a null;
+        //ver tambien las conversaciones que onda. y si es un edificio quitarle el apartamento.
+        delete propiedades[codigo];
+        propiedades[codigo] = NULL;
+    }
+}

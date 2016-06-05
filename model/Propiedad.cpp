@@ -123,3 +123,19 @@ Inmobiliaria* Propiedad::getInmobiliaria(){
 void Propiedad::setInmobiliaria(Inmobiliaria * inmobiliaria){
     this->inmobiliaria = inmobiliaria;
 }
+
+Alquiler *Propiedad::getAlquiler() {
+    return this->alquiler;
+}
+
+void Propiedad::setAlquiler(Alquiler *a) {
+    this->alquiler = a;
+}
+
+Venta *Propiedad::getVenta() {
+    return this->venta;
+}
+
+void Propiedad::setVenta(Venta *v) {
+    this->venta = v;
+}

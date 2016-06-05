@@ -14,7 +14,7 @@ using namespace std;
 
 class IConversaciones {
 public:
-    IConversaciones();
+//    IConversaciones();
     virtual list<DataDepartamento> ListarDepartamentos() = 0;
     virtual void SeleccionarDepartamento(string idDepartamento) = 0;
     virtual list<DataZona> ListarZonas() = 0;

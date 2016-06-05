@@ -14,7 +14,7 @@ public:
     virtual map<string,DataInmobiliaria> ReportesInmobiliaria() = 0;
     virtual void CheckEmail(string mail) = 0;
     virtual void DarAltaInteresado(string nombre, string apellido, string email, int edad) = 0;
-    virtual ~IUsuarios()=0;
+    virtual ~IUsuarios();
 };
 
 

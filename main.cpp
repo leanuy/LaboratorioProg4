@@ -24,8 +24,8 @@ void doCerrarSesion();//Usuario
 int main(){
     Sesion* sesion = Sesion::getInstance();
     if(!sesion->isLogged()){
-        cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << EOF;
-        cout << "---------------------------------------------" << EOF;
+        cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
+        cout << "---------------------------------------------" << endl;
         doIniciarSesion();
     }else{
         doMenu();
@@ -37,26 +37,26 @@ int main(){
 }
 void doMenu(){
     Sesion* sesion = Sesion::getInstance();
-    cout << "---------------------------------------------" << EOF;
+    cout << "---------------------------------------------" << endl;
     if(sesion->isLogged()){
         if(sesion->esTipo("admin"))
-            cout << "- Alta Inmobiliaria" << EOF;
+            cout << "- Alta Inmobiliaria" << endl;
         if(sesion->esTipo("admin"))
-            cout << "- Alta Interesado" << EOF;
+            cout << "- Alta Interesado" << endl;
         if(sesion->esTipo("inmobiliaria"))
-            cout << "- Alta Edificio" << EOF;
+            cout << "- Alta Edificio" << endl;
         if(sesion->esTipo("inmobiliaria"))
-            cout << "- Alta Propiedad" << EOF;
+            cout << "- Alta Propiedad" << endl;
         if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))
-            cout << "- Consultar Propiedad" << EOF;
+            cout << "- Consultar Propiedad" << endl;
         if(sesion->esTipo("inmobiliaria"))
-            cout << "- Modificar Propiedad" << EOF;
+            cout << "- Modificar Propiedad" << endl;
         if(sesion->esTipo("inmobiliaria"))
-            cout << "- Eliminar Propiedad" << EOF;
+            cout << "- Eliminar Propiedad" << endl;
         if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))
-            cout << "- Enviar Mensaje" << EOF;
+            cout << "- Enviar Mensaje" << endl;
         if(sesion->esTipo("admin"))
-            cout << "- Obtener Reporte Inmobiliarias" << EOF;
+            cout << "- Obtener Reporte Inmobiliarias" << endl;
     }
 }
 void doComando(){

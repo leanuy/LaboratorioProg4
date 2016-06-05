@@ -17,7 +17,8 @@ public:
                 string direccion,float m2Edificados,float m2Totales);
     void setEdificio(Edificio* e);
     Edificio* getEdificio();
-    DataApartamento CrearDataApartamento();
+    DataPropiedad CrearDataPropiedad();
+    DataPropiedad* CrearPtrDataPropiedad();
     ~Apartamento();
 
 

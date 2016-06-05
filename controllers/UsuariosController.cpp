@@ -6,6 +6,8 @@
 #include "../Database.h"
 #include "../model/Interesado.h"
 
+UsuariosController::UsuariosController(){}
+
 void UsuariosController::IngresarInmobiliaria(string nombre, string mail, string direccion){
     Inmobiliaria* Inmob = new Inmobiliaria(nombre, mail, direccion);
     Database* b = Database::getInstance();
@@ -13,7 +15,8 @@ void UsuariosController::IngresarInmobiliaria(string nombre, string mail, string
 }
 
 map<string,DataInmobiliaria> UsuariosController::ReportesInmobiliaria(){
-	
+    map<string,DataInmobiliaria> hola;
+    return hola;
 }
 void UsuariosController::CheckEmail(string mail){// para ver si ya existe el mail
 	
@@ -23,3 +26,5 @@ void UsuariosController::DarAltaInteresado(string nombre, string apellido, strin
     Database* b = Database::getInstance();
     b->AddUsuario(inter);
 }
+
+UsuariosController::~UsuariosController(){}

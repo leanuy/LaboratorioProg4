@@ -6,6 +6,10 @@
 #define LAB6_ALQUILER_H
 
 #include "Propiedad.h"
+#include "Inmobiliaria.h"
+
+class Propiedad;
+class Inmobiliaria;
 
 class Alquiler {
 private:

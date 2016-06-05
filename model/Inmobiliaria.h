@@ -18,7 +18,10 @@
 #include "../model/Venta.h"
 #include "../model/Alquiler.h"
 
+
 using namespace std;
+class Alquiler;
+class Venta;
 class Propiedad;
 class Inmobiliaria: public Usuario {
 private:

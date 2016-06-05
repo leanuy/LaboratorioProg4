@@ -35,7 +35,7 @@ list<DataZona> ConversacionesController::ListarZonas(){
 void ConversacionesController::SeleccionarZona(string idZona){
     this->zActual= this->dActual->SeleccionarZona(idZona);
 }
-list<DataPropiedad> ConversacionesController::ListarPropiedades(){
+list<DataPropiedad*> ConversacionesController::ListarPropiedades(){
     return this->zActual->ListarPropiedadExtendidas();
 }
 void ConversacionesController::SeleccionarPropiedad(string idPropiedad){

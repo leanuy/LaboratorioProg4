@@ -33,6 +33,7 @@ public:
     virtual void EliminarPropiedad(string codigoPropiedad) = 0;
     virtual DataPropiedad verPropiedad(string codigoPropiedad) = 0;
     virtual void actualizarPropiedad(DataPropiedad p) = 0;
+    virtual ~IPropiedades();
 };
 
 

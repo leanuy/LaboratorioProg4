@@ -29,7 +29,7 @@ private:
     Zona* zActual;
     Edificio* eActual;
     Propiedad* pActual;
-    static int codigoPropiedadTotal = 0;
+    static int codigoPropiedadTotal;
 
 
     Edificio* SeleccionarEdificioPriv(string idEdificio);

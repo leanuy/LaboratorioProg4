@@ -12,19 +12,6 @@ void Propiedad::LinkConversacion(Conversacion *c) {
 
 }
 
-DataPropiedad Propiedad::CrearDataPropiedad() {
-    DataPropiedad * data = new DataPropiedad();
-    data->setCodigo(this->codigo);
-    data->setAmbientes(this->ambientes);
-    data->setDormitorios(this->dormitorios);
-    data->setBanios(this->banios);
-    data->setGarage(this->garage);
-    data->setDireccion(this->direccion);
-    data->setDireccion(this->direccion);
-    data->setMetrosCuadradosEdificados(this->metrosCuadradosEdificados);
-    data->setMetrosCuadradosTotales(this->metrosCuadradosTotales);
-    data->setCantidadMensajes(0); //agus: calcular cantidad de mensajes
-}
 
 bool Propiedad::ExisteConversacion() {
     return false;

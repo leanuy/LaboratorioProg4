@@ -18,6 +18,8 @@ using namespace std;
 
 class Zona;
 class Inmobiliaria;
+class Alquiler;
+class Venta;
 class Propiedad {
 private:
     string codigo;
@@ -62,7 +64,8 @@ public:
     void setVenta(Venta* v);
 
     void LinkConversacion(Conversacion* c);
-    DataPropiedad CrearDataPropiedad();
+    virtual DataPropiedad CrearDataPropiedad() = 0;
+    virtual DataPropiedad* CrearPtrDataPropiedad() = 0;
     bool ExisteConversacion();
     //SET(DataMensaje) ListarMensajes();
     void InsertarNuevoMensaje(string mensaje);

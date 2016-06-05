@@ -15,16 +15,30 @@ Apartamento::Apartamento(int ambientes, int dormitorios, int banios, bool garage
     this->setMetrosCuadradosTotales(m2Totales);
 }
 
+DataPropiedad Apartamento::CrearDataPropiedad() {
+    DataApartamento data = DataApartamento(this->getAmbientes(), this->getDormitorios(), this->getBanios(),
+                                          this->tieneGarage(), this->getDireccion(),
+                                          this->getMetrosCuadradosEdificados(), this->getMetrosCuadradosTotales());
+
+    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+    return data;
+}
+
+DataPropiedad* Apartamento::CrearPtrDataPropiedad() {
+    DataApartamento* data = new DataApartamento(this->getAmbientes(), this->getDormitorios(), this->getBanios(),
+                                           this->tieneGarage(), this->getDireccion(),
+                                           this->getMetrosCuadradosEdificados(), this->getMetrosCuadradosTotales());
+
+    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+    return data;
+}
+
 void Apartamento::setEdificio(Edificio *e) {
     this->edif = e;
 }
 
 Edificio *Apartamento::getEdificio() {
     return this->edif;
-}
-
-DataApartamento Apartamento::CrearDataApartamento() {
-
 }
 
 Apartamento::~Apartamento() {

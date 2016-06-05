@@ -30,7 +30,7 @@ public:
     list<DataZona> ListarZonas();
     void SeleccionarZona(string idZona);
     //Interesado
-    list<DataPropiedad> ListarPropiedades();
+    list<DataPropiedad*> ListarPropiedades();
     void SeleccionarPropiedad(string idPropiedad);
     //Inmobiliaria
     list<DataConversacion> ListarConversaciones();

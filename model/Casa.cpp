@@ -16,6 +16,24 @@ Casa::Casa(int ambientes, int dormitorios, int banios, bool garage, string direc
     this->setMetrosCuadradosVerdes(m2Verdes);
 }
 
+DataPropiedad Casa::CrearDataPropiedad() {
+    DataCasa data = DataCasa(this->getAmbientes(), this->getDormitorios(), this->getBanios(), this->tieneGarage(),
+                            this->getDireccion(), this->getMetrosCuadradosEdificados(),
+                            this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
+
+    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+    return data;
+}
+
+DataPropiedad* Casa::CrearPtrDataPropiedad() {
+    DataCasa* data = new DataCasa(this->getAmbientes(), this->getDormitorios(), this->getBanios(), this->tieneGarage(),
+                             this->getDireccion(), this->getMetrosCuadradosEdificados(),
+                             this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
+
+    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+    return data;
+}
+
 float Casa::getMetrosCuadradosVerdes() {
     return this->metrosCuadradosVerdes;
 }
@@ -24,16 +42,9 @@ void Casa::setMetrosCuadradosVerdes(float m2verdes) {
     this->metrosCuadradosVerdes = m2verdes;
 }
 
-DataCasa CrearDataCasa(){
-
-}
 
 Casa::~Casa() {
 
-}
-
-DataCasa Casa::CrearDataCasa() {
-    //todo: Implement CrearDataCasa.
 }
 
 

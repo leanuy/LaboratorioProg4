@@ -13,10 +13,11 @@ using namespace std;
 class UsuariosController: public IUsuarios {
 
 public:
-
+    UsuariosController();
     void IngresarInmobiliaria(string nombre, string mail, string direccion);
     map<string,DataInmobiliaria> ReportesInmobiliaria();
     void CheckEmail(string mail);
     void DarAltaInteresado(string nombre, string apellido, string email, int edad);
+    ~UsuariosController();
 };
 #endif //LAB6_USUARIOSCONTROLLER_H

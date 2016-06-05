@@ -4,7 +4,7 @@
 
 #include "PropiedadesController.h"
 
-
+int PropiedadesController::codigoPropiedadTotal = 0;
 
 void PropiedadesController::SeleccionarDepartamento(string idDepartamento) {
     Database* db = Database::getInstance();

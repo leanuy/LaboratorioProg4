@@ -73,4 +73,4 @@ set(SOURCE_FILES main.cpp
         Sesion.cpp
         Sesion.h
         )
-add_executable(Lab3 ${SOURCE_FILES})
+add_executable(Lab6 ${SOURCE_FILES})

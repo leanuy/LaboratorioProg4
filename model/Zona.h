@@ -41,7 +41,7 @@ public:
 	Edificio* BuscarEdificio(string idEdificio);
 
     DataZona CrearDataZona();
-    list<DataPropiedad> ListarPropiedadExtendidas();
+    list<DataPropiedad*> ListarPropiedadExtendidas();
     Propiedad* SeleccionarPropiedad(string idPropiedad);
     list<DataEdificio>* DevolverEdificios(string nombreEdificio);
     DataEdificio DevolverEdificio(string nombreEdificio);

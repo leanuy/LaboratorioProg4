@@ -6,7 +6,10 @@
 #define LAB6_VENTA_H
 
 #include "Propiedad.h"
+#include "Inmobiliaria.h"
 
+class Propiedad;
+class Inmobiliaria;
 class Venta {
 private:
     float precio;

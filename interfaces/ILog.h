@@ -15,6 +15,7 @@ public:
     virtual bool SetearPassword(string psw1, string psw2)=0;
     virtual void IngresarPassword(string psw)=0;
     virtual void CerrarSesion()=0;
+    virtual ~ILog();
 };
 
 

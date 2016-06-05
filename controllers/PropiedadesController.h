@@ -51,7 +51,7 @@ public:
     string getCodigPropiedad();
     DataPropiedad BuscarPropiedad(string codigo);
     void EliminarPropiedad(string codigoPropiedad);
-    DataPropiedad verPropiedad(string codigoPropiedad);
+    DataPropiedad* verPropiedad(string codigoPropiedad);
     void actualizarPropiedad(DataPropiedad p);
 };
 #endif //LAB6_PROPIEDADESCONTROLLER_H

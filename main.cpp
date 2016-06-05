@@ -7,6 +7,7 @@
 
 //forward declaration de las funciones
 void doMenu();
+void doComando();
 void doIniciarSesion();
 void doAltaInteresado();//Admin
 void doAltaInmobiliaria();//Admin
@@ -28,19 +29,8 @@ int main(){
         doIniciarSesion();
     }else{
         doMenu();
-        string command;
-        //todo: pedir comando
-        if(command == "menu") doMenu();
-        else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();}
-        else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();}
-        else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();}
-        else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();}
-        else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();}
-        else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();}
-        else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();}
-        else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();}
-        else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();}
-        else if(command == "Cerrar Sesion"){doCerrarSesion();}
+        doComando(); //todo: iterar
+
     }
 //todo: ver de como loopear esta parte.
     return 0;
@@ -69,7 +59,23 @@ void doMenu(){
             cout << "- Obtener Reporte Inmobiliarias" << EOF;
     }
 }
+void doComando(){
+    Sesion* sesion = Sesion::getInstance();
 
+    string command;
+    //todo: pedir comando
+    if(command == "menu") doMenu();
+    else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();}
+    else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();}
+    else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();}
+    else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();}
+    else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();}
+    else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();}
+    else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();}
+    else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();}
+    else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();}
+    else if(command == "Cerrar Sesion"){doCerrarSesion();}
+}
 void doIniciarSesion(){
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();

@@ -83,8 +83,8 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
     z->eliminarPropiedad(codigoPropiedad);
 }
 
-DataPropiedad PropiedadesController::verPropiedad(string codigoPropiedad) {
-    return zActual->SeleccionarPropiedad(codigoPropiedad)->CrearDataPropiedad();
+DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
+    return zActual->SeleccionarPropiedad(codigoPropiedad)->CrearPtrDataPropiedad();
 }
 
 void PropiedadesController::actualizarPropiedad(DataPropiedad p) {

@@ -9,6 +9,9 @@
 
 // tengo que poner que el usuario es privado?
 
+LogController::LogController(){
+
+}
 
 bool LogController::IngresarEmail(string email) {
     Database* db = Database::getInstance();
@@ -43,3 +46,7 @@ void LogController::CerrarSesion()
 {
 //    LogOut();
 };
+
+LogController::~LogController(){
+
+}

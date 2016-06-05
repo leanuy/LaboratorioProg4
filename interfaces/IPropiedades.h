@@ -32,7 +32,7 @@ public:
     virtual void ponerEnVenta(float precio) = 0;
     virtual string getCodigPropiedad() = 0;
     virtual void EliminarPropiedad(string codigoPropiedad) = 0;
-    virtual DataPropiedad verPropiedad(string codigoPropiedad) = 0;
+    virtual DataPropiedad* verPropiedad(string codigoPropiedad) = 0;
     virtual void actualizarPropiedad(DataPropiedad p) = 0;
     virtual DataPropiedad BuscarPropiedad(string codigo) = 0;
     virtual ~IPropiedades() = 0;

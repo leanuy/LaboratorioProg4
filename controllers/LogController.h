@@ -12,11 +12,12 @@ class LogController:public ILog {
 private:
     Usuario* usr;
 public:
+    LogController();
     bool IngresarEmail(string email);
     bool SetearPassword(string psw1, string psw2);
     void IngresarPassword(string psw);
     void CerrarSesion();
-
+    ~LogController();
 };
 
 

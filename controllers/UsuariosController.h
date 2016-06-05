@@ -5,6 +5,8 @@
 #include <map>
 #include "../interfaces/IUsuarios.h"
 #include "../datatypes/DataInmobiliaria.h"
+#include "../model/Inmobiliaria.h"
+
 
 using namespace std;
 
@@ -15,6 +17,6 @@ public:
     void IngresarInmobiliaria(string nombre, string mail, string direccion);
     map<string,DataInmobiliaria> ReportesInmobiliaria();
     void CheckEmail(string mail);
-    void DarAltaInteresado(string nombre, string apellido, int email);
+    void DarAltaInteresado(string nombre, string apellido, string email, int edad);
 };
 #endif //LAB6_USUARIOSCONTROLLER_H

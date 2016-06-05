@@ -20,7 +20,7 @@ private:
     int edad;
     map<string, Conversacion*> conversaciones;
 public:
-    Interesado(string nombre, string apellido,int edad);
+    Interesado(string nombre, string apellido, string email, int edad);
     void AddConversacion(string idInmobiliaria, Conversacion* conversacion);
     ~Interesado();
     string getNombre();

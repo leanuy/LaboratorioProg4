@@ -5,10 +5,11 @@
 
 #include "../model/Interesado.h"
 
-Interesado::Interesado(string nombre, string apellido,int edad){
+Interesado::Interesado(string nombre, string apellido, string email, int edad){
     this->nombre = nombre;
     this->apellido = apellido;
     this->edad = edad;
+    this->setEmail(email);
 }
 
 void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){

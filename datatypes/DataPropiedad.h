@@ -41,7 +41,7 @@ public:
     void setMetrosCuadradosTotales(float metrosCuadradosTotales);
     int getCantidadMensajes();
     void setCantidadMensajes(int CantidadMensajes);
-    ~DataPropiedad();
+    virtual ~DataPropiedad() = 0;
 };
 
 

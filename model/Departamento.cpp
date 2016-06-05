@@ -43,3 +43,29 @@ Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
 Departamento::~Departamento(){
 
 }
+
+string Departamento::getId() {
+    return this->id;
+}
+
+string Departamento::getNombre() {
+    return this->nombre;
+}
+
+void Departamento::setId(string id) {
+    this->id = id;
+}
+
+void Departamento::setNombre(string nombre) {
+    this->nombre = nombre;
+}
+
+Edificio *Departamento::BuscarEdificio(string idEdificio) {
+    map<string,Zona*>::iterator it = zonas.begin();
+    Edificio* ret = NULL;
+    while((it != zonas.end())&&(ret == NULL)){
+        ret = (*it->second).BuscarEdificio(idEdificio);
+        it++;
+    }
+    return ret;
+}

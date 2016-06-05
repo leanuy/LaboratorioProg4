@@ -11,7 +11,7 @@ class Sesion {
 private:
     static Sesion* instance;
     Usuario* user;
-    Sesion(); // Lo necesito??
+    Sesion(); // Lo necesito?? Leandro: creo que no se necesita
     Usuario* getUsuario();
 public:
     static Sesion* getInstance();
@@ -21,6 +21,7 @@ public:
     void LogOut();
 
     friend class ConversacionesController;
+    friend class PropiedadesController;
 };
 
 

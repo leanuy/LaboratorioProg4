@@ -9,7 +9,14 @@
 #include "DataPropiedad.h"
 
 class DataCasa: public DataPropiedad {
-
+private:
+    float metrosCuadradosVerdes;
+public:
+    DataCasa(int ambientes,int dormitorios,int banios,bool garage,
+             string direccion,float m2Edificados,float m2Totales,
+             float m2Verdes);
+    ~DataCasa();
+    float getM2Verdes();
 };
 
 

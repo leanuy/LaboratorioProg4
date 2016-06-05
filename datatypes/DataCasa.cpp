@@ -3,3 +3,23 @@
 //
 
 #include "DataCasa.h"
+
+DataCasa::DataCasa(int ambientes, int dormitorios, int banios, bool garage, string direccion, float m2Edificados,
+                   float m2Totales, float m2Verdes) {
+    this->setAmbientes(ambientes);
+    this->setDormitorios(dormitorios);
+    this->setBanios(banios);
+    this->setGarage(garage);
+    this->setDireccion(direccion);
+    this->setMetrosCuadradosTotales(m2Edificados);
+    this->setMetrosCuadradosTotales(m2Totales);
+    this->metrosCuadradosVerdes = m2Verdes;
+}
+
+DataCasa::~DataCasa() {
+
+}
+
+float DataCasa::getM2Verdes() {
+    return this->metrosCuadradosVerdes;
+}

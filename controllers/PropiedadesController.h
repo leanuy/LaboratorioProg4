@@ -11,7 +11,12 @@
 #include "../model/Zona.h"
 #include "../model/Edificio.h"
 #include "../model/Departamento.h"
+#include "../model/Apartamento.h"
+#include "../model/Casa.h"
 #include "../Database.h"
+#include "../Sesion.h"
+#include "../model/Alquiler.h"
+#include "../model/Venta.h"
 
 
 
@@ -23,12 +28,15 @@ private:
     Zona* zActual;
     Edificio* eActual;
     Propiedad* pActual;
+    static int codigoPropiedadTotal = 0;
 
-    Departamento* SeleccionarDepartamentoPriv(string idDepartamento);
-    Zona* SeleccionarZonaPriv(string idZona);
+
     Edificio* SeleccionarEdificioPriv(string idEdificio);
     Propiedad* buscarPropiedad(string codigoPropiedad);
+    string generarCodigo();
 public:
+    PropiedadesController();
+    ~PropiedadesController();
     // SET(DataDepartamento) ListarDepartamentos();
     void SeleccionarDepartamento(string idDepartamento);
     // SET (DataZona) ListarZonas();

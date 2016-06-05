@@ -71,7 +71,7 @@ DataEdificio Zona::DevolverEdificio(string nombreEdificio) {
 }
 
 Departamento *Zona::ObtenerDepartamento() {
-    return nullptr;
+    return this->departamento;
 }
 
 void Zona::AsignarEdificio(Edificio *e) {
@@ -86,6 +86,22 @@ Propiedad* Zona::SeleccionarPropiedad(string idPropiedad) {
     if(it == propiedades.end()){
         return NULL;
         //todo: thow exeption no se encontro la propiedad que se intento seleccionar
+        //nota leandro: si tiras excepcion aca no sigue buscando en otra zona. se debe tirar en el bucle principal
     }
     return it->second;
+}
+
+Edificio *Zona::BuscarEdificio(string idEdificio) {
+    map<string,Edificio*>::iterator it = edificios.find(idEdificio);
+    if(it == edificios.end()){
+        return NULL;
+    }
+    return it->second;
+}
+
+void Zona::AgregarPropiedad(Propiedad *p) {
+    map<string,Propiedad*>::iterator iter = propiedades.find(p->getCodigo());
+    if(iter == propiedades.end()){
+        propiedades[p->getCodigo()] = p;
+    }
 }

@@ -26,7 +26,13 @@ public:
     list<DataZona> ListarZonas();
     Zona* SeleccionarZona(string idZona);
     Propiedad* BuscarPropiedad(string idPropiedad);
+	Edificio* BuscarEdificio(string idEdificio);
     ~Departamento();
+
+	string getId();
+	string getNombre();
+	void setId(string id);
+	void setNombre(string nombre);
 };
 
 

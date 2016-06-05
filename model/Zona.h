@@ -36,6 +36,7 @@ public:
 	string getCodigo();
 	void setDepartamento(Departamento* departamento);
 	Departamento* getDepartamento();
+	Edificio* BuscarEdificio(string idEdificio);
 
     DataZona CrearDataZona();
     list<DataPropiedad> ListarPropiedadExtendidas();
@@ -44,6 +45,7 @@ public:
     DataEdificio DevolverEdificio(string nombreEdificio);
     Departamento* ObtenerDepartamento();
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
+	void AgregarPropiedad(Propiedad* p);
 };
 
 

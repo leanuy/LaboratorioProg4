@@ -80,6 +80,6 @@ void Inmobiliaria::setDireccion(string dir) {
 }
 
 bool Inmobiliaria::esTipo(string tipo){
-    //return tipo == "inmobiliaria"; fixme
+    //return (tipo == "inmobiliaria"); //fixme
      return (tipo.compare("inmobiliaria") == 0);
 }

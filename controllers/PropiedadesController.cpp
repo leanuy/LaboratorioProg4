@@ -96,7 +96,9 @@ void PropiedadesController::actualizarPropiedad(DataPropiedad p) {
     this->pActual->setDireccion(p.getDireccion());
     this->pActual->setMetrosCuadradosEdificados(p.getMetrosCuadradosEdificados());
     this->pActual->setMetrosCuadradosTotales(p.getMetrosCuadradosTotales());
-// fixme HAy que castear a datacasa y sacarle los metros cuadrados verdes.
+    if(dynamic_cast<Casa*>(this->pActual) != NULL){
+
+    }
     this->pActual = NULL; //desvinculo la propiedad actual del controlador
     // la propiedad ya quedo actualizada.
 }

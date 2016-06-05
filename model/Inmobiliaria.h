@@ -30,6 +30,7 @@ private:
     map<string, Conversacion*> conversaciones;
     map<string,Alquiler*> alquileres;
     map<string,Venta*> ventas;
+    map<string,Propiedad*> propiedades;
 
 public:
     Inmobiliaria(string nombre, string mail, string direccion);
@@ -44,6 +45,8 @@ public:
     void Alquilar(float precio, Propiedad* p);
     void Vender(float precio, Propiedad* p);
     bool esTipo(string tipo);
+    void DesvincularPropiedad(string code);
+    void AddPropiedad(Propiedad* p);
     ~Inmobiliaria();
 };
 

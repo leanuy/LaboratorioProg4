@@ -88,3 +88,30 @@ bool Inmobiliaria::esTipo(string tipo){
     //return (tipo == "inmobiliaria"); //fixme
      return (tipo.compare("inmobiliaria") == 0);
 }
+
+void Inmobiliaria::DesvincularPropiedad(string code) {
+    map<string,Propiedad*>::iterator it = propiedades.find(code);
+    if(it != propiedades.end()){
+        propiedades.erase(code);   //investigar si elimina de la coleccion nomas o tmb borra la instancia.
+    }
+    map<string,Alquiler*>::iterator it2 = alquileres.find(code);
+    if(it2 != alquileres.end()){
+        delete alquileres[code];
+        alquileres.erase(code);
+    }
+    map<string,Venta*>::iterator it3 = ventas.find(code);
+    if(it3 != ventas.end()){
+        delete ventas[code];
+        ventas.erase(code);
+    }
+}
+
+void Inmobiliaria::AddPropiedad(Propiedad *p) {
+    map<string,Propiedad*>::iterator it = propiedades.find(p->getCodigo());
+    if(it == propiedades.end()){
+        propiedades[p->getCodigo()] = p;
+    }else{
+        throw std::invalid_argument("La propiedad ya existe en la imnmobiliaria");
+    }
+
+}

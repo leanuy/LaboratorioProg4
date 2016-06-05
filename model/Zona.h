@@ -43,7 +43,7 @@ public:
     DataZona CrearDataZona();
     list<DataPropiedad*> ListarPropiedadExtendidas();
     Propiedad* SeleccionarPropiedad(string idPropiedad);
-    list<DataEdificio>* DevolverEdificios(string nombreEdificio);
+    list<DataEdificio> DevolverEdificios();
     DataEdificio DevolverEdificio(string nombreEdificio);
     Departamento* ObtenerDepartamento();
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona

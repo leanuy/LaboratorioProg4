@@ -38,11 +38,11 @@ private:
 public:
     PropiedadesController();
     ~PropiedadesController();
-    // SET(DataDepartamento) ListarDepartamentos();
+    list<DataDepartamento> ListarDepartamentos();
     void SeleccionarDepartamento(string idDepartamento);
-    // SET (DataZona) ListarZonas();
+    list<DataZona> ListarZonas();
     void SeleccionarZona(string idZona);
-    //SET(DataEdificio) VerEdificiosZona();
+    list<DataEdificio> VerEdificiosZona();
     void SeleccionarEdificio(string idEdificio);
     void ingresarApartamento(DataApartamento apartamento);
     void ingresarCasa(DataCasa casa);

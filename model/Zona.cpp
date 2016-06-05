@@ -54,12 +54,12 @@ list<DataPropiedad*> Zona::ListarPropiedadExtendidas() {
     return l;
 }
 
-list <DataEdificio>* Zona::DevolverEdificios(string nombreEdificio) {
-    list<DataEdificio>* l = new list<DataEdificio>;
-    list<DataEdificio>::iterator ite = l->begin();
+list <DataEdificio> Zona::DevolverEdificios() {
+    list<DataEdificio> l;
+    list<DataEdificio>::iterator ite = l.begin();
     map<string,Edificio*>::iterator it = edificios.begin();
     while(it != edificios.end()){
-        l->insert(ite,(*it->second).CrearDataEdificio());
+        l.insert(ite,(*it->second).CrearDataEdificio());
         it++;
     }
     return l;
@@ -108,11 +108,14 @@ void Zona::AgregarPropiedad(Propiedad *p) {
 
 void Zona::eliminarPropiedad(string codigo) {
     map<string,Propiedad*>::iterator iter = propiedades.find(codigo);
-    if(iter == propiedades.end()){
-        //una vez que tenga la propiedad debo ir a su inmobiliaria y sacarle el alquiler o venta.. luego
-        //sacarla de la inmobiliaria por ultimo eliminarla de la zona y dejar el puntero a null;
+    if(iter != propiedades.end()){
+        //una vez que tenga la propiedad debo ir a su inmobiliaria y sacarle el alquiler y/o venta(remover de la coleccion
+        // y eliminar instancias).. luego sacarla de la inmobiliaria(remove de la coleccion) por ultimo eliminarla de la zona y dejar el puntero a null;
         //ver tambien las conversaciones que onda. y si es un edificio quitarle el apartamento.
+        Propiedad* p = iter->second;
+        Inmobiliaria* i = p->getInmobiliaria();
+        i->DesvincularPropiedad(codigo);
+        propiedades.erase(codigo);
         delete propiedades[codigo];
-        propiedades[codigo] = NULL;
     }
 }

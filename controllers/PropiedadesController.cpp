@@ -79,8 +79,7 @@ string PropiedadesController::getCodigPropiedad() {
 
 void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
     this->pActual = buscarPropiedadPriv(codigoPropiedad);
-    Zona* z;
-    z = this->pActual->getZona();
+    Zona* z = this->pActual->getZona();
     z->eliminarPropiedad(codigoPropiedad);
 }
 
@@ -138,7 +137,10 @@ string PropiedadesController::generarCodigo() {
 }
 
 PropiedadesController::PropiedadesController() {
-
+    this->zActual = NULL;
+    this->pActual = NULL;
+    this->dActual = NULL;
+    this->eActual = NULL;
 }
 
 PropiedadesController::~PropiedadesController() {
@@ -148,4 +150,26 @@ PropiedadesController::~PropiedadesController() {
 DataPropiedad PropiedadesController::BuscarPropiedad(string codigo) {
     this->pActual = buscarPropiedadPriv(codigo);
     return this->pActual->CrearDataPropiedad();
+}
+
+list <DataDepartamento> PropiedadesController::ListarDepartamentos() {
+    Database* db = Database::getInstance();
+    map<string,Departamento*> deptos = db->getDepartamentos();
+    map<string,Departamento*>::iterator it = deptos.begin();
+    list<DataDepartamento> li;
+    list<DataDepartamento>::iterator iter = li.begin();
+    while(it != deptos.end()){
+        li.insert(iter,it->second->CrearDataDepartamento());
+        iter = li.begin();
+        it++;
+    }
+    return li;
+}
+
+list <DataZona> PropiedadesController::ListarZonas() {
+    this->dActual->ListarZonas();
+}
+
+list <DataEdificio> PropiedadesController::VerEdificiosZona() {
+    return zActual->DevolverEdificios();
 }

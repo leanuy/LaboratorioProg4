@@ -13,17 +13,18 @@
 #include "../datatypes/DataPropiedad.h"
 #include "../datatypes/DataZona.h"
 #include "../datatypes/DataEdificio.h"
+#include <list>
 
 
 using namespace std;
 
 class IPropiedades {
 public:
-    // virtual SET(DataDepartamento) ListarDepartamentos();
+    virtual list<DataDepartamento> ListarDepartamentos() = 0;
     virtual void SeleccionarDepartamento(string idDepartamento) = 0;
-    // virtual SET (DataZona) ListarZonas() = 0;
+    virtual list<DataZona> ListarZonas() = 0;
     virtual void SeleccionarZona(string idZona) = 0;
-    // virtual SET(DataEdificio) VerEdificiosZona() = 0;
+    virtual list<DataEdificio> VerEdificiosZona() = 0;
     virtual void SeleccionarEdificio(string idEdificio) = 0;
     virtual void ingresarApartamento(DataApartamento apartamento) = 0;
     virtual void ingresarCasa(DataCasa casa) = 0;
@@ -33,6 +34,7 @@ public:
     virtual void EliminarPropiedad(string codigoPropiedad) = 0;
     virtual DataPropiedad verPropiedad(string codigoPropiedad) = 0;
     virtual void actualizarPropiedad(DataPropiedad p) = 0;
+    virtual DataPropiedad BuscarPropiedad(string codigo) = 0;
 };
 
 

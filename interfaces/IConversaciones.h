@@ -24,7 +24,7 @@ public:
     virtual list<DataConversacion> ListarConversaciones() = 0;
     virtual void SeleccionarConversacion(string idConversacion) = 0;
     virtual list<DataMensaje> ListarMensajes() = 0;
-    virtual void AgregarMensaje(string mensaje) = 0                         ;
+    virtual void AgregarMensaje(string mensaje) = 0;
     virtual ~IConversaciones();
 };
 

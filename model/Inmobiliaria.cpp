@@ -1,9 +1,14 @@
 #include "Inmobiliaria.h"
 #include "../Database.h"
 
-Inmobiliaria::Inmobiliaria(string nombre, string direccion){
-//todo hacer constructores de este..de interesado.. de admin..
+
+Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion){
+    this->setNombre(nombre);
+    this->setEmail(mail);
+    this->setDireccion(direccion);
 }
+
+
 
 void Inmobiliaria::AddConversacion(string idInteresado, Conversacion* conversacion){
     this->conversaciones.insert(pair<string, Conversacion*>(idInteresado, conversacion));

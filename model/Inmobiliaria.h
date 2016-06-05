@@ -29,7 +29,7 @@ private:
     map<string,Venta*> ventas;
 
 public:
-    Inmobiliaria(string nombre, string direccion);
+    Inmobiliaria(string nombre, string mail, string direccion);
     bool ExisteConversacion();
     string getNombre();
     void setNombre(string name);

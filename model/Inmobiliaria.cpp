@@ -11,7 +11,7 @@ Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion){
 
 
 void Inmobiliaria::AddConversacion(string idInteresado, Conversacion* conversacion){
-    this->conversaciones.insert(pair<string, Conversacion*>(idInteresado, conversacion));
+    this->conversaciones.insert(this->conversaciones.begin(),pair<string, Conversacion*>(idInteresado, conversacion));
 }
 list<DataConversacion> Inmobiliaria::ListarConversaciones(){
     list<DataConversacion> l;

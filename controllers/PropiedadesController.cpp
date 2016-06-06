@@ -81,6 +81,7 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
     this->pActual = buscarPropiedadPriv(codigoPropiedad);
     Zona* z = this->pActual->getZona();
     z->eliminarPropiedad(codigoPropiedad);
+
 }
 
 DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
@@ -173,3 +174,4 @@ list <DataZona> PropiedadesController::ListarZonas() {
 list <DataEdificio> PropiedadesController::VerEdificiosZona() {
     return zActual->DevolverEdificios();
 }
+

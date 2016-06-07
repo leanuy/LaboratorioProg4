@@ -163,9 +163,8 @@ void doModificarPropiedad(){
     cout << "Direccion     : " << p->getDireccion() << endl;
     cout << "M2 Edificados : " << p->getMetrosCuadradosEdificados() << endl;
     cout << "M2 Totales    : " << p->getMetrosCuadradosTotales() << endl;
-    if((dynamic_cast<DataCasa*>(p)) != NULL){
+    if(DataCasa* c = dynamic_cast<DataCasa*>(p)){
         CasaOapto = true;
-        DataCasa* c = dynamic_cast<DataCasa*>(p);
         cout << "M2 Verdes     : " << c->getM2Verdes() << endl;
     }
     cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;

@@ -16,14 +16,15 @@ LogController::LogController(){
 bool LogController::IngresarEmail(string email) {
     Database* db = Database::getInstance();
     map<string,Usuario*>::iterator it = db->getUsuarios().find(email);
-    return it->second->FirstTime();
+    return it->second->getFirstTime();
 
 };
 
 bool LogController::SetearPassword(string psw1, string psw2){
-    bool distintas;
-    distintas = usr->AsignarPassword(psw1, psw2);
-    if (distintas){
+    bool exito;
+    exito = usr->AsignarPassword(psw1, psw2);
+    usr->setFirstTime(false);
+    if (exito){
 //        LogIn(usr);
         usr = NULL;
         return (true);
@@ -33,13 +34,14 @@ bool LogController::SetearPassword(string psw1, string psw2){
     }
 };
 
-void LogController::IngresarPassword(string psw) {
+bool LogController::IngresarPassword(string psw) {
     bool correcta;
     correcta = usr->CheckPassword(psw);
     if (correcta){
 //        LogIn(usr);
         usr = NULL;
     };
+    return correcta;
 };
 
 void LogController::CerrarSesion()

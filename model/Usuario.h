@@ -22,7 +22,8 @@ public:
     void setContrasenia(string contra);
     string getContrasenia();
 
-    bool FirstTime();
+    bool getFirstTime();
+    void setFirstTime(bool);
     bool AsignarPassword(string pass1,string pass2);
     bool CheckPassword(string pass);
 

@@ -76,18 +76,82 @@ void doComando(){
     else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();}
     else if(command == "Cerrar Sesion"){doCerrarSesion();}
 }
+
+
 void doIniciarSesion(){
+    string email;
+    bool first;
+    string psw1, psw2;
+    bool iguales;
+    bool incorrecta;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
+    cout << "Ingrese su Email" << endl;
+    cin >> email;
+    first = interface->IngresarEmail(email);
+    if (first){
+        iguales = false;
+        cout << "Es la primera vez que ingresa al sistema, se le pedira que ingrese una contrasenia y luego la confirme" << endl;
+        while(! iguales) {
+            cout << "Ingresar Contrasenia:";
+            cin >> psw1;
+            cout << endl;
+            cout << "Confirmarar Contrasenia:";
+            cin >> psw2;
+            cout << endl;
+            iguales = interface->SetearPassword(psw1, psw2);
+            if (! iguales){
+                cout << "Las contrasenias ingresadas no coinciden, vuelva a intentar" << endl;
+            };
+        }
+    }
+    else{
+        incorrecta = true;
+        while (incorrecta) {
+            cout << "Ingresar Contrasenia:";
+            cin >> psw1;
+            cout << endl;
+            incorrecta = interface->IngresarPassword(psw1);
+            if (incorrecta) {
+                cout << "La contrasenia ingresada es incorrecta" << endl;
+            };
+        }
+    };
+    delete interface;
+}
+
+
+void doAltaInmobiliaria(){
+    //nmobiliaria(string nombre, string mail, string direccion);
+    string nombre;
+    string mail;
+    string direccion;
+    bool cambiar = true;
+    string confirmar;
+    Factory* factroy = Factory::getInstance();
+    IUsuarios* interface = factroy->getIUsuarios();
+
+    while (cambiar) {
+        cout << "Ingrese el nombre de la inmobiliaria:" << endl;
+        cin >> nombre;
+        cout << "Ingrese el mail de la inmobiliaria:" << endl;
+        cin >> mail;
+        cout << "Ingrese la direccion de la inmobiliaria:" << endl;
+        cin >> direccion;
+        cout << "Estos son los datos ingresados:" << endl;
+        cout << "Nombre: " << nombre << endl;
+        cout << "Mail: " << mail << endl;
+        cout << "Direccion: " << direccion << endl;
+        cout << "Desea confirmar la inmobiliaria? [S/N]: ";
+        cin >> confirmar;
+        cout << endl;
+        cambiar = (confirmar == "s" || confirmar == "S");
+    }
+    interface->IngresarInmobiliaria(nombre, mail, direccion);
 
     delete interface;
 }
-void doAltaInmobiliaria(){
-    Factory* factroy = Factory::getInstance();
-    IUsuarios* interface = factroy->getIUsuarios();
-        
-    delete interface;
-}
+
 void doAltaInteresado(){
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
@@ -425,8 +489,13 @@ void doObtenerReporteInmobiliarias(){
     delete interface;
 }
 void doCerrarSesion(){
+    string confirmar;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
-
+    cout << "Seguro que desea cerrar sesion? [S/N]: ";
+    cin >> confirmar;
+    if (confirmar == "S" || confirmar == "s") {
+        interface->CerrarSesion();
+    };
     delete interface;
 }

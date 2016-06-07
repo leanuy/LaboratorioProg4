@@ -175,3 +175,6 @@ list <DataEdificio> PropiedadesController::VerEdificiosZona() {
     return zActual->DevolverEdificios();
 }
 
+list<DataPropiedad> PropiedadesController::ListarPropiedades(){
+
+}

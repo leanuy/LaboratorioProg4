@@ -52,6 +52,7 @@ public:
     DataPropiedad BuscarPropiedad(string codigo);
     void EliminarPropiedad(string codigoPropiedad);
     DataPropiedad* verPropiedad(string codigoPropiedad);
+    list<DataPropiedad*> ListarPropiedades();
     void actualizarPropiedad(DataPropiedad p);
 };
 #endif //LAB6_PROPIEDADESCONTROLLER_H

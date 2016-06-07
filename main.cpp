@@ -135,13 +135,85 @@ void doConsultarPropiedad(){
     delete interface;
 }
 void doModificarPropiedad(){
+    string code;
+    bool CasaOapto = false; // true si es casa, false si es apto
+    int ambientes, dormitorios, banios;
+    bool garage = false;
+    string letra, dir;
+    float m2Edif, m2Tot, m2Ver;
+    DataPropiedad* p;
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
     //ingresar el codigo de la propiedad a modificar
+    cout << "Ingrese el codigo de la propiedad que desea modificar: ";
+    cin >> code;
+    cout << endl;
     //mostrar los datos actuales
-    //pedir los datos denuevo
-    //mandar guardar.
-    //fin.
+    try {
+        p = interface->verPropiedad(code);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    cout << "Datos actuales de la propiedad" << endl;
+    cout << "Codigo        : " << p->getCodigo() << endl;
+    cout << "Ambientes     : " << p->getAmbientes() << endl;
+    cout << "Dormitorios   : " << p->getDormitorios() << endl;
+    cout << "Banios        : " << p->getBanios() << endl;
+    cout << "Garage        : " << (p->getGarage()?"Si":"No") << endl;
+    cout << "Direccion     : " << p->getDireccion() << endl;
+    cout << "M2 Edificados : " << p->getMetrosCuadradosEdificados() << endl;
+    cout << "M2 Totales    : " << p->getMetrosCuadradosTotales() << endl;
+    if((dynamic_cast<DataCasa*>(p)) != NULL){
+        CasaOapto = true;
+        DataCasa* c = dynamic_cast<DataCasa*>(p);
+        cout << "M2 Verdes     : " << c->getM2Verdes() << endl;
+    }
+    cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;
+    cout << "Cantidad de ambientes : ";
+    cin >> ambientes;
+    cout << endl;
+    cout << "Cantidad de dormitorios : ";
+    cin >> dormitorios;
+    cout << endl;
+    cout << "Cantidad de banios : ";
+    cin >> banios;
+    cout << endl;
+    cout << "Tiene garage? S/N: ";
+    cin >> letra;
+    cout << endl;
+    cout << "Direccion : ";
+    cin >> dir;
+    cout << endl;
+    garage = ((letra == "s")||(letra == "S"));
+    cout << "M2 edificados : ";
+    cin >> m2Edif;
+    cout << endl;
+    cout << "M2 totales : ";
+    cin >> m2Tot;
+    cout << endl;
+    if(CasaOapto){
+        cout << "M2 verdes : ";
+        cin >> m2Ver;
+        cout << endl;
+    }
+    if(CasaOapto){
+        DataCasa actualizada(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
+        try{
+            interface->actualizarPropiedad(actualizada);
+            cout << "Casa actualizada con exito!!!" << endl;
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+    }else{
+        DataApartamento updated(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
+        try{
+            interface->actualizarPropiedad(updated);
+            cout << "Apartamento actualizado con exito!!!" << endl;
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+    }
+    delete p;
     delete interface;
 }
 void doEliminarPropiedad(){

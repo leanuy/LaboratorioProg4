@@ -14,32 +14,32 @@
       <sourceFolder url="file://$MODULE_DIR$/controllers/ConversacionesController.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controllers/PropiedadesController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Database.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Usuario.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Inmobiliaria.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Inmobiliaria.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Casa.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Admin.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Interesado.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Usuario.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Edificio.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Venta.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Zona.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Zona.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Venta.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Departamento.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Usuario.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Zona.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Interesado.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Admin.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Casa.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Venta.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Departamento.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Database.h" isTestSource="false" />

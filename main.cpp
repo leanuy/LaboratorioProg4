@@ -85,7 +85,7 @@ void doIniciarSesion(){
 void doAltaInmobiliaria(){
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
-
+        
     delete interface;
 }
 void doAltaInteresado(){

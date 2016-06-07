@@ -15,7 +15,7 @@ public:
     LogController();
     bool IngresarEmail(string email);
     bool SetearPassword(string psw1, string psw2);
-    void IngresarPassword(string psw);
+    bool IngresarPassword(string psw);
     void CerrarSesion();
     ~LogController();
 };

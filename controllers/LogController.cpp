@@ -33,13 +33,14 @@ bool LogController::SetearPassword(string psw1, string psw2){
     }
 };
 
-void LogController::IngresarPassword(string psw) {
+bool LogController::IngresarPassword(string psw) {
     bool correcta;
     correcta = usr->CheckPassword(psw);
     if (correcta){
 //        LogIn(usr);
         usr = NULL;
     };
+    return correcta;
 };
 
 void LogController::CerrarSesion()

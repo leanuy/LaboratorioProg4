@@ -21,6 +21,7 @@ void Database::AddUsuario(Usuario* usuario){
 }
 void Database::AddEdificio(Edificio* edificio){
     this->edificiosN_A.insert(this->edificiosN_A.begin(), pair<string, Edificio*>(edificio->getNombre(), edificio));
+    //this->edificiosN_A[edificio->getNombre()] = edificio; todo verificar cuando sobreescribe algo que ya estaba
 }
 Edificio* Database::RemoveEdificio(string idEdificio){
     Edificio* edificio;
@@ -33,3 +34,4 @@ Edificio* Database::RemoveEdificio(string idEdificio){
     }
 }
 Database::~Database(){}
+

@@ -21,8 +21,12 @@ string Usuario::getContrasenia() {
     return this->contrasenia;
 }
 
-bool Usuario::FirstTime() {
+bool Usuario::getFirstTime() {
     return this->firstLogin;
+}
+
+void Usuario::setFirstTime(bool first) {
+    this->firstLogin = first;
 }
 
 bool Usuario::AsignarPassword(string pass1, string pass2) {

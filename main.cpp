@@ -82,7 +82,7 @@ void doIniciarSesion(){
     string email;
     bool first;
     string psw1, psw2;
-    bool distintas;
+    bool iguales;
     bool incorrecta;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
@@ -90,21 +90,20 @@ void doIniciarSesion(){
     cin >> email;
     first = interface->IngresarEmail(email);
     if (first){
-        distintas = true;
+        iguales = false;
         cout << "Es la primera vez que ingresa al sistema, se le pedira que ingrese una contrasenia y luego la confirme" << endl;
-        while(distintas) {
+        while(! iguales) {
             cout << "Ingresar Contrasenia:";
             cin >> psw1;
             cout << endl;
             cout << "Confirmarar Contrasenia:";
             cin >> psw2;
             cout << endl;
-            distintas = interface->SetearPassword(psw1, psw2);
-            if (distintas){
+            iguales = interface->SetearPassword(psw1, psw2);
+            if (! iguales){
                 cout << "Las contrasenias ingresadas no coinciden, vuelva a intentar" << endl;
-            }
+            };
         }
-        // todo: Guardar que ya se ingreso por primera vez
     }
     else{
         incorrecta = true;

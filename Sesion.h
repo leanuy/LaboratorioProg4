@@ -13,6 +13,7 @@ private:
     Usuario* user;
     Sesion(); // Lo necesito?? Leandro: creo que no se necesita
     Usuario* getUsuario();
+    void inicializarDataBaseConAdmin();
 public:
     static Sesion* getInstance();
     void LogIn(Usuario* usr);

@@ -33,6 +33,9 @@ void PropiedadesController::SeleccionarZona(string idZona) {
 
 void PropiedadesController::SeleccionarEdificio(string idEdificio) {
     this->eActual = SeleccionarEdificioPriv(idEdificio);
+    if(this->eActual == NULL){
+        throw std::invalid_argument("El edificio ingresado no se encuentra en el sistema");
+    }
 }
 
 void PropiedadesController::ingresarApartamento(DataApartamento apartamento) {
@@ -89,18 +92,19 @@ DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
 }
 
 void PropiedadesController::actualizarPropiedad(DataPropiedad p) {
-    this->pActual->setAmbientes(p.getAmbientes());
-    this->pActual->setDormitorios(p.getDormitorios());
-    this->pActual->setBanios(p.getBanios());
-    this->pActual->setGarage(p.getGarage());
-    this->pActual->setDireccion(p.getDireccion());
-    this->pActual->setMetrosCuadradosEdificados(p.getMetrosCuadradosEdificados());
-    this->pActual->setMetrosCuadradosTotales(p.getMetrosCuadradosTotales());
-    if(dynamic_cast<Casa*>(this->pActual) != NULL){
-
-    }
-    this->pActual = NULL; //desvinculo la propiedad actual del controlador
-    // la propiedad ya quedo actualizada.
+        this->pActual->setAmbientes(p.getAmbientes());
+        this->pActual->setDormitorios(p.getDormitorios());
+        this->pActual->setBanios(p.getBanios());
+        this->pActual->setGarage(p.getGarage());
+        this->pActual->setDireccion(p.getDireccion());
+        this->pActual->setMetrosCuadradosEdificados(p.getMetrosCuadradosEdificados());
+        this->pActual->setMetrosCuadradosTotales(p.getMetrosCuadradosTotales());
+        if(dynamic_cast<Casa*>(this->pActual) != NULL){
+            Casa* ca = dynamic_cast<Casa*>(this->pActual);
+            ca->setMetrosCuadradosVerdes(p.getMetrosCuadradosTotales()-p.getMetrosCuadradosEdificados());
+        }
+        this->pActual = NULL; //desvinculo la propiedad actual del controlador
+        // la propiedad ya quedo actualizada.
 }
 
 Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
@@ -111,6 +115,13 @@ Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
     while((it != deptos.end())&&(p == NULL)){
         p = it->second->BuscarEdificio(idEdificio);
         it++;
+    }
+    if(p == NULL){ //busco en los edificios sin asignar
+        map<string,Edificio*> edifs = db->getEdificios();
+        map<string,Edificio*>::iterator iter = edifs.find(idEdificio);
+        if(iter != edifs.end()){
+            p = iter->second;
+        }
     }
     return p;
 }
@@ -175,3 +186,14 @@ list <DataEdificio> PropiedadesController::VerEdificiosZona() {
     return zActual->DevolverEdificios();
 }
 
+list <DataEdificio> PropiedadesController::edificiosSinAsignar() {
+    Database* db = Database::getInstance();
+    map<string,Edificio*> edificios = db->getEdificios();
+    map<string,Edificio*>::iterator it = edificios.begin();
+    list<DataEdificio> lista;
+    while(it != edificios.end()){
+        lista.push_back(it->second->CrearDataEdificio());
+        it++;
+    }
+    return lista;
+}

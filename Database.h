@@ -9,6 +9,7 @@
 #include <string>
 #include "model/Departamento.h"
 #include "model/Usuario.h"
+#include "model/Admin.h"
 #include "model/Edificio.h"
 
 class Database {

@@ -40,7 +40,7 @@ DataZona Zona::CrearDataZona() {
 }
 
 list<DataPropiedad*> Zona::ListarPropiedadExtendidas() {
-    list<DataPropiedad*> l;
+    list<DataPropiedad*> l; // fixme ver entre todos.. pasaria a lista de DataPropiedad
     map<string,Propiedad*>::iterator it = this->propiedades.begin();
     while(it != propiedades.end()){
         if(dynamic_cast<Casa*>(it->second)){

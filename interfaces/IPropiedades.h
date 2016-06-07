@@ -35,6 +35,7 @@ public:
     virtual DataPropiedad* verPropiedad(string codigoPropiedad) = 0;
     virtual void actualizarPropiedad(DataPropiedad p) = 0;
     virtual DataPropiedad BuscarPropiedad(string codigo) = 0;
+    virtual list<DataEdificio> edificiosSinAsignar() = 0;
     virtual ~IPropiedades() = 0;
 };
 

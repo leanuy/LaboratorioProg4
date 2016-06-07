@@ -3,12 +3,14 @@
 //
 
 #include "Sesion.h"
+#include "Database.h"
 
 Sesion* Sesion::instance = NULL;
 Sesion::Sesion(){}
 Sesion* Sesion::getInstance(){
     if(instance == NULL){
         instance = new Sesion();
+        instance->inicializarDataBaseConAdmin();
     }
     return instance;
 }
@@ -31,3 +33,10 @@ bool Sesion::isLogged() {
     return this->user != NULL;
 }
 
+void Sesion::inicializarDataBaseConAdmin() {
+    Database* db = Database::getInstance();
+    Usuario* admin = new Admin();
+    admin->setEmail("admin");
+    admin->setContrasenia("admin");
+    db->AddUsuario(admin);
+}

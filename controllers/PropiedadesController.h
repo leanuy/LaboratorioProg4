@@ -53,5 +53,6 @@ public:
     void EliminarPropiedad(string codigoPropiedad);
     DataPropiedad* verPropiedad(string codigoPropiedad);
     void actualizarPropiedad(DataPropiedad p);
+    list<DataEdificio> edificiosSinAsignar();
 };
 #endif //LAB6_PROPIEDADESCONTROLLER_H

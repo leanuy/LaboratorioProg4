@@ -167,13 +167,13 @@ void doAltaEdificio(){ //todo: No tiene interface asignada
 void doAltaPropiedad(){
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
-    string id, codZona, codProp;
+    string id, codZona, codProp, edificioSeleccionado;
     int ambientes, dormitorios, banios;
     bool garage = false;
     string letra, dir;
     float m2Edif, m2Tot, m2Ver;
     float precio;
-    int opcion;
+    int opcion, option;
     //listar los departamentos y seleccionar
     list <DataDepartamento> deptos;
     try {
@@ -192,6 +192,7 @@ void doAltaPropiedad(){
         interface->SeleccionarDepartamento(id);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        return;
     }
     //mostrar las zonas de ese depto
     list<DataZona> zonas;
@@ -211,17 +212,45 @@ void doAltaPropiedad(){
         interface->SeleccionarZona(codZona);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        return;
     }
     //preguntar si es apartamento o casa y leer
-    cout << "Si desea ingresar una Casa ingrese '1' o si desea ingresar un apartamento ingrese '2': ";
+    cout << "Si desea ingresar un Apartamento ingrese '1' o si desea ingresar una Casa ingrese '2': ";
     cin >> opcion;
     switch(opcion){
         case 1:
         {
-            //
             //todo si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
+
+            list<DataEdificio> edificiosZona = interface->VerEdificiosZona();
+            cout << "Edificios de la zona" << endl;
+            for (list<DataEdificio>::iterator it = edificiosZona.begin(); it != edificiosZona.end(); it++){
+                cout << "Edificio: " << it->getNombre() << endl;
+            }
+
+            cout << "Edificios sin asignar" << endl;
+            list<DataEdificio> ediSinAsignar = interface->edificiosSinAsignar();
+            for (list<DataEdificio>::iterator it2 = ediSinAsignar.begin(); it2 != ediSinAsignar.end(); it2++){
+                cout << "Edificio: " << it2->getNombre() << endl;
+            }
+
             //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
-            //sino leer el edificio que ingreso el usuario y dejarlo como actual.
+            cout << "Si desea ingresar un nuevo edificio al sistema ingrese '1', de lo contrario ingrese 2 : ";
+            cin >> option;
+            cout << endl;
+            if(option == 1){
+                doAltaEdificio(); // todo ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
+            }else{
+                cout << "Ingrese el edificio seleccionado: ";
+                cin >> edificioSeleccionado;
+                cout << endl;
+                try{
+                    interface->SeleccionarEdificio(edificioSeleccionado);
+                }catch(invalid_argument e){
+                    cout << e.what() << endl;
+                    return;
+                }
+            }
 
             //luego pedir los daqtos del apartamento.
             cout << "A continuacion ingrese los datos del apartamento:" << endl;
@@ -236,11 +265,11 @@ void doAltaPropiedad(){
             cout << endl;
             cout << "Tiene garage? S/N: ";
             cin >> letra;
+            garage = ((letra == "s")||(letra == "S"));
             cout << endl;
             cout << "Direccion : ";
             cin >> dir;
             cout << endl;
-            garage = ((letra == "s")||(letra == "S"));
             cout << "M2 edificados : ";
             cin >> m2Edif;
             cout << endl;

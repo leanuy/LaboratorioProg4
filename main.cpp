@@ -103,33 +103,217 @@ void doAltaEdificio(){ //todo: No tiene interface asignada
 void doAltaPropiedad(){
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
-    //listar los departamentos
-    //leer el depto seleccionado
+    string id, codZona, codProp;
+    int ambientes, dormitorios, banios;
+    bool garage = false;
+    string letra, dir;
+    float m2Edif, m2Tot, m2Ver;
+    float precio;
+    int opcion;
+    //listar los departamentos y seleccionar
+    list <DataDepartamento> deptos;
+    try {
+        deptos = interface->ListarDepartamentos();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    cout << "Departamentos:" << endl;
+    for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
+        cout << "ID : " << it->getId() << endl;
+    }
+    cout << "Ingrese el ID del departamento seleccionado :";
+    cin >> id;
+    cout << endl;
+    try {
+        interface->SeleccionarDepartamento(id);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     //mostrar las zonas de ese depto
-    //leer la zona seleccionada
-    //preguntar si es apartamento o casa y leer//
-    //----si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
-    //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
-    //sino leer el edificio que ingreso el usuario y dejarlo como actual.
-    //luego pedir los daqtos del apartamento.
-    //mandar ingresar apartamento.
-    //-----
-    //si queria ingresar una casa.. pedir datos y hacer ingresar casa/..
-    //------
-    //luego preguntar si quiere poner en alquiler.. si quiere poner en alquiler..
-    //preguntar si quiere poner en venta.. si quiere poner en venta..
-    //ahi pedimos el codigo de la propiedad y lo mostramos.
-    //fin...
+    list<DataZona> zonas;
+    try {
+        zonas = interface->ListarZonas();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    cout << "Zonas :" << endl;
+    for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
+        cout << "Codigo : " << it->getCodigo() << endl;
+    }
+    cout << "Ingrese el codigo de la zona seleccionada :";
+    cin >> codZona;
+    cout << endl;
+    try {
+        interface->SeleccionarZona(codZona);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    //preguntar si es apartamento o casa y leer
+    cout << "Si desea ingresar una Casa ingrese '1' o si desea ingresar un apartamento ingrese '2': ";
+    cin >> opcion;
+    switch(opcion){
+        case 1:
+        {
+            //
+            //todo si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
+            //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
+            //sino leer el edificio que ingreso el usuario y dejarlo como actual.
+
+            //luego pedir los daqtos del apartamento.
+            cout << "A continuacion ingrese los datos del apartamento:" << endl;
+            cout << "Cantidad de ambientes : ";
+            cin >> ambientes;
+            cout << endl;
+            cout << "Cantidad de dormitorios : ";
+            cin >> dormitorios;
+            cout << endl;
+            cout << "Cantidad de banios : ";
+            cin >> banios;
+            cout << endl;
+            cout << "Tiene garage? S/N: ";
+            cin >> letra;
+            cout << endl;
+            cout << "Direccion : ";
+            cin >> dir;
+            cout << endl;
+            garage = ((letra == "s")||(letra == "S"));
+            cout << "M2 edificados : ";
+            cin >> m2Edif;
+            cout << endl;
+            cout << "M2 totales : ";
+            cin >> m2Tot;
+            cout << endl;
+            DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
+            try{
+                interface->ingresarApartamento(NuevoApto);
+            }catch(invalid_argument e){
+                cout << e.what() << endl;
+            }
+            break;
+        }
+        case 2:
+        {
+            //si queria ingresar una casa.. pedir datos y hacer ingresar casa/..
+            cout << "A continuacion ingrese los datos de la casa:" << endl;
+            cout << "Cantidad de ambientes : ";
+            cin >> ambientes;
+            cout << endl;
+            cout << "Cantidad de dormitorios : ";
+            cin >> dormitorios;
+            cout << endl;
+            cout << "Cantidad de banios : ";
+            cin >> banios;
+            cout << endl;
+            cout << "Tiene garage? S/N: ";
+            cin >> letra;
+            cout << endl;
+            cout << "Direccion : ";
+            cin >> dir;
+            cout << endl;
+            garage = ((letra == "s")||(letra == "S"));
+            cout << "M2 edificados : ";
+            cin >> m2Edif;
+            cout << endl;
+            cout << "M2 totales : ";
+            cin >> m2Tot;
+            cout << endl;
+            cout << "M2 verdes : ";
+            cin >> m2Ver;
+            cout << endl;
+            DataCasa NuevaCasa(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
+            try{
+                interface->ingresarCasa(NuevaCasa);
+            }catch(invalid_argument e){
+                cout << e.what() << endl;
+            }
+            break;
+        }
+        default:
+            // Hacer algo si ponen mal?????
+            break;
+    }
+    cout << "Si desea Alquilar la propiedad ingrese '1', de lo contrario ingrese '2': ";
+    cin >> opcion;
+    if(opcion == 1){
+        cout << "Ingrese el precio de alquiler : ";
+        cin >> precio;
+        try{
+            interface->ponerEnAlquiler(precio);
+            cout << "Puesta en alquiler exitosa!" << endl;
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+    }
+    cout << "Si desea Vender la propiedad ingrese '1', de lo contrario ingrese '2': ";
+    cin >> opcion;
+    if(opcion == 1){
+        cout << "Ingrese el precio de Venta : ";
+        cin >> precio;
+        try{
+            interface->ponerEnVenta(precio);
+            cout << "Puesta en venta exitosa!" << endl;
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+    }
+
+    //pedimos el codigo de la propiedad y lo mostramos.
+    try{
+        codProp = interface->getCodigPropiedad();
+        cout << "Alta Propiedad realizada con exito " << endl;
+        cout << "Codigo de la nueva propiedad: " << codProp << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+
     delete interface;
 }
 void doConsultarPropiedad(){
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
-    //listar los departamentos
-    //leer el depto seleccionado
+    string id, codZona;
+    //listar los departamentos y seleccionar
+    list <DataDepartamento> deptos;
+    try {
+        deptos = interface->ListarDepartamentos();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    cout << "Departamentos:" << endl;
+    for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
+        cout << "ID : " << it->getId() << endl;
+    }
+    cout << "Ingrese el ID del departamento seleccionado :";
+    cin >> id;
+    cout << endl;
+    try {
+        interface->SeleccionarDepartamento(id);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     //mostrar las zonas de ese depto
-    //leer la zona seleccionada
-    //listar las propiedades en esa zona mostrando la lista de codigos y direccion
+    list<DataZona> zonas;
+    try {
+        zonas = interface->ListarZonas();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    cout << "Zonas :" << endl;
+    for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
+        cout << "Codigo : " << it->getCodigo() << endl;
+    }
+    cout << "Ingrese el codigo de la zona seleccionada :";
+    cin >> codZona;
+    cout << endl;
+    try {
+        interface->SeleccionarZona(codZona);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    // LEER!>. hasta aca ya se selecciono departamento y zona,, luego.
+    // creo que faltaria la funcion listarpropiedades en PropiedadesController y en la interface.
+    // ese metodo le prediria listar las propiedades a la zona actual que tiene el controlador. maniana sera otro dia
+    //listar las propiedades de esa zona mostrando la lista de codigos y direccion
     //leer el codigo seleccionado.. ir a buscar e imprimier los datos de esa propiedad.
     //fin/
     delete interface;

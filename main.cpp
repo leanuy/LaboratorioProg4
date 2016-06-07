@@ -152,12 +152,34 @@ void doAltaInmobiliaria(){
     delete interface;
 }
 
+
 void doAltaInteresado(){
+    string nombre;
+    string apellido;
+    int edad;
+    string email;
+    bool cambiar = true;
+    string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
-
+    while (cambiar){
+        cout << "Ingrese el nombre del interesado:";
+        cin >> nombre;
+        cout << "Ingrese el apellido:";
+        cin >> apellido;
+        cout << "Ingrese la edad:";
+        cin >> edad;
+        cout << "Ingrese el email:";
+        cin >> email;
+        cout << "Desea confirmar el interesado? [S/N]"
+        cin >> confirmar
+        cout << endl;
+        cambiar = (confirmar == "s" || confirmar == "S");
+    }
+    interface->DarAltaInteresado(nombre,apellido,email,edad);
     delete interface;
 }
+
 void doAltaEdificio(){ //todo: No tiene interface asignada
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();

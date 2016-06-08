@@ -186,6 +186,7 @@ list <DataEdificio> PropiedadesController::VerEdificiosZona() {
     return zActual->DevolverEdificios();
 }
 
+
 list <DataEdificio> PropiedadesController::edificiosSinAsignar() {
     Database* db = Database::getInstance();
     map<string,Edificio*> edificios = db->getEdificios();
@@ -197,3 +198,8 @@ list <DataEdificio> PropiedadesController::edificiosSinAsignar() {
     }
     return lista;
 }
+
+list<DataPropiedad> PropiedadesController::ListarPropiedades(){
+
+}
+

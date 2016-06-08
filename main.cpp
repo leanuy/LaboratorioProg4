@@ -171,8 +171,8 @@ void doAltaInteresado(){
         cin >> edad;
         cout << "Ingrese el email:";
         cin >> email;
-        cout << "Desea confirmar el interesado? [S/N]"
-        cin >> confirmar
+        cout << "Desea confirmar el interesado? [S/N]";
+        cin >> confirmar;
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
     }

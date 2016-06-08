@@ -44,6 +44,6 @@ void Interesado::setEdad(int age){
     this->edad = age;
 }
 bool Interesado::esTipo(string tipo){
-    return tipo == "interesado";
+    return (tipo == "interesado");
 }
 

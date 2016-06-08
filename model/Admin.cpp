@@ -5,5 +5,5 @@
 
 Admin::Admin(){}
 bool Admin::esTipo(string tipo){
-    return tipo == "admin";
+    return (tipo == "admin");
 }

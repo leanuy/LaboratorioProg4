@@ -51,7 +51,8 @@ bool LogController::IngresarPassword(string psw) {
 
 void LogController::CerrarSesion()
 {
-//    LogOut();
+    Sesion* s = Sesion::getInstance();
+    s->LogOut();
 };
 
 LogController::~LogController(){

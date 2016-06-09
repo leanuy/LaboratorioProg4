@@ -6,7 +6,9 @@ Zona::Zona(string codigo,string nombre) {
     this->nombre = nombre;
     this->codigo = codigo;
 }
-
+void Zona::AddPropiedad(Propiedad* propiedad){
+    this->propiedades[propiedad->getCodigo()] = propiedad;
+}
 Zona::~Zona() {
 
 }

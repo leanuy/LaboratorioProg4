@@ -20,10 +20,11 @@ private:
 	string id;
 	string nombre;
 	map<string,Zona*> zonas;
+	void AddZona(Zona*);
 public:
     Departamento(string nombre,string id);
     DataDepartamento CrearDataDepartamento();
-    list<DataZona> ListarZonas();
+	list<DataZona> ListarZonas();
     Zona* SeleccionarZona(string idZona);
     Propiedad* BuscarPropiedad(string idPropiedad);
 	Edificio* BuscarEdificio(string idEdificio);
@@ -33,6 +34,8 @@ public:
 	string getNombre();
 	void setId(string id);
 	void setNombre(string nombre);
+
+	friend class Database;
 };
 
 

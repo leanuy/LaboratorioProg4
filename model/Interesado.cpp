@@ -12,6 +12,14 @@ Interesado::Interesado(string nombre, string apellido, string email, int edad){
     this->setEmail(email);
     this->setFirstTime(true);
 }
+Interesado::Interesado(string nombre, string apellido, string email, int edad, string password){
+    this->nombre = nombre;
+    this->apellido = apellido;
+    this->edad = edad;
+    this->setEmail(email);
+    this->setContrasenia(password);
+    this->setFirstTime(true);
+}
 
 void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){
     this->conversaciones.insert(pair<string, Conversacion*>(idInmobiliaria, conversacion));

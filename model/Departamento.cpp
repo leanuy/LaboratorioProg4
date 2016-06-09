@@ -9,6 +9,9 @@ Departamento::Departamento(string nombre,string id){
 DataDepartamento Departamento::CrearDataDepartamento(){
     return DataDepartamento(this->nombre,this->id);
 }
+void Departamento::AddZona(Zona* zona){
+    this->zonas[zona->getCodigo()] = zona;
+}
 
 list<DataZona> Departamento::ListarZonas(){
     list<DataZona> data;

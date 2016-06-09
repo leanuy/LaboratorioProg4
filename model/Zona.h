@@ -26,8 +26,7 @@ private:
     map<string,Propiedad*> propiedades;
 	Departamento* departamento;
     map<string,Edificio*> edificios;
-	//agregar coleccion de zonas limite.
-
+	void AddPropiedad(Propiedad*);
 
 public:
     Zona(string codigo,string nombre);
@@ -42,7 +41,6 @@ public:
 	Edificio* BuscarEdificio(string idEdificio);
 
     DataZona CrearDataZona();
-    list<DataPropiedad*> ListarPropiedadExtendidas();
 	list<DataPropiedad> ListarPropiedadesEstaticas();
     Propiedad* SeleccionarPropiedad(string idPropiedad);
     list<DataEdificio> DevolverEdificios();
@@ -51,6 +49,8 @@ public:
     void AsignarEdificio(Edificio* e);          // esta seria agregar edificio a la zona
 	void AgregarPropiedad(Propiedad* p);
 	void eliminarPropiedad(string codigo);
+
+	friend class Database;
 };
 
 

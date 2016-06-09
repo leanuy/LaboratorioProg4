@@ -25,6 +25,8 @@ public:
     map<string, Usuario*> getUsuarios();
     map<string, Edificio*> getEdificios();
     void AddUsuario(Usuario* usuario);
+    void AddData();
+    void DeleteData();
     void AddEdificio(Edificio* edificio);
     Edificio* RemoveEdificio(string idEdificio);
     ~Database();

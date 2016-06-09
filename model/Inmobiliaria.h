@@ -17,6 +17,7 @@
 #include <map>
 #include "../model/Venta.h"
 #include "../model/Alquiler.h"
+#include "../Database.h"
 
 
 using namespace std;
@@ -31,7 +32,7 @@ private:
     map<string,Alquiler*> alquileres;
     map<string,Venta*> ventas;
     map<string,Propiedad*> propiedades;
-
+    Inmobiliaria(string nombre, string mail, string direccion, string password);
 public:
     Inmobiliaria(string nombre, string mail, string direccion);
     bool ExisteConversacion();
@@ -48,6 +49,8 @@ public:
     void DesvincularPropiedad(string code);
     void AddPropiedad(Propiedad* p);
     ~Inmobiliaria();
+
+    friend class Database;
 };
 
 #endif //LAB6_INMOBILIARIA_H

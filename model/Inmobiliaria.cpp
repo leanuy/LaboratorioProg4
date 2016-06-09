@@ -8,6 +8,13 @@ Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion){
     this->setDireccion(direccion);
     this->setFirstTime(true);
 }
+Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion, string password){
+    this->setNombre(nombre);
+    this->setEmail(mail);
+    this->setDireccion(direccion);
+    this->setContrasenia(password);
+    this->setFirstTime(true);
+}
 
 
 

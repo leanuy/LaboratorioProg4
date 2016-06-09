@@ -19,6 +19,7 @@ private:
     string apellido;
     int edad;
     map<string, Conversacion*> conversaciones;
+    Interesado(string nombre, string apellido, string email, int edad, string password);
 public:
     Interesado(string nombre, string apellido, string email, int edad);
     void AddConversacion(string idInmobiliaria, Conversacion* conversacion);
@@ -31,5 +32,7 @@ public:
     void setEdad(int age);
 
     bool esTipo(string tipo);
+
+    friend class Database;
 };
 #endif //LAB6_INTERESADO_H

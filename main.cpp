@@ -71,6 +71,7 @@ void doMenu(){
             cout << "- Enviar Mensaje" << endl;
         if(sesion->esTipo("admin"))
             cout << "- Obtener Reporte Inmobiliarias" << endl;
+        cout << "- Cerrar Sesion" << endl;
     }
 }
 bool doComando(){
@@ -212,6 +213,11 @@ void doAltaInteresado(){
         cout << "Ingrese el email: ";
         getline(cin, email);
         cout << endl;
+        cout << "Estos son los datos ingresados:" << endl;
+        cout << "Nombre: " << nombre << endl;
+        cout << "Apellido: " << apellido << endl;
+        cout << "Edad: " << edad << endl;
+        cout << "Mail: " << email << endl;
         cout << "Desea confirmar el interesado? [S/N] ";
         getline(cin, confirmar);
         cout << endl;

@@ -25,18 +25,25 @@ void doCerrarSesion();//Usuario
 
 int main() {
     bool salir = false;
-    bool primerMenu = true;
+    string com, opcion;
     Sesion *sesion = Sesion::getInstance();
     cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
     cout << "---------------------------------------------" << endl;
     while (!salir) {
         if (!sesion->isLogged()) {
-            doIniciarSesion();
-        } else {
-            if(primerMenu) {
-                doMenu();
-                primerMenu = false;
+            cout << "Ingrese una de las opciones: 'Iniciar Sesion' o 'salir': " << endl;
+            getline(cin,com);
+            if(com == "Iniciar Sesion"){
+                doIniciarSesion();
+                if(sesion->isLogged()){
+                    doMenu();
+                }
+            }else{
+                cout << "El programa se va a cerrar, desea salir? [S/N]: ";
+                getline(cin,opcion);
+                salir = ((opcion == "S")||(opcion == "s"));
             }
+        } else {
             salir = doComando();
         }
     }
@@ -64,6 +71,7 @@ void doMenu(){
             cout << "- Enviar Mensaje" << endl;
         if(sesion->esTipo("admin"))
             cout << "- Obtener Reporte Inmobiliarias" << endl;
+        cout << "- Cerrar Sesion" << endl;
     }
 }
 bool doComando(){
@@ -205,6 +213,11 @@ void doAltaInteresado(){
         cout << "Ingrese el email: ";
         getline(cin, email);
         cout << endl;
+        cout << "Estos son los datos ingresados:" << endl;
+        cout << "Nombre: " << nombre << endl;
+        cout << "Apellido: " << apellido << endl;
+        cout << "Edad: " << edad << endl;
+        cout << "Mail: " << email << endl;
         cout << "Desea confirmar el interesado? [S/N] ";
         getline(cin, confirmar);
         cout << endl;
@@ -222,8 +235,25 @@ void doAltaInteresado(){
 
 void doAltaEdificio(){ //todo: No tiene interface asignada
     Factory* factroy = Factory::getInstance();
+    string name, pisosStr, gastosStr;
+    int pisos;
+    float gastosComunes;
     IPropiedades* interface = factroy->getIPropiedades();
-
+    cout << "Ingrese los datos del nuevo edificio" << endl;
+    cout << "Nombre: ";
+    getline(cin, name);
+    cout << "Pisos:";
+    getline(cin,pisosStr);
+    pisos = stoi(pisosStr);
+    cout << "Gastos Comunes: ";
+    getline(cin,gastosStr);
+    gastosComunes = stof(gastosStr);
+    DataEdificio edi(name,pisos,gastosComunes);
+    try{
+        interface->IngresarEdificio(edi);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     delete interface;
 }
 void doAltaPropiedad(){

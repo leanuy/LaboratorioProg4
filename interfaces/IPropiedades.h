@@ -38,6 +38,7 @@ public:
     virtual DataPropiedad BuscarPropiedad(string codigo) = 0;
     virtual list<DataEdificio> edificiosSinAsignar() = 0;
 //    virtual list<DataPropiedad*> ListarPropiedades() = 0;
+    virtual void IngresarEdificio(DataEdificio e) = 0;
     virtual ~IPropiedades() = 0;
 };
 

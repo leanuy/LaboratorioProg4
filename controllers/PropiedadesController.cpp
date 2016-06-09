@@ -203,3 +203,8 @@ list<DataPropiedad> PropiedadesController::ListarPropiedades(){
     return this->zActual->ListarPropiedadesEstaticas();
 }
 
+void PropiedadesController::IngresarEdificio(DataEdificio e) {
+    Edificio* edi = new Edificio(e.getNombre(),e.getPisos(),e.getGastoComunes());
+    Database* db = Database::getInstance();
+    db->AddEdificio(edi);
+}

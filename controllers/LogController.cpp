@@ -15,8 +15,9 @@ LogController::LogController(){
 
 bool LogController::IngresarEmail(string email) {
     Database* db = Database::getInstance();
-    map<string,Usuario*>::iterator it = db->getUsuarios().find(email);
-    if(it == db->getUsuarios().end()){
+    map<string,Usuario*> usuarios = db->getUsuarios();
+    map<string,Usuario*>::iterator it = usuarios.find(email);
+    if(it == usuarios.end()){
         throw invalid_argument("El email no esta registrado en el sistema");
     }
     usr = it->second;

@@ -36,7 +36,5 @@ bool Sesion::isLogged() {
 void Sesion::inicializarDataBaseConAdmin() {
     Database* db = Database::getInstance();
     Usuario* admin = new Admin();
-    admin->setEmail("admin");
-    admin->setContrasenia("admin");
     db->AddUsuario(admin);
 }

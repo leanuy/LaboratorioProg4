@@ -7,7 +7,7 @@
 
 //forward declaration de las funciones
 void doMenu();
-void doComando();
+bool doComando();
 void doIniciarSesion();
 void doAltaInteresado();//Admin
 void doAltaInmobiliaria();//Admin
@@ -21,18 +21,19 @@ void doObtenerReporteInmobiliarias();//Admin
 void doCerrarSesion();//Usuario
 
 
-int main(){
-    Sesion* sesion = Sesion::getInstance();
-    if(!sesion->isLogged()){
-        cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
-        cout << "---------------------------------------------" << endl;
-        doIniciarSesion();
-    }else{
-        doMenu();
-        doComando(); //todo: iterar
-
+int main() {
+    bool salir = false;
+    Sesion *sesion = Sesion::getInstance();
+    cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
+    cout << "---------------------------------------------" << endl;
+    while (!salir) {
+        if (!sesion->isLogged()) {
+            doIniciarSesion();
+        } else {
+            doMenu();
+            salir = doComando();
+        }
     }
-//todo: ver de como loopear esta parte.
     return 0;
 }
 void doMenu(){
@@ -59,22 +60,28 @@ void doMenu(){
             cout << "- Obtener Reporte Inmobiliarias" << endl;
     }
 }
-void doComando(){
+bool doComando(){
     Sesion* sesion = Sesion::getInstance();
 
     string command;
     //todo: pedir comando
+    cout << "Ingresar una opcion del menu: ";
+    getline(cin,command);
+    cout << endl;
     if(command == "menu") doMenu();
-    else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();}
-    else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();}
-    else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();}
-    else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();}
-    else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();}
-    else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();}
-    else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();}
-    else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();}
-    else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();}
-    else if(command == "Cerrar Sesion"){doCerrarSesion();}
+    else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();return false;}
+    else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();return false;}
+    else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();return false;}
+    else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();return false;}
+    else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();return false;}
+    else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();return false;}
+    else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();return false;}
+    else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();return false;}
+    else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();return false;}
+    else if(command == "Cerrar Sesion"){doCerrarSesion();return false;}
+    //else if(command == ""){return false;}
+    else if(command == "salir"){return true;}
+    else {return false;}
 }
 
 
@@ -86,9 +93,16 @@ void doIniciarSesion(){
     bool incorrecta;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
-    cout << "Ingrese su Email" << endl;
+    cout << "Ingrese su Email: ";
     cin >> email;
-    first = interface->IngresarEmail(email);
+    cout << endl;
+    try{
+        first = interface->IngresarEmail(email);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+        return;
+    }
+
     if (first){
         iguales = false;
         cout << "Es la primera vez que ingresa al sistema, se le pedira que ingrese una contrasenia y luego la confirme" << endl;
@@ -96,7 +110,7 @@ void doIniciarSesion(){
             cout << "Ingresar Contrasenia:";
             cin >> psw1;
             cout << endl;
-            cout << "Confirmarar Contrasenia:";
+            cout << "Confirmar Contrasenia:";
             cin >> psw2;
             cout << endl;
             iguales = interface->SetearPassword(psw1, psw2);
@@ -111,7 +125,7 @@ void doIniciarSesion(){
             cout << "Ingresar Contrasenia:";
             cin >> psw1;
             cout << endl;
-            incorrecta = interface->IngresarPassword(psw1);
+            incorrecta = !interface->IngresarPassword(psw1);
             if (incorrecta) {
                 cout << "La contrasenia ingresada es incorrecta" << endl;
             };
@@ -163,15 +177,15 @@ void doAltaInteresado(){
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
     while (cambiar){
-        cout << "Ingrese el nombre del interesado:";
+        cout << "Ingrese el nombre del interesado: ";
         cin >> nombre;
-        cout << "Ingrese el apellido:";
+        cout << "Ingrese el apellido: ";
         cin >> apellido;
-        cout << "Ingrese la edad:";
+        cout << "Ingrese la edad: ";
         cin >> edad;
-        cout << "Ingrese el email:";
+        cout << "Ingrese el email: ";
         cin >> email;
-        cout << "Desea confirmar el interesado? [S/N]";
+        cout << "Desea confirmar el interesado? [S/N] ";
         cin >> confirmar;
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");

@@ -3,7 +3,11 @@
 //
 #include "../model/Admin.h"
 
-Admin::Admin(){}
+Admin::Admin(){
+    this->setEmail("adm1@sis.com");
+    this->setFirstTime(false);
+    this->setContrasenia("pass1");
+}
 bool Admin::esTipo(string tipo){
     return (tipo == "admin");
 }

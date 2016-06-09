@@ -9,7 +9,7 @@ using namespace std;
 
 //forward declaration de las funciones
 void doMenu();
-void doComando();
+bool doComando();
 void doIniciarSesion();
 void doAltaInteresado();//Admin
 void doAltaInmobiliaria();//Admin
@@ -23,18 +23,23 @@ void doObtenerReporteInmobiliarias();//Admin
 void doCerrarSesion();//Usuario
 
 
-int main(){
-    Sesion* sesion = Sesion::getInstance();
-    if(!sesion->isLogged()){
-        cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
-        cout << "---------------------------------------------" << endl;
-        doIniciarSesion();
-    }else{
-        doMenu();
-        doComando(); //todo: iterar
-
+int main() {
+    bool salir = false;
+    bool primerMenu = true;
+    Sesion *sesion = Sesion::getInstance();
+    cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
+    cout << "---------------------------------------------" << endl;
+    while (!salir) {
+        if (!sesion->isLogged()) {
+            doIniciarSesion();
+        } else {
+            if(primerMenu) {
+                doMenu();
+                primerMenu = false;
+            }
+            salir = doComando();
+        }
     }
-//todo: ver de como loopear esta parte.
     return 0;
 }
 void doMenu(){
@@ -61,22 +66,28 @@ void doMenu(){
             cout << "- Obtener Reporte Inmobiliarias" << endl;
     }
 }
-void doComando(){
+bool doComando(){
     Sesion* sesion = Sesion::getInstance();
 
     string command;
     //todo: pedir comando
+    cout << "Ingresar una opcion del menu: ";
+    getline(cin,command);
+    cout << endl;
     if(command == "menu") doMenu();
-    else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();}
-    else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();}
-    else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();}
-    else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();}
-    else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();}
-    else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();}
-    else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();}
-    else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();}
-    else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();}
-    else if(command == "Cerrar Sesion"){doCerrarSesion();}
+    else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();return false;}
+    else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();return false;}
+    else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();return false;}
+    else if(command == "Alta Propiedad"){if(sesion->esTipo("inmobiliaria"))doAltaPropiedad();return false;}
+    else if(command == "Consultar Propiedad"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doConsultarPropiedad();return false;}
+    else if(command == "Modificar Propiedad"){if(sesion->esTipo("inmobiliaria"))doModificarPropiedad();return false;}
+    else if(command == "Eliminar Propiedad"){if(sesion->esTipo("inmobiliaria"))doEliminarPropiedad();return false;}
+    else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();return false;}
+    else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();return false;}
+    else if(command == "Cerrar Sesion"){doCerrarSesion();return false;}
+    //else if(command == ""){return false;}
+    else if(command == "salir"){return true;}
+    else {return false;}
 }
 
 
@@ -88,9 +99,17 @@ void doIniciarSesion(){
     bool incorrecta;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
-    cout << "Ingrese su Email" << endl;
+    cout << "Ingrese su Email: ";
     cin >> email;
-    first = interface->IngresarEmail(email);
+    cout << endl;
+    try{
+        first = interface->IngresarEmail(email);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+        delete interface;
+        return;
+    }
+
     if (first){
         iguales = false;
         cout << "Es la primera vez que ingresa al sistema, se le pedira que ingrese una contrasenia y luego la confirme" << endl;
@@ -98,7 +117,7 @@ void doIniciarSesion(){
             cout << "Ingresar Contrasenia:";
             cin >> psw1;
             cout << endl;
-            cout << "Confirmarar Contrasenia:";
+            cout << "Confirmar Contrasenia:";
             cin >> psw2;
             cout << endl;
             iguales = interface->SetearPassword(psw1, psw2);
@@ -113,7 +132,7 @@ void doIniciarSesion(){
             cout << "Ingresar Contrasenia:";
             cin >> psw1;
             cout << endl;
-            incorrecta = interface->IngresarPassword(psw1);
+            incorrecta = !interface->IngresarPassword(psw1);
             if (incorrecta) {
                 cout << "La contrasenia ingresada es incorrecta" << endl;
             };
@@ -128,18 +147,21 @@ void doAltaInmobiliaria(){
     string nombre;
     string mail;
     string direccion;
-    bool cambiar = true;
+    bool cambiar = false;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
 
-    while (cambiar) {
-        cout << "Ingrese el nombre de la inmobiliaria:" << endl;
-        cin >> nombre;
-        cout << "Ingrese el mail de la inmobiliaria:" << endl;
-        cin >> mail;
-        cout << "Ingrese la direccion de la inmobiliaria:" << endl;
-        cin >> direccion;
+    while (!cambiar) {
+        cout << "Ingrese el nombre de la inmobiliaria: ";
+        getline(cin,nombre);
+        cout << endl;
+        cout << "Ingrese el mail de la inmobiliaria:";
+        getline(cin,mail);
+        cout << endl;
+        cout << "Ingrese la direccion de la inmobiliaria:";
+        getline(cin,direccion);
+        cout << endl;
         cout << "Estos son los datos ingresados:" << endl;
         cout << "Nombre: " << nombre << endl;
         cout << "Mail: " << mail << endl;
@@ -149,8 +171,12 @@ void doAltaInmobiliaria(){
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
     }
-    interface->IngresarInmobiliaria(nombre, mail, direccion);
-
+    try {
+        interface->IngresarInmobiliaria(nombre, mail, direccion);
+        cout << "Inmobiliaria dada de alta con exito!" << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     delete interface;
 }
 
@@ -160,25 +186,35 @@ void doAltaInteresado(){
     string apellido;
     int edad;
     string email;
-    bool cambiar = true;
+    bool cambiar = false;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
-    while (cambiar){
-        cout << "Ingrese el nombre del interesado:";
+    while (!cambiar){
+        cout << "Ingrese el nombre del interesado: ";
         cin >> nombre;
-        cout << "Ingrese el apellido:";
+        cout << endl;
+        cout << "Ingrese el apellido: ";
         cin >> apellido;
-        cout << "Ingrese la edad:";
+        cout << endl;
+        cout << "Ingrese la edad: ";
         cin >> edad;
-        cout << "Ingrese el email:";
+        cout << endl;
+        cout << "Ingrese el email: ";
         cin >> email;
-        cout << "Desea confirmar el interesado? [S/N]";
+        cout << endl;
+        cout << "Desea confirmar el interesado? [S/N] ";
         cin >> confirmar;
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
     }
-    interface->DarAltaInteresado(nombre,apellido,email,edad);
+    try{
+        interface->DarAltaInteresado(nombre,apellido,email,edad);
+        cout << "Interesado dado de alta con exito!" << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+
     delete interface;
 }
 
@@ -216,6 +252,7 @@ void doAltaPropiedad(){
         interface->SeleccionarDepartamento(id);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
         return;
     }
     //mostrar las zonas de ese depto
@@ -236,6 +273,7 @@ void doAltaPropiedad(){
         interface->SeleccionarZona(codZona);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
         return;
     }
     //preguntar si es apartamento o casa y leer
@@ -272,6 +310,7 @@ void doAltaPropiedad(){
                     interface->SeleccionarEdificio(edificioSeleccionado);
                 }catch(invalid_argument e){
                     cout << e.what() << endl;
+                    delete interface;
                     return;
                 }
             }
@@ -325,7 +364,7 @@ void doAltaPropiedad(){
             cin >> letra;
             cout << endl;
             cout << "Direccion : ";
-            cin >> dir;
+            getline(cin,dir);
             cout << endl;
             garage = ((letra == "s")||(letra == "S"));
             cout << "M2 edificados : ";
@@ -388,7 +427,8 @@ void doAltaPropiedad(){
 void doConsultarPropiedad(){
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
-    string id, codZona;
+    string id, codZona, codProp;
+    list<DataPropiedad> l;
     //listar los departamentos y seleccionar
     list <DataDepartamento> deptos;
     try {
@@ -427,12 +467,36 @@ void doConsultarPropiedad(){
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }
-    // LEER!>. hasta aca ya se selecciono departamento y zona,, luego.
-    // creo que faltaria la funcion listarpropiedades en PropiedadesController y en la interface.
-    // ese metodo le prediria listar las propiedades a la zona actual que tiene el controlador. maniana sera otro dia
-    //listar las propiedades de esa zona mostrando la lista de codigos y direccion
-    //leer el codigo seleccionado.. ir a buscar e imprimier los datos de esa propiedad.
-    //fin/
+    cout << "Propiedades en la zona seleccionada: " << endl;
+    try{
+        l = interface->ListarPropiedades();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    for(list<DataPropiedad>::iterator iterador = l.begin(); iterador != l.end(); iterador++){
+        cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion() << endl;
+    }
+    cout << "Ingrese la propiedad que desea consultar: ";
+    getline(cin,codProp);
+    cout << endl;
+    list<DataPropiedad>::iterator i = l.begin();
+    while((i != l.end())&&(i->getCodigo() != codProp)){
+        i++;
+    }
+    if(i == l.end()){
+        cout << "La propiedad seleccionada no se encuentra en la lista de propiedades de la zona" << endl;
+    }else{
+        cout << "Datos de la propiedad consultada" << endl;
+        cout << "Codigo: " << i->getCodigo() << endl;
+        cout << "Ambientes: " << i->getAmbientes() << endl;
+        cout << "Dormitorios: " << i->getDormitorios() << endl;
+        cout << "Direccion: " << i->getDireccion() << endl;
+        cout << "M2 edificados: " << i->getMetrosCuadradosEdificados() << endl;
+        cout << "M2 totales: " << i->getMetrosCuadradosTotales() << endl;
+        if((i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados())!= 0){
+            cout << "M2 verdes: " << i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados() << endl;
+        }
+    }
     delete interface;
 }
 void doModificarPropiedad(){

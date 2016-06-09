@@ -17,7 +17,9 @@
 #include "../Sesion.h"
 #include "../model/Alquiler.h"
 #include "../model/Venta.h"
+#include "../datatypes/DataPropiedad.h"
 #include <typeinfo>
+#include <list>
 
 
 

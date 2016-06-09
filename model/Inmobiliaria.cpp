@@ -6,6 +6,7 @@ Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion){
     this->setNombre(nombre);
     this->setEmail(mail);
     this->setDireccion(direccion);
+    this->setFirstTime(true);
 }
 
 

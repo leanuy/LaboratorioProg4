@@ -10,6 +10,7 @@ Interesado::Interesado(string nombre, string apellido, string email, int edad){
     this->apellido = apellido;
     this->edad = edad;
     this->setEmail(email);
+    this->setFirstTime(true);
 }
 
 void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){

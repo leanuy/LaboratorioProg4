@@ -16,8 +16,11 @@ LogController::LogController(){
 bool LogController::IngresarEmail(string email) {
     Database* db = Database::getInstance();
     map<string,Usuario*>::iterator it = db->getUsuarios().find(email);
+    if(it == db->getUsuarios().end()){
+        throw invalid_argument("El email no esta registrado en el sistema");
+    }
+    usr = it->second;
     return it->second->getFirstTime();
-
 };
 
 bool LogController::SetearPassword(string psw1, string psw2){
@@ -25,7 +28,8 @@ bool LogController::SetearPassword(string psw1, string psw2){
     exito = usr->AsignarPassword(psw1, psw2);
     usr->setFirstTime(false);
     if (exito){
-//        LogIn(usr);
+        Sesion* s = Sesion::getInstance();
+        s->LogIn(usr);
         usr = NULL;
         return (true);
     }
@@ -38,7 +42,8 @@ bool LogController::IngresarPassword(string psw) {
     bool correcta;
     correcta = usr->CheckPassword(psw);
     if (correcta){
-//        LogIn(usr);
+        Sesion* s = Sesion::getInstance();
+        s->LogIn(usr);
         usr = NULL;
     };
     return correcta;

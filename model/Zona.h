@@ -43,6 +43,7 @@ public:
 
     DataZona CrearDataZona();
     list<DataPropiedad*> ListarPropiedadExtendidas();
+	list<DataPropiedad> ListarPropiedadesEstaticas();
     Propiedad* SeleccionarPropiedad(string idPropiedad);
     list<DataEdificio> DevolverEdificios();
     DataEdificio DevolverEdificio(string nombreEdificio);

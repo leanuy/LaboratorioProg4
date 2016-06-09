@@ -119,3 +119,18 @@ void Zona::eliminarPropiedad(string codigo) {
         delete propiedades[codigo];
     }
 }
+
+list <DataPropiedad> Zona::ListarPropiedadesEstaticas() {
+    list<DataPropiedad> l; // fixme ver entre todos.. pasaria a lista de DataPropiedad
+    map<string,Propiedad*>::iterator it = this->propiedades.begin();
+    while(it != propiedades.end()){
+        if(dynamic_cast<Casa*>(it->second)){
+            l.push_back(dynamic_cast<Casa*>(it->second)->CrearDataPropiedad());
+        }else{
+            l.push_back(dynamic_cast<Apartamento*>(it->second)->CrearDataPropiedad());
+        }
+        it++;
+    }
+
+    return l;
+}

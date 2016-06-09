@@ -229,8 +229,25 @@ void doAltaInteresado(){
 
 void doAltaEdificio(){ //todo: No tiene interface asignada
     Factory* factroy = Factory::getInstance();
+    string name, pisosStr, gastosStr;
+    int pisos;
+    float gastosComunes;
     IPropiedades* interface = factroy->getIPropiedades();
-
+    cout << "Ingrese los datos del nuevo edificio" << endl;
+    cout << "Nombre: ";
+    getline(cin, name);
+    cout << "Pisos:";
+    getline(cin,pisosStr);
+    pisos = stoi(pisosStr);
+    cout << "Gastos Comunes: ";
+    getline(cin,gastosStr);
+    gastosComunes = stof(gastosStr);
+    DataEdificio edi(name,pisos,gastosComunes);
+    try{
+        interface->IngresarEdificio(edi);
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     delete interface;
 }
 void doAltaPropiedad(){

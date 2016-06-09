@@ -57,5 +57,6 @@ public:
     list<DataPropiedad> ListarPropiedades();
     void actualizarPropiedad(DataPropiedad p);
     list<DataEdificio> edificiosSinAsignar();
+    void IngresarEdificio(DataEdificio e);
 };
 #endif //LAB6_PROPIEDADESCONTROLLER_H

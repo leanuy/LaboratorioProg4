@@ -19,7 +19,7 @@ public:
     virtual void SeleccionarDepartamento(string idDepartamento) = 0;
     virtual list<DataZona> ListarZonas() = 0;
     virtual void SeleccionarZona(string idZona) = 0;
-    virtual list<DataPropiedad*> ListarPropiedades() = 0;
+    virtual list<DataPropiedad> ListarPropiedades() = 0;
     virtual void SeleccionarPropiedad(string idPropiedad) = 0;
     virtual list<DataConversacion> ListarConversaciones() = 0;
     virtual void SeleccionarConversacion(string idConversacion) = 0;

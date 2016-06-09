@@ -54,7 +54,7 @@ public:
     DataPropiedad BuscarPropiedad(string codigo);
     void EliminarPropiedad(string codigoPropiedad);
     DataPropiedad* verPropiedad(string codigoPropiedad);
-    list<DataPropiedad*> ListarPropiedades();
+    list<DataPropiedad> ListarPropiedades();
     void actualizarPropiedad(DataPropiedad p);
     list<DataEdificio> edificiosSinAsignar();
 };

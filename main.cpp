@@ -640,17 +640,17 @@ void doEnviarMensaje(){
             return;
         }
         //mostrar las propiedades de esa zona
-        list<DataPropiedad*> propiedades;
+        list<DataPropiedad> propiedades;
         try {
             propiedades = interface->ListarPropiedades();
         }catch(invalid_argument e){
             cout << e.what() << endl;
         }
         cout << "Propiedades :" << endl;
-        for(list<DataPropiedad*>::iterator it = propiedades.begin(); it != propiedades.end(); it++){
-            cout << "Codigo : " << (*it)->getCodigo() << endl;
-            cout << "Direccion : " << (*it)->getDireccion() << endl;
-            cout << "Cantidad mensajes : " << (*it)->getCantidadMensajes() << endl;
+        for(list<DataPropiedad>::iterator it = propiedades.begin(); it != propiedades.end(); it++){
+            cout << "Codigo : " << it->getCodigo() << endl;
+            cout << "Direccion : " << it->getDireccion() << endl;
+            cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
             cout << "----------------------------------------" << endl;
         }
         cout << "Ingrese el codigo de la propiedad a seleccionar :";

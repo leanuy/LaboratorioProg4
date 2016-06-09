@@ -39,21 +39,6 @@ DataZona Zona::CrearDataZona() {
     return DataZona(this->codigo,this->nombre);
 }
 
-list<DataPropiedad*> Zona::ListarPropiedadExtendidas() {
-    list<DataPropiedad*> l; // fixme ver entre todos.. pasaria a lista de DataPropiedad
-    map<string,Propiedad*>::iterator it = this->propiedades.begin();
-    while(it != propiedades.end()){
-        if(dynamic_cast<Casa*>(it->second)){
-            l.push_back(dynamic_cast<Casa*>(it->second)->CrearPtrDataPropiedad());
-        }else{
-            l.push_back(dynamic_cast<Apartamento*>(it->second)->CrearPtrDataPropiedad());
-        }
-        it++;
-    }
-
-    return l;
-}
-
 list <DataEdificio> Zona::DevolverEdificios() {
     list<DataEdificio> l;
     list<DataEdificio>::iterator ite = l.begin();

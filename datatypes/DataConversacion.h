@@ -8,10 +8,12 @@ using namespace std;
 class DataConversacion {
 private:
     string interesado;
+    int cantidadMensajes;
     time_t lastUpdate;
 public:
-    DataConversacion(string interesado, time_t lastUpdate);
+    DataConversacion(string interesado, time_t lastUpdate, int cantidadMensajes);
     string getInteresado();
+    int getCantidadMensajes();
     time_t getLastUpdate();
     ~DataConversacion();
 };

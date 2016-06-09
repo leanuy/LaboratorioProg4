@@ -6,6 +6,7 @@
 #include "../datatypes/DataEdificio.h"
 #include "../datatypes/DataPropiedad.h"
 #include "../datatypes/DataApartamento.h"
+#include "../datatypes/DataCasa.h"
 #include "../model/Propiedad.h"
 #include "../model/Edificio.h"
 #include "../model/Departamento.h"

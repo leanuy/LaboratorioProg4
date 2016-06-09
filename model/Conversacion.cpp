@@ -18,7 +18,7 @@ void Conversacion::AgregarMensaje(bool esInteresado, string mensaje){
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {
-    DataConversacion data = DataConversacion(interesado, this->lastUpdate);
+    DataConversacion data = DataConversacion(interesado, this->lastUpdate, this->mensajes.size());
 }
 
 void Conversacion::setLastUpdate() {

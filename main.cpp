@@ -5,6 +5,8 @@
 #include "Sesion.h"
 #include "Factory.h"
 
+using namespace std;
+
 //forward declaration de las funciones
 void doMenu();
 void doComando();
@@ -530,6 +532,107 @@ void doEliminarPropiedad(){
 void doEnviarMensaje(){
     Factory* factroy = Factory::getInstance();
     IConversaciones* interface = factroy->getIConversaciones();
+    Sesion* sesion = Sesion::getInstance();
+
+    if(sesion->esTipo("interesado")){
+        string idDepartamento, idZona, idPropiedad;
+        list <DataDepartamento> deptos;
+        try {
+            deptos = interface->ListarDepartamentos();
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+        cout << "Departamentos:" << endl;
+        for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
+            cout << "ID : " << it->getId() << endl;
+        }
+        cout << "Ingrese el ID del departamento a seleccionar :";
+        getline(cin, idDepartamento);
+        cout << endl;
+        try {
+            interface->SeleccionarDepartamento(idDepartamento);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            return;
+        }
+        //mostrar las zonas de ese depto
+        list<DataZona> zonas;
+        try {
+            zonas = interface->ListarZonas();
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+        cout << "Zonas :" << endl;
+        for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
+            cout << "Codigo : " << it->getCodigo() << endl;
+        }
+        cout << "Ingrese el codigo de la zona a seleccionar :";
+        getline(cin, idZona);
+        cout << endl;
+        try {
+            interface->SeleccionarZona(idZona);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            return;
+        }
+        //mostrar las propiedades de esa zona
+        list<DataPropiedad*> propiedades;
+        try {
+            propiedades = interface->ListarPropiedades();
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+        cout << "Propiedades :" << endl;
+        for(list<DataPropiedad*>::iterator it = propiedades.begin(); it != propiedades.end(); it++){
+            cout << "Codigo : " << (*it)->getCodigo() << endl;
+            cout << "Direccion : " << (*it)->getDireccion() << endl;
+            cout << "Cantidad mensajes : " << (*it)->getCantidadMensajes() << endl;
+            cout << "----------------------------------------" << endl;
+        }
+        cout << "Ingrese el codigo de la propiedad a seleccionar :";
+        getline(cin, idPropiedad);
+        cout << endl;
+        try {
+            interface->SeleccionarPropiedad(idPropiedad);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            return;
+        }
+        //todo: liberar memoria de las datapropiedades
+    }else if(sesion->esTipo("inmobiliaria")){
+        string idInteresado;
+        list<DataConversacion> conversaciones;
+        try {
+            conversaciones = interface->ListarConversaciones();
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+        }
+        cout << "Conversaciones :" << endl;
+        for(list<DataConversacion>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++){
+            cout << "Codigo de interesado : " << it->getInteresado() << endl;
+            cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
+            cout << "----------------------------------------" << endl;
+        }
+        cout << "Ingrese el codigo de la propiedad a seleccionar :";
+        getline(cin, idInteresado);
+        cout << endl;
+        try {
+            interface->SeleccionarPropiedad(idInteresado);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            return;
+        }
+    }
+    string enviarMensaje, mensaje;
+    interface->ListarMensajes();
+    cout << "Deseas enviar un mensaje en esta conversacion?(si/no) :";
+    getline(cin, enviarMensaje);
+    if(enviarMensaje == "si"){
+        cout << "Ingrese el mensaje que desea enviar:";
+        getline(cin, mensaje);
+        interface->AgregarMensaje(mensaje);
+    }
+
 
     delete interface;
 }

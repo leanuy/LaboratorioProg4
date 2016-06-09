@@ -4,13 +4,13 @@
 
 #include "Sesion.h"
 #include "Database.h"
-
 Sesion* Sesion::instance = NULL;
 Sesion::Sesion(){}
 Sesion* Sesion::getInstance(){
     if(instance == NULL){
         instance = new Sesion();
         instance->inicializarDataBaseConAdmin();
+        instance->LogOut();
     }
     return instance;
 }

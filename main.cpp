@@ -26,11 +26,13 @@ void doCerrarSesion();//Usuario
 int main() {
     bool salir = false;
     bool primerMenu = true;
+    bool logueado;
     Sesion *sesion = Sesion::getInstance();
     cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
     cout << "---------------------------------------------" << endl;
     while (!salir) {
-        if (!sesion->isLogged()) {
+        logueado = sesion->isLogged();
+        if (!logueado) {
             doIniciarSesion();
         } else {
             if(primerMenu) {

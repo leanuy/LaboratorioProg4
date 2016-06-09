@@ -17,7 +17,9 @@
 #include "../Sesion.h"
 #include "../model/Alquiler.h"
 #include "../model/Venta.h"
+#include "../datatypes/DataPropiedad.h"
 #include <typeinfo>
+#include <list>
 
 
 
@@ -52,7 +54,7 @@ public:
     DataPropiedad BuscarPropiedad(string codigo);
     void EliminarPropiedad(string codigoPropiedad);
     DataPropiedad* verPropiedad(string codigoPropiedad);
-//    list<DataPropiedad*> ListarPropiedades();
+    list<DataPropiedad> ListarPropiedades();
     void actualizarPropiedad(DataPropiedad p);
     list<DataEdificio> edificiosSinAsignar();
 };

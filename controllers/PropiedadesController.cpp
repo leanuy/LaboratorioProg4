@@ -199,7 +199,8 @@ list <DataEdificio> PropiedadesController::edificiosSinAsignar() {
     return lista;
 }
 
-//list<DataPropiedad> PropiedadesController::ListarPropiedades(){
-
-//}
+list<DataPropiedad> PropiedadesController::ListarPropiedades(){
+    list<DataPropiedad> l = zActual->ListarPropiedadesEstaticas();
+    return l;
+}
 

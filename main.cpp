@@ -337,7 +337,7 @@ void doAltaPropiedad(){
             cin >> letra;
             cout << endl;
             cout << "Direccion : ";
-            cin >> dir;
+            getline(cin,dir);
             cout << endl;
             garage = ((letra == "s")||(letra == "S"));
             cout << "M2 edificados : ";
@@ -400,7 +400,8 @@ void doAltaPropiedad(){
 void doConsultarPropiedad(){
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
-    string id, codZona;
+    string id, codZona, codProp;
+    list<DataPropiedad> l;
     //listar los departamentos y seleccionar
     list <DataDepartamento> deptos;
     try {
@@ -439,12 +440,36 @@ void doConsultarPropiedad(){
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }
-    // LEER!>. hasta aca ya se selecciono departamento y zona,, luego.
-    // creo que faltaria la funcion listarpropiedades en PropiedadesController y en la interface.
-    // ese metodo le prediria listar las propiedades a la zona actual que tiene el controlador. maniana sera otro dia
-    //listar las propiedades de esa zona mostrando la lista de codigos y direccion
-    //leer el codigo seleccionado.. ir a buscar e imprimier los datos de esa propiedad.
-    //fin/
+    cout << "Propiedades en la zona seleccionada: " << endl;
+    try{
+        l = interface->ListarPropiedades();
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+    for(list<DataPropiedad>::iterator iterador = l.begin(); iterador != l.end(); iterador++){
+        cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion() << endl;
+    }
+    cout << "Ingrese la propiedad que desea consultar: ";
+    getline(cin,codProp);
+    cout << endl;
+    list<DataPropiedad>::iterator i = l.begin();
+    while((i != l.end())&&(i->getCodigo() != codProp)){
+        i++;
+    }
+    if(i == l.end()){
+        cout << "La propiedad seleccionada no se encuentra en la lista de propiedades de la zona" << endl;
+    }else{
+        cout << "Datos de la propiedad consultada" << endl;
+        cout << "Codigo: " << i->getCodigo() << endl;
+        cout << "Ambientes: " << i->getAmbientes() << endl;
+        cout << "Dormitorios: " << i->getDormitorios() << endl;
+        cout << "Direccion: " << i->getDireccion() << endl;
+        cout << "M2 edificados: " << i->getMetrosCuadradosEdificados() << endl;
+        cout << "M2 totales: " << i->getMetrosCuadradosTotales() << endl;
+        if((i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados())!= 0){
+            cout << "M2 verdes: " << i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados() << endl;
+        }
+    }
     delete interface;
 }
 void doModificarPropiedad(){

@@ -23,6 +23,7 @@ void doCerrarSesion();//Usuario
 
 int main() {
     bool salir = false;
+    bool primerMenu = true;
     Sesion *sesion = Sesion::getInstance();
     cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
     cout << "---------------------------------------------" << endl;
@@ -30,7 +31,10 @@ int main() {
         if (!sesion->isLogged()) {
             doIniciarSesion();
         } else {
-            doMenu();
+            if(primerMenu) {
+                doMenu();
+                primerMenu = false;
+            }
             salir = doComando();
         }
     }
@@ -100,6 +104,7 @@ void doIniciarSesion(){
         first = interface->IngresarEmail(email);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
         return;
     }
 
@@ -140,18 +145,21 @@ void doAltaInmobiliaria(){
     string nombre;
     string mail;
     string direccion;
-    bool cambiar = true;
+    bool cambiar = false;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
 
-    while (cambiar) {
-        cout << "Ingrese el nombre de la inmobiliaria:" << endl;
-        cin >> nombre;
-        cout << "Ingrese el mail de la inmobiliaria:" << endl;
-        cin >> mail;
-        cout << "Ingrese la direccion de la inmobiliaria:" << endl;
-        cin >> direccion;
+    while (!cambiar) {
+        cout << "Ingrese el nombre de la inmobiliaria: ";
+        getline(cin,nombre);
+        cout << endl;
+        cout << "Ingrese el mail de la inmobiliaria:";
+        getline(cin,mail);
+        cout << endl;
+        cout << "Ingrese la direccion de la inmobiliaria:";
+        getline(cin,direccion);
+        cout << endl;
         cout << "Estos son los datos ingresados:" << endl;
         cout << "Nombre: " << nombre << endl;
         cout << "Mail: " << mail << endl;
@@ -161,8 +169,12 @@ void doAltaInmobiliaria(){
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
     }
-    interface->IngresarInmobiliaria(nombre, mail, direccion);
-
+    try {
+        interface->IngresarInmobiliaria(nombre, mail, direccion);
+        cout << "Inmobiliaria dada de alta con exito!" << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
     delete interface;
 }
 
@@ -172,25 +184,35 @@ void doAltaInteresado(){
     string apellido;
     int edad;
     string email;
-    bool cambiar = true;
+    bool cambiar = false;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
-    while (cambiar){
+    while (!cambiar){
         cout << "Ingrese el nombre del interesado: ";
         cin >> nombre;
+        cout << endl;
         cout << "Ingrese el apellido: ";
         cin >> apellido;
+        cout << endl;
         cout << "Ingrese la edad: ";
         cin >> edad;
+        cout << endl;
         cout << "Ingrese el email: ";
         cin >> email;
+        cout << endl;
         cout << "Desea confirmar el interesado? [S/N] ";
         cin >> confirmar;
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
     }
-    interface->DarAltaInteresado(nombre,apellido,email,edad);
+    try{
+        interface->DarAltaInteresado(nombre,apellido,email,edad);
+        cout << "Interesado dado de alta con exito!" << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+
     delete interface;
 }
 
@@ -228,6 +250,7 @@ void doAltaPropiedad(){
         interface->SeleccionarDepartamento(id);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
         return;
     }
     //mostrar las zonas de ese depto
@@ -248,6 +271,7 @@ void doAltaPropiedad(){
         interface->SeleccionarZona(codZona);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
         return;
     }
     //preguntar si es apartamento o casa y leer
@@ -284,6 +308,7 @@ void doAltaPropiedad(){
                     interface->SeleccionarEdificio(edificioSeleccionado);
                 }catch(invalid_argument e){
                     cout << e.what() << endl;
+                    delete interface;
                     return;
                 }
             }

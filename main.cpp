@@ -25,18 +25,25 @@ void doCerrarSesion();//Usuario
 
 int main() {
     bool salir = false;
-    bool primerMenu = true;
+    string com, opcion;
     Sesion *sesion = Sesion::getInstance();
     cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
     cout << "---------------------------------------------" << endl;
     while (!salir) {
         if (!sesion->isLogged()) {
-            doIniciarSesion();
-        } else {
-            if(primerMenu) {
-                doMenu();
-                primerMenu = false;
+            cout << "Ingrese una de las opciones: 'Iniciar Sesion' o 'salir': " << endl;
+            getline(cin,com);
+            if(com == "Iniciar Sesion"){
+                doIniciarSesion();
+                if(sesion->isLogged()){
+                    doMenu();
+                }
+            }else{
+                cout << "El programa se va a cerrar, desea salir? [S/N]: ";
+                getline(cin,opcion);
+                salir = ((opcion == "S")||(opcion == "s"));
             }
+        } else {
             salir = doComando();
         }
     }

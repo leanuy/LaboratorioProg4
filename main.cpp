@@ -484,6 +484,7 @@ void doConsultarPropiedad(){
     string id, codZona, codProp;
     list<DataPropiedad> l;
     //listar los departamentos y seleccionar
+
     list <DataDepartamento> deptos;
     try {
         deptos = interface->ListarDepartamentos();

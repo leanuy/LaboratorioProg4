@@ -6,8 +6,17 @@
 #define LAB6_DATAINMOBILIARIA_H
 
 
-class DataInmobiliaria {
+#include "DataUsuario.h"
 
+class DataInmobiliaria: public DataUsuario {
+private:
+    string nombre;
+    string direccion;
+public:
+    DataInmobiliaria(string email,string pass,string name, string dir);
+    ~DataInmobiliaria();
+    string getNombre();
+    string getDireccion();
 };
 
 

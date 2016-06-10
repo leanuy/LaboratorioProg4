@@ -51,6 +51,7 @@
       <sourceFolder url="file://$MODULE_DIR$/interfaces/ILog.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IUsuarios.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IPropiedades.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataConversacion.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.h" isTestSource="false" />
@@ -61,14 +62,19 @@
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataApartamento.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataMensaje.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataCasa.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sesion.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Factory.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sesion.cpp" isTestSource="false" />

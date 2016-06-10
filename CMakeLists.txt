@@ -72,5 +72,5 @@ set(SOURCE_FILES main.cpp
         Database.h
         Sesion.cpp
         Sesion.h
-        )
+        datatypes/DataUsuario.cpp datatypes/DataUsuario.h datatypes/DataInteresado.cpp datatypes/DataInteresado.h datatypes/DataReporteInmobiliaria.cpp datatypes/DataReporteInmobiliaria.h)
 add_executable(Lab6 ${SOURCE_FILES})

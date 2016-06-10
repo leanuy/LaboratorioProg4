@@ -20,7 +20,7 @@ DataPropiedad Casa::CrearDataPropiedad() {
     DataCasa data = DataCasa(this->getAmbientes(), this->getDormitorios(), this->getBanios(), this->tieneGarage(),
                             this->getDireccion(), this->getMetrosCuadradosEdificados(),
                             this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
-
+    data.setCodigo(this->getCodigo());
     //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
     return data;
 }

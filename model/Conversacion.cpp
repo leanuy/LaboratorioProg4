@@ -4,14 +4,16 @@ Conversacion::Conversacion(){
     this->lastUpdate = time(NULL);
 }
 int Conversacion::CantidadMensajes(){
-    this->mensajes.size();
+    return this->mensajes.size();
 }
-list<DataMensaje> Conversacion::ListarMensajes(){
+list<DataMensaje> Conversacion::ListarMensajes() {
     list<DataMensaje> q;
-    list<Mensaje*>::iterator it = this->mensajes.begin();
+    list<Mensaje *>::iterator it = this->mensajes.begin();
     int cnt = 0;
-    while (it != this->mensajes.end() && cnt <5)
+    while (it != this->mensajes.end() && cnt < 5){
         q.push_back((*it)->CrearDataMensaje());
+    }
+    return q;
 }
 void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
     this->mensajes.push_front(new Mensaje(esInteresado, mensaje, codigoPropiedad, date));
@@ -19,6 +21,7 @@ void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codi
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {
     DataConversacion data = DataConversacion(interesado, this->lastUpdate, this->mensajes.size());
+    return data;
 }
 
 void Conversacion::setLastUpdate() {

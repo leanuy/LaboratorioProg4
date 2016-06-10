@@ -82,7 +82,10 @@ bool doComando(){
     cout << "Ingresar una opcion del menu: ";
     getline(cin,command);
     cout << endl;
-    if(command == "menu") doMenu();
+    if(command == "menu") {
+        doMenu();
+        return false;
+    }
     else if(command == "Alta Inmobiliaria"){if(sesion->esTipo("admin"))doAltaInmobiliaria();return false;}
     else if(command == "Alta Interesado"){if(sesion->esTipo("admin"))doAltaInteresado();return false;}
     else if(command == "Alta Edificio"){if(sesion->esTipo("inmobiliaria"))doAltaEdificio();return false;}

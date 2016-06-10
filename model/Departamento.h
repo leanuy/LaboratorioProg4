@@ -14,6 +14,7 @@ using namespace std;
 
 class Zona;
 class Propiedad;
+class Edificio;
 
 class Departamento {
 private:

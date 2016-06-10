@@ -9,7 +9,8 @@ Sesion::Sesion(){}
 Sesion* Sesion::getInstance(){
     if(instance == NULL){
         instance = new Sesion();
-        instance->inicializarDataBaseConAdmin();
+        Database* db = Database::getInstance();
+        db->AddData();
         instance->LogOut();
     }
     return instance;
@@ -31,10 +32,4 @@ bool Sesion::esTipo(string tipo){
 
 bool Sesion::isLogged() {
     return this->user != NULL;
-}
-
-void Sesion::inicializarDataBaseConAdmin() {
-    Database* db = Database::getInstance();
-    Usuario* admin = new Admin();
-    db->AddUsuario(admin);
 }

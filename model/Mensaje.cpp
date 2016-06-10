@@ -3,9 +3,9 @@
 
 Mensaje::Mensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
     if (date != ""){
-        struct tm tm;
-        strptime(date.c_str(), "%Y-%m-%d %H:%M", &tm);
-        this->TOA = mktime(tm);
+        struct tm tm_aux;
+        strptime(date.c_str(), "%Y-%m-%d %H:%M", &tm_aux);
+        this->TOA = mktime(&tm_aux);
     }else{
         this->TOA = time(NULL);
     }

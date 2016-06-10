@@ -89,7 +89,7 @@ void Database::AddData(){
     apartamento = new Apartamento(2, 1, 1, false, "Iturria 1115 AP 104", 34, 34);
     apartamento->setEdificio(this->edificiosN_A["Apache Valiente"]);
     apartamento->setCodigo("1111");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Vender(34567, apartamento);
     zona = this->departamentos["A"]->SeleccionarZona("Zona1");
@@ -100,7 +100,7 @@ void Database::AddData(){
     apartamento = new Apartamento(3, 1, 1, false, "Iturria 1115 AP 105", 35, 35);
     apartamento->setEdificio(this->edificiosN_A["Apache Valiente"]);
     apartamento->setCodigo("1112");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Vender(65789, apartamento);
     this->departamentos["A"]->SeleccionarZona("Zona1")->AddPropiedad(apartamento);
@@ -108,7 +108,7 @@ void Database::AddData(){
     apartamento = new Apartamento(2, 1, 1, true, "Callejon 456 AP 01", 45, 45);
     apartamento->setEdificio(this->edificiosN_A["Mebeo"]);
     apartamento->setCodigo("1113");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(7689, apartamento);
     zona = this->departamentos["A"]->SeleccionarZona("Zona2");
@@ -119,7 +119,7 @@ void Database::AddData(){
     apartamento = new Apartamento(7, 3, 2, true, "Corcega 3456 AP 2", 34, 34);
     apartamento->setEdificio(this->edificiosN_A["Socrates"]);
     apartamento->setCodigo("1114");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(6789, apartamento);
     zona = this->departamentos["B"]->SeleccionarZona("Zona3");
@@ -130,7 +130,7 @@ void Database::AddData(){
     apartamento = new Apartamento(4, 1, 1, false, "Lucrecia 456 AP 2", 25, 25);
     apartamento->setEdificio(this->edificiosN_A["El Burdel"]);
     apartamento->setCodigo("1115");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm3@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm3@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(7890, apartamento);
     zona = this->departamentos["D"]->SeleccionarZona("Zona4");
@@ -141,7 +141,7 @@ void Database::AddData(){
     apartamento = new Apartamento(2, 1, 1, false, "Lucrecia 456 AP 2", 25, 25); //todo: direccion erronea
     apartamento->setEdificio(this->edificiosN_A["El Burdel"]);
     apartamento->setCodigo("1116");
-    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"];
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(768, apartamento);
     this->departamentos["D"]->SeleccionarZona("Zona4")->AddPropiedad(apartamento);
@@ -153,15 +153,38 @@ void Database::AddData(){
     Casa* casa;
     casa = new Casa(12, 5, 1, true, "Chana 2345", 34, 44, 10);
     casa->setCodigo("2111");
-    //todo: Agregar alquileres, venta  desde inmobiliaria y asociar lo alquileres con esta propiedad
-    casa->setInmobiliaria(dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]));
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
+    casa->setInmobiliaria(inmobiliaria);
+    inmobiliaria->Vender(45000, casa);
     this->departamentos["D"]->SeleccionarZona("Zona5")->AddPropiedad(casa);
 
     casa = new Casa(2, 1, 1, false, "Gloria 345", 35, 55, 20);
-    casa->setCodigo("2111");
-    //todo: Agregar alquileres, venta  desde inmobiliaria y asociar lo alquileres con esta propiedad
-    casa->setInmobiliaria(dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]));
+    casa->setCodigo("2112");
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
+    casa->setInmobiliaria(inmobiliaria);
+    inmobiliaria->Vender(34560, casa);
     this->departamentos["D"]->SeleccionarZona("Zona5")->AddPropiedad(casa);
+
+    casa = new Casa(3, 1, 1, false, "Chapaz 345", 12, 22, 10);
+    casa->setCodigo("2113");
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"]);
+    casa->setInmobiliaria(inmobiliaria);
+    inmobiliaria->Vender(13000, casa);
+    this->departamentos["A"]->SeleccionarZona("Zona1")->AddPropiedad(casa);
+
+    casa = new Casa(6, 3, 2, true, "Juanico 456", 34, 34, 0);
+    casa->setCodigo("2114");
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm3@sis.com"]);
+    casa->setInmobiliaria(inmobiliaria);
+    inmobiliaria->Alquilar(20000, casa);
+    this->departamentos["A"]->SeleccionarZona("Zona2")->AddPropiedad(casa);
+
+    casa = new Casa(3, 1, 1, false, "Venecia 3456", 25, 25, 0);
+    casa->setCodigo("2114");
+    inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"]);
+    casa->setInmobiliaria(inmobiliaria);
+    inmobiliaria->Alquilar(56789, casa);
+    this->departamentos["A"]->SeleccionarZona("Zona1")->AddPropiedad(casa);
 
     //ADD MENSAJES:
     Conversacion* conversacion;

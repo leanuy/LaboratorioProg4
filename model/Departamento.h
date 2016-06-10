@@ -9,6 +9,7 @@
 #include "../model/Zona.h"
 #include <map>
 #include <list>
+#include "../model/Edificio.h"
 
 using namespace std;
 

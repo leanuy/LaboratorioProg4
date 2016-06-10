@@ -4,7 +4,11 @@
 #include "model/Casa.h"
 
 Database* Database::instance = NULL;
-Database::Database() { }
+Database::Database() {
+    this->usuarios.clear();
+    this->departamentos.clear();
+    this->edificiosN_A.clear();
+}
 Database* Database::getInstance(){
     if(instance == NULL){
         instance = new Database();

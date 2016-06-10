@@ -179,7 +179,7 @@ list <DataDepartamento> PropiedadesController::ListarDepartamentos() {
 }
 
 list <DataZona> PropiedadesController::ListarZonas() {
-    this->dActual->ListarZonas();
+    return this->dActual->ListarZonas();
 }
 
 list <DataEdificio> PropiedadesController::VerEdificiosZona() {

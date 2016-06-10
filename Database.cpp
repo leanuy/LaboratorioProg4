@@ -70,11 +70,11 @@ void Database::AddData(){
     this->AddEdificio(new Edificio("El Burdel", 12, 450));
     this->AddEdificio(new Edificio("Milajo", 5, 3456));
     //ADD DEPARTAMENTOS:
-        this->departamentos["A"] = new Departamento("Canelones", "A");
-        this->departamentos["B"] = new Departamento("Maldonado", "B");
-        this->departamentos["C"] = new Departamento("Rocha", "C");
-        this->departamentos["D"] = new Departamento("Salto", "D");
-        this->departamentos["E"] = new Departamento("Montevideo", "E");
+        this->departamentos["A"] = new Departamento("A", "Canelones");
+        this->departamentos["B"] = new Departamento("B", "Maldonado");
+        this->departamentos["C"] = new Departamento("C", "Rocha");
+        this->departamentos["D"] = new Departamento("D", "Salto");
+        this->departamentos["E"] = new Departamento("E", "Montevideo");
     //ADD ZONAS:
     this->departamentos["A"]->AddZona(new Zona("101", "Zona1"));
     this->departamentos["A"]->AddZona(new Zona("102", "Zona2"));

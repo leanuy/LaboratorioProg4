@@ -67,7 +67,12 @@ list<DataMensaje> ConversacionesController::ListarMensajes(){
 }
 void ConversacionesController::AgregarMensaje(string mensaje){
     Sesion* sesion = Sesion::getInstance();
-    this->cActual->AgregarMensaje(sesion->getUsuario()->esTipo("interesado"), mensaje);
+    string codigoPropiedad;
+    if(sesion->esTipo("intersado"))
+        codigoPropiedad = this->pActual->getCodigo();
+    else
+        codigoPropiedad = "";
+    this->cActual->AgregarMensaje(sesion->getUsuario()->esTipo("interesado"), mensaje, codigoPropiedad);
     this->cActual->setLastUpdate();
 }
 ConversacionesController::~ConversacionesController(){

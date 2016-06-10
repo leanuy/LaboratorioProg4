@@ -13,8 +13,8 @@ list<DataMensaje> Conversacion::ListarMensajes(){
     while (it != this->mensajes.end() && cnt <5)
         q.push_back((*it)->CrearDataMensaje());
 }
-void Conversacion::AgregarMensaje(bool esInteresado, string mensaje){
-    this->mensajes.push_front(new Mensaje(esInteresado, mensaje));
+void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
+    this->mensajes.push_front(new Mensaje(esInteresado, mensaje, codigoPropiedad, date));
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {

@@ -492,7 +492,7 @@ void doConsultarPropiedad(){
     }
     cout << "Departamentos:" << endl;
     for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
-        cout << "ID : " << it->getId() << endl;
+        cout << it->getId() << " : " << it->getNombre() << endl;
     }
     cout << "Ingrese el ID del departamento seleccionado :";
     getline(cin, id);

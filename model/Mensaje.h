@@ -15,9 +15,10 @@ class Mensaje {
 private:
     bool esInteresado;
     time_t TOA;
+    string codigoPropiedad;
     string texto;
 public:
-    Mensaje(bool esInteresado, string mensaje);
+    Mensaje(bool esInteresado, string mensaje, string codigoPropiedad = "", string date = "");
     DataMensaje CrearDataMensaje();
     ~Mensaje();
 };

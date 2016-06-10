@@ -17,7 +17,7 @@ public:
     DataConversacion CrearDataConversacion(string interesado);
     int CantidadMensajes();
     list<DataMensaje> ListarMensajes();
-    void AgregarMensaje(bool esInteresado, string mensaje);
+    void AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad = "", string date = "");
     void setLastUpdate();
     time_t getLastUpdate();
     ~Conversacion();

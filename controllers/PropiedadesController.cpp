@@ -168,6 +168,9 @@ list <DataDepartamento> PropiedadesController::ListarDepartamentos() {
     Database* db = Database::getInstance();
     map<string,Departamento*> deptos = db->getDepartamentos();
     map<string,Departamento*>::iterator it = deptos.begin();
+    if(it == deptos.end()){
+        throw std::invalid_argument("No hay Departamentos");
+    }
     list<DataDepartamento> li;
     list<DataDepartamento>::iterator iter = li.begin();
     while(it != deptos.end()){
@@ -192,6 +195,9 @@ list <DataEdificio> PropiedadesController::edificiosSinAsignar() {
     map<string,Edificio*> edificios = db->getEdificios();
     map<string,Edificio*>::iterator it = edificios.begin();
     list<DataEdificio> lista;
+    if(it == edificios.end()){
+        throw std::invalid_argument("No hay edificios sin asignar");
+    }
     while(it != edificios.end()){
         lista.push_back(it->second->CrearDataEdificio());
         it++;

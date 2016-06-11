@@ -46,7 +46,7 @@ Edificio* Database::RemoveEdificio(string idEdificio){
     map<string, Edificio*>::iterator it = this->edificiosN_A.find(idEdificio);
     if(it != this->edificiosN_A.end()){
         edificio = it->second;
-        this->edificiosN_A.erase(idEdificio);
+        this->edificiosN_A.erase(it);
     }else{
         edificio = NULL;
     }

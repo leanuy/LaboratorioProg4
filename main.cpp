@@ -187,6 +187,8 @@ void doAltaInmobiliaria(){
         cout << "Inmobiliaria dada de alta con exito!" << endl;
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     delete interface;
 }
@@ -231,6 +233,8 @@ void doAltaInteresado(){
         cout << "Interesado dado de alta con exito!" << endl;
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
 
     delete interface;
@@ -256,6 +260,8 @@ void doAltaEdificio(){ //todo: No tiene interface asignada
         interface->IngresarEdificio(edi);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     delete interface;
 }
@@ -280,6 +286,8 @@ void doAltaPropiedad(){
         deptos = interface->ListarDepartamentos();
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     cout << "Departamentos:" << endl;
     for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
@@ -301,6 +309,8 @@ void doAltaPropiedad(){
         zonas = interface->ListarZonas();
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     cout << "Zonas :" << endl;
     for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
@@ -321,20 +331,35 @@ void doAltaPropiedad(){
     getline(cin, opcionStr);
     opcion = stoi(opcionStr);
     switch(opcion){
-        case 1:
-        {
-            //todo si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
-
-            list<DataEdificio> edificiosZona = interface->VerEdificiosZona();
-            cout << "Edificios de la zona" << endl;
-            for (list<DataEdificio>::iterator it = edificiosZona.begin(); it != edificiosZona.end(); it++){
-                cout << "Edificio: " << it->getNombre() << endl;
+        case 1: {
+            // si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
+            list <DataEdificio> edificiosZona;
+            bool noedif = false;
+            try {
+                edificiosZona = interface->VerEdificiosZona();
+            } catch (invalid_argument e) {
+                cout << e.what() << endl;
+                noedif = true;
             }
-
-            cout << "Edificios sin asignar" << endl;
-            list<DataEdificio> ediSinAsignar = interface->edificiosSinAsignar();
-            for (list<DataEdificio>::iterator it2 = ediSinAsignar.begin(); it2 != ediSinAsignar.end(); it2++){
-                cout << "Edificio: " << it2->getNombre() << endl;
+            if (!noedif) {
+                cout << "Edificios de la zona" << endl;
+                for (list<DataEdificio>::iterator it = edificiosZona.begin(); it != edificiosZona.end(); it++) {
+                    cout << "Edificio: " << it->getNombre() << endl;
+                }
+            }
+            noedif = false;
+            list<DataEdificio> ediSinAsignar;
+            try {
+                ediSinAsignar = interface->edificiosSinAsignar();
+            }catch(invalid_argument e){
+                cout << e.what() << endl;
+                noedif = true;
+            }
+            if(!noedif){
+                cout << "Edificios sin asignar" << endl;
+                for (list<DataEdificio>::iterator it2 = ediSinAsignar.begin(); it2 != ediSinAsignar.end(); it2++){
+                    cout << "Edificio: " << it2->getNombre() << endl;
+                }
             }
 
             //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
@@ -343,7 +368,7 @@ void doAltaPropiedad(){
             option = stoi(optionStr);
             cout << endl;
             if(option == 1){
-                doAltaEdificio(); // todo ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
+                doAltaEdificio(); // ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
             }else{
                 cout << "Ingrese el edificio seleccionado: ";
                 getline(cin, edificioSeleccionado);
@@ -391,6 +416,8 @@ void doAltaPropiedad(){
                 interface->ingresarApartamento(NuevoApto);
             }catch(invalid_argument e){
                 cout << e.what() << endl;
+                delete interface;
+                return;
             }
             break;
         }
@@ -412,10 +439,10 @@ void doAltaPropiedad(){
             cout << endl;
             cout << "Tiene garage? S/N: ";
             getline(cin, garageStr);
-            garage = ((garageStr == "s")||(garageStr == "S"));
+            garage = garageStr == "S" || garageStr == "s";
             cout << endl;
             cout << "Direccion : ";
-            getline(cin,dir);
+            getline(cin, dir);
             cout << endl;
             cout << "M2 edificados : ";
             getline(cin, m2EdifStr);
@@ -434,11 +461,13 @@ void doAltaPropiedad(){
                 interface->ingresarCasa(NuevaCasa);
             }catch(invalid_argument e){
                 cout << e.what() << endl;
+                delete interface;
+                return;
             }
             break;
         }
         default:
-            // Hacer algo si ponen mal?????
+            // nada...
             break;
     }
     cout << "Si desea Alquilar la propiedad ingrese '1', de lo contrario ingrese '2': ";
@@ -493,6 +522,8 @@ void doConsultarPropiedad(){
         deptos = interface->ListarDepartamentos();
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     cout << "Departamentos:" << endl;
     for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
@@ -505,6 +536,8 @@ void doConsultarPropiedad(){
         interface->SeleccionarDepartamento(id);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     //mostrar las zonas de ese depto
     list<DataZona> zonas;
@@ -512,6 +545,8 @@ void doConsultarPropiedad(){
         zonas = interface->ListarZonas();
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     cout << "Zonas :" << endl;
     for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
@@ -524,12 +559,16 @@ void doConsultarPropiedad(){
         interface->SeleccionarZona(codZona);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     cout << "Propiedades en la zona seleccionada: " << endl;
     try{
         l = interface->ListarPropiedades();
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        return;
     }
     for(list<DataPropiedad>::iterator iterador = l.begin(); iterador != l.end(); iterador++){
         cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion() << endl;
@@ -566,7 +605,7 @@ void doModificarPropiedad(){
     string letra, dir;
     string m2EdifStr, m2TotStr, m2VerStr;
     float m2Edif, m2Tot, m2Ver;
-    DataPropiedad* p;
+    DataPropiedad p;
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
     //ingresar el codigo de la propiedad a modificar
@@ -575,22 +614,25 @@ void doModificarPropiedad(){
     cout << endl;
     //mostrar los datos actuales
     try {
-        p = interface->verPropiedad(code);
+        p = interface->BuscarPropiedad(code);
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }
     cout << "Datos actuales de la propiedad" << endl;
-    cout << "Codigo        : " << p->getCodigo() << endl;
-    cout << "Ambientes     : " << p->getAmbientes() << endl;
-    cout << "Dormitorios   : " << p->getDormitorios() << endl;
-    cout << "Banios        : " << p->getBanios() << endl;
-    cout << "Garage        : " << (p->getGarage()?"Si":"No") << endl;
-    cout << "Direccion     : " << p->getDireccion() << endl;
-    cout << "M2 Edificados : " << p->getMetrosCuadradosEdificados() << endl;
-    cout << "M2 Totales    : " << p->getMetrosCuadradosTotales() << endl;
-    if(DataCasa* c = dynamic_cast<DataCasa*>(p)){
+    cout << "Codigo        : " << p.getCodigo() << endl;
+    cout << "Ambientes     : " << p.getAmbientes() << endl;
+    cout << "Dormitorios   : " << p.getDormitorios() << endl;
+    cout << "Banios        : " << p.getBanios() << endl;
+    cout << "Garage        : " << (p.getGarage()?"Si":"No") << endl;
+    cout << "Direccion     : " << p.getDireccion() << endl;
+    float m2edif = p.getMetrosCuadradosEdificados();
+    cout << "M2 Edificados : " << m2edif << endl;
+    float m2totales = p.getMetrosCuadradosTotales();
+    cout << "M2 Totales    : " << m2totales << endl;
+    if(p.getMetrosCuadradosEdificados() != p.getMetrosCuadradosTotales()){
         CasaOapto = true;
-        cout << "M2 Verdes     : " << c->getM2Verdes() << endl;
+        int pasto = p.getMetrosCuadradosTotales() - p.getMetrosCuadradosEdificados();
+        cout << "M2 Verdes     : " << pasto << endl;
     }
     cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;
     cout << "Cantidad de ambientes : ";
@@ -643,7 +685,6 @@ void doModificarPropiedad(){
             cout << e.what() << endl;
         }
     }
-    delete p;
     delete interface;
 }
 void doEliminarPropiedad(){

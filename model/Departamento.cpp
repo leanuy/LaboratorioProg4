@@ -29,8 +29,7 @@ list<DataZona> Departamento::ListarZonas(){
 Zona* Departamento::SeleccionarZona(string idZona){
     map<string,Zona*>::iterator it = zonas.find(idZona);
     if(it == zonas.end()){
-        return NULL;
-        //todo: throw exeption no se encontro la zona que se intento seleccionar
+        throw std::invalid_argument("La zona que intentas seleccionar no pertenece al departamento actual o no se encuentra en el sistema");
     }
     return it->second;
 }

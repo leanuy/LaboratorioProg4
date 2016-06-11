@@ -6,6 +6,7 @@
 #define LAB6_APARTAMENTO_H
 
 #include "../model/Propiedad.h"
+#include "../model/Interesado.h"
 #include "../model/Edificio.h"
 
 class Apartamento: public Propiedad {

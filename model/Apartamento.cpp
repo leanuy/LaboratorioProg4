@@ -3,6 +3,7 @@
 //
 
 #include "Apartamento.h"
+#include "../Sesion.h"
 
 Apartamento::Apartamento(int ambientes, int dormitorios, int banios, bool garage,string direccion,
                          float m2Edificados, float m2Totales) {
@@ -20,7 +21,12 @@ DataPropiedad Apartamento::CrearDataPropiedad() {
                                           this->tieneGarage(), this->getDireccion(),
                                           this->getMetrosCuadradosEdificados(), this->getMetrosCuadradosTotales());
     data.setCodigo(this->getCodigo());
-    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+    Sesion* sesion = Sesion::getInstance();
+    if(sesion->esTipo("interesado")){
+        Database* db = Database::getInstance();
+        Interesado* interesado = dynamic_cast<Interesado*>(db->getUsuario(sesion->getEmail()));
+        data.setCantidadMensajes(interesado->getCantidadMensajes(this->getInmobiliaria()->getEmail(), this->getCodigo()));
+    }
     return data;
 }
 

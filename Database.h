@@ -23,6 +23,7 @@ public:
     static Database* getInstance();
     map<string, Departamento*> getDepartamentos();
     map<string, Usuario*> getUsuarios();
+    Usuario* getUsuario(string idUsuario);
     map<string, Edificio*> getEdificios();
     void AddUsuario(Usuario* usuario);
     void AddData();

@@ -728,18 +728,21 @@ void doEnviarMensaje(){
             deptos = interface->ListarDepartamentos();
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            delete interface;
+            return;
         }
         cout << "Departamentos:" << endl;
         for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
-            cout << "ID : " << it->getId() << endl;
+            cout << it->getId() << " : " << it->getNombre() << endl;
         }
-        cout << "Ingrese el ID del departamento a seleccionar :";
+        cout << "Ingrese el ID del departamento seleccionado :";
         getline(cin, idDepartamento);
         cout << endl;
         try {
             interface->SeleccionarDepartamento(idDepartamento);
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            delete interface;
             return;
         }
         //mostrar las zonas de ese depto
@@ -748,18 +751,21 @@ void doEnviarMensaje(){
             zonas = interface->ListarZonas();
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            delete interface;
+            return;
         }
         cout << "Zonas :" << endl;
         for(list<DataZona>::iterator it = zonas.begin(); it != zonas.end(); it++){
             cout << "Codigo : " << it->getCodigo() << endl;
         }
-        cout << "Ingrese el codigo de la zona a seleccionar :";
+        cout << "Ingrese el codigo de la zona seleccionada :";
         getline(cin, idZona);
         cout << endl;
         try {
             interface->SeleccionarZona(idZona);
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            delete interface;
             return;
         }
         //mostrar las propiedades de esa zona
@@ -768,13 +774,16 @@ void doEnviarMensaje(){
             propiedades = interface->ListarPropiedades();
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            return;
         }
         cout << "Propiedades :" << endl;
         for(list<DataPropiedad>::iterator it = propiedades.begin(); it != propiedades.end(); it++){
             cout << "Codigo : " << it->getCodigo() << endl;
             cout << "Direccion : " << it->getDireccion() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
-            cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
+            if(it->getCantidadMensajes() > 0){
+                cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
+            }
             cout << "----------------------------------------" << endl;
         }
         cout << "Ingrese el codigo de la propiedad a seleccionar :";

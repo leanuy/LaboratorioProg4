@@ -11,21 +11,27 @@ ConversacionesController::ConversacionesController(){
 }
 
 list<DataDepartamento> ConversacionesController::ListarDepartamentos(){
-    Database * db = Database::getInstance();
-    map<string, Departamento*>::iterator it = db->getDepartamentos().begin();
-    list<DataDepartamento> l;
-    while (it != db->getDepartamentos().end()){
-        l.push_back(it->second->CrearDataDepartamento());
+    Database* db = Database::getInstance();
+    map<string,Departamento*> deptos = db->getDepartamentos();
+    map<string,Departamento*>::iterator it = deptos.begin();
+    if(it == deptos.end()){
+        throw std::invalid_argument("No hay Departamentos");
+    }
+    list<DataDepartamento> li;
+    list<DataDepartamento>::iterator iter = li.begin();
+    while(it != deptos.end()){
+        li.insert(iter,it->second->CrearDataDepartamento());
+        iter = li.begin();
         it++;
     }
-    return l;
+    return li;
 }
 void ConversacionesController::SeleccionarDepartamento(string idDepartamento){
     Database * db = Database::getInstance();
     map<string, Departamento*>::iterator it = db->getDepartamentos().find(idDepartamento);
     if(it == db->getDepartamentos().end()){
         this->dActual = NULL;
-        //todo: throw exeption de que no se enconto el departamento que se intento seleccionar
+        throw std::invalid_argument("El departamento que intentas seleccionar no se encuentra en el sistema");
     }
     this->dActual = it->second;
 }

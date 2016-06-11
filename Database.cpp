@@ -21,6 +21,15 @@ map<string, Departamento*> Database::getDepartamentos(){
 map<string, Usuario*> Database::getUsuarios(){
     return this->usuarios;
 }
+Usuario* Database::getUsuario(string idUsuario){
+    map<string,Usuario*>::iterator it = this->usuarios.find(idUsuario);
+    if(it != this->usuarios.end()){
+        return it->second;
+        throw std::invalid_argument("Usuario ya existe");
+    }else{
+        throw std::invalid_argument("Usuario no existe");
+    }
+}
 map<string, Edificio*> Database::getEdificios(){
     return this->edificiosN_A;
 }

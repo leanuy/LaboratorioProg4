@@ -19,6 +19,9 @@ Sesion* Sesion::getInstance(){
 Usuario* Sesion::getUsuario(){
     return user;
 }
+string Sesion::getEmail(){
+    return this->user->getEmail();
+}
 void Sesion::LogIn(Usuario* usr){
     user = usr;
 }

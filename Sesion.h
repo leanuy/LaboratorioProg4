@@ -16,6 +16,7 @@ private:
 public:
     static Sesion* getInstance();
     void LogIn(Usuario* usr);
+    string getEmail();
     bool isLogged();
     bool esTipo(string tipo);
     void LogOut();

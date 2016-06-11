@@ -112,6 +112,9 @@ void Zona::eliminarPropiedad(string codigo) {
 list <DataPropiedad> Zona::ListarPropiedadesEstaticas() {
     list<DataPropiedad> l; // fixme ver entre todos.. pasaria a lista de DataPropiedad
     map<string,Propiedad*>::iterator it = this->propiedades.begin();
+    if(it == propiedades.end()){
+        throw std::invalid_argument("La zona no tiene propiedades asignadas");
+    }
     while(it != propiedades.end()){
         if(dynamic_cast<Casa*>(it->second)){
             l.push_back(dynamic_cast<Casa*>(it->second)->CrearDataPropiedad());

@@ -30,7 +30,7 @@ public:
     void setApellido(string apell);
     int getEdad();
     void setEdad(int age);
-
+    int getCantidadMensajes(string idInmobiliaria, string idPropiedad);
     bool esTipo(string tipo);
 
     friend class Database;

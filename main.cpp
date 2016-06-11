@@ -801,7 +801,7 @@ void doEnviarMensaje(){
             cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
             cout << "----------------------------------------" << endl;
         }
-        cout << "Ingrese el codigo de la propiedad a seleccionar :";
+        cout << "Ingrese el codigo del interesado a seleccionar :";
         getline(cin, idInteresado);
         cout << endl;
         try {

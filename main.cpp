@@ -165,11 +165,18 @@ void doAltaInmobiliaria(){
 
     while (!cambiar) {
         cout << "Ingrese el nombre de la inmobiliaria: ";
-        getline(cin,nombre);
+        getline(cin, nombre);
         cout << endl;
-        cout << "Ingrese el mail de la inmobiliaria:";
-        getline(cin,mail);
-        cout << endl;
+        bool existe = true;
+        while (existe) {
+            cout << "Ingrese el mail de la inmobiliaria:";
+            getline(cin, mail);
+            cout << endl;
+            existe = interface->CheckEmail(mail);
+            if (existe){
+                cout << "El email ya existe en el sistema" << endl;
+            };
+        };
         cout << "Ingrese la direccion de la inmobiliaria:";
         getline(cin,direccion);
         cout << endl;
@@ -218,6 +225,16 @@ void doAltaInteresado(){
         cout << "Ingrese el email: ";
         getline(cin, email);
         cout << endl;
+        bool existe = true;
+        while (existe) {
+            cout << "Ingrese el mail de la inmobiliaria:";
+            getline(cin, email);
+            cout << endl;
+            existe = interface->CheckEmail(email);
+            if (existe){
+                cout << "El email ya existe en el sistema" << endl;
+            };
+        };
         cout << "Estos son los datos ingresados:" << endl;
         cout << "Nombre: " << nombre << endl;
         cout << "Apellido: " << apellido << endl;

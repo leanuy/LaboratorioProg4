@@ -12,7 +12,7 @@ class IUsuarios {
 public:
     virtual void IngresarInmobiliaria(string nombre, string mail, string direccion) = 0;
     virtual map<string,DataInmobiliaria> ReportesInmobiliaria() = 0;
-    virtual void CheckEmail(string mail) = 0;
+    virtual bool CheckEmail(string mail) = 0;
     virtual void DarAltaInteresado(string nombre, string apellido, string email, int edad) = 0;
     virtual ~IUsuarios();
 };

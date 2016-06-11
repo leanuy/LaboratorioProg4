@@ -23,8 +23,16 @@ map<string,DataInmobiliaria> UsuariosController::ReportesInmobiliaria(){
     map<string,DataInmobiliaria> hola;
     return hola;
 }
-void UsuariosController::CheckEmail(string mail){// para ver si ya existe el mail
-	
+bool UsuariosController::CheckEmail(string mail){// para ver si ya existe el mail
+    Database* db = Database::getInstance();
+    map<string,Usuario*> usuarios = db->getUsuarios();
+    map<string,Usuario*>::iterator it = usuarios.find(mail);
+    if(it != usuarios.end()){
+        return true;
+    }
+    else{
+        return false;
+    };
 }
 void UsuariosController::DarAltaInteresado(string nombre, string apellido, string email, int edad){
 	Interesado* inter = new Interesado(nombre, apellido, email, edad);

@@ -13,6 +13,9 @@ Mensaje::Mensaje(bool esInteresado, string mensaje, string codigoPropiedad, stri
     this->texto = mensaje;
     this->codigoPropiedad = codigoPropiedad;
 }
+time_t Mensaje::getTOA(){
+    return this->TOA;
+}
 DataMensaje Mensaje::CrearDataMensaje(){
     Sesion* sesion = Sesion::getInstance();
     return DataMensaje(this->esInteresado, this->texto, this->TOA, this->codigoPropiedad);

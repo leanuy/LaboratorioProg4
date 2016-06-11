@@ -19,6 +19,7 @@ private:
     string texto;
 public:
     Mensaje(bool esInteresado, string mensaje, string codigoPropiedad = "", string date = "");
+    time_t getTOA();
     DataMensaje CrearDataMensaje();
     ~Mensaje();
 };

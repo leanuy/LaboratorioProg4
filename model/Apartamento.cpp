@@ -19,6 +19,7 @@ DataPropiedad Apartamento::CrearDataPropiedad() {
     DataApartamento data = DataApartamento(this->getAmbientes(), this->getDormitorios(), this->getBanios(),
                                           this->tieneGarage(), this->getDireccion(),
                                           this->getMetrosCuadradosEdificados(), this->getMetrosCuadradosTotales());
+    data.setCodigo(this->getCodigo());
     //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
     return data;
 }

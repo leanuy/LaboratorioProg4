@@ -22,7 +22,7 @@ Interesado::Interesado(string nombre, string apellido, string email, int edad, s
 }
 
 void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){
-    this->conversaciones.insert(pair<string, Conversacion*>(idInmobiliaria, conversacion));
+    this->conversaciones.insert(this->conversaciones.begin(), pair<string, Conversacion*>(idInmobiliaria, conversacion));
 }
 
 Interesado::~Interesado(){

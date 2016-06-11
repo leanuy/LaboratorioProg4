@@ -788,6 +788,7 @@ void doEnviarMensaje(){
             cout << "Codigo : " << it->getCodigo() << endl;
             cout << "Direccion : " << it->getDireccion() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
+            cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
             cout << "----------------------------------------" << endl;
         }
         cout << "Ingrese el codigo de la propiedad a seleccionar :";
@@ -811,9 +812,10 @@ void doEnviarMensaje(){
         for(list<DataConversacion>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++){
             cout << "Codigo de interesado : " << it->getInteresado() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
+            cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
             cout << "----------------------------------------" << endl;
         }
-        cout << "Ingrese el codigo de la propiedad a seleccionar :";
+        cout << "Ingrese el codigo del interesado a seleccionar :";
         getline(cin, idInteresado);
         cout << endl;
         try {

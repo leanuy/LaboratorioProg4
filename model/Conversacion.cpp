@@ -19,6 +19,7 @@ list<DataMensaje> Conversacion::ListarMensajes() {
 }
 void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
     this->mensajes.push_front(new Mensaje(esInteresado, mensaje, codigoPropiedad, date));
+    this->lastUpdate = this->mensajes.front()->getTOA();
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {

@@ -105,7 +105,7 @@ void Zona::eliminarPropiedad(string codigo) {
         Inmobiliaria* i = p->getInmobiliaria();
         i->DesvincularPropiedad(codigo);
         propiedades.erase(codigo);
-        delete propiedades[codigo];
+        delete p;
     }
 }
 

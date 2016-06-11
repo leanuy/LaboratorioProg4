@@ -12,6 +12,8 @@ list<DataMensaje> Conversacion::ListarMensajes() {
     int cnt = 0;
     while (it != this->mensajes.end() && cnt < 5){
         q.push_back((*it)->CrearDataMensaje());
+        it++;
+        cnt++;
     }
     return q;
 }

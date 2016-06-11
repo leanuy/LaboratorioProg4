@@ -31,7 +31,7 @@ public:
     void SeleccionarZona(string idZona);
     //Interesado
     list<DataPropiedad> ListarPropiedades();
-    void SeleccionarPropiedad(string idPropiedad);
+    string SeleccionarPropiedad(string idPropiedad);
     //Inmobiliaria
     list<DataConversacion> ListarConversaciones();
     void SeleccionarConversacion(string idInteresado);

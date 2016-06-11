@@ -38,7 +38,7 @@ void ConversacionesController::SeleccionarZona(string idZona){
 list<DataPropiedad> ConversacionesController::ListarPropiedades(){
     return this->zActual->ListarPropiedadesEstaticas();
 }
-void ConversacionesController::SeleccionarPropiedad(string idPropiedad){
+string ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
     Sesion* sesion = Sesion::getInstance();
     Interesado* interesado = dynamic_cast<Interesado*>(sesion->getUsuario());
@@ -48,6 +48,7 @@ void ConversacionesController::SeleccionarPropiedad(string idPropiedad){
         this->pActual->getInmobiliaria()->AddConversacion(interesado->getEmail(), this->cActual);
         interesado->AddConversacion(this->pActual->getInmobiliaria()->getEmail(), this->cActual);
     }
+    return this->pActual->getInmobiliaria()->getEmail();
 }
 
 list<DataConversacion> ConversacionesController::ListarConversaciones(){

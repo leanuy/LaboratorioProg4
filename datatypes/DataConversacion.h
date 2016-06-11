@@ -15,6 +15,7 @@ public:
     string getInteresado();
     int getCantidadMensajes();
     time_t getLastUpdate();
+    string getLastUpdateStr();
     ~DataConversacion();
 };
 

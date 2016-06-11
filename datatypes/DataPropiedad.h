@@ -20,28 +20,36 @@ private:
     float metrosCuadradosEdificados;
     float metrosCuadradosTotales;
     int CantidadMensajes;
+    time_t lastUpdate;
 
+protected:
+    void setCodigo(string codigo);
+    void setAmbientes(int ambientes);
+    void setDormitorios(int dormitorios);
+    void setBanios(int banios);
+    void setGarage(bool garage);
+    void setDireccion(string direccion);
+    void setMetrosCuadradosEdificados(float metrosCuadradosEdificados);
+    void setMetrosCuadradosTotales(float metrosCuadradosTotales);
+    void setCantidadMensajes(int CantidadMensajes);
+    void setLastUpdate(time_t lastUpdate);
 public:
     DataPropiedad();
     string getCodigo();
-    void setCodigo(string codigo);
     int getAmbientes();
-    void setAmbientes(int ambientes);
     int getDormitorios();
-    void setDormitorios(int dormitorios);
     int getBanios();
-    void setBanios(int banios);
     bool getGarage();
-    void setGarage(bool garage);
     string getDireccion();
-    void setDireccion(string direccion);
     float getMetrosCuadradosEdificados();
-    void setMetrosCuadradosEdificados(float metrosCuadradosEdificados);
     float getMetrosCuadradosTotales();
-    void setMetrosCuadradosTotales(float metrosCuadradosTotales);
     int getCantidadMensajes();
-    void setCantidadMensajes(int CantidadMensajes);
+    time_t getLastUpdate();
+    string getLastUpdateStr();
     virtual ~DataPropiedad();
+
+    friend class Casa;
+    friend class Apartamento;
 };
 
 

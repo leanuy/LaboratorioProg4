@@ -73,5 +73,18 @@ int DataPropiedad::getCantidadMensajes(){
 void DataPropiedad::setCantidadMensajes(int CantidadMensajes) {
     this->CantidadMensajes = CantidadMensajes;
 }
+time_t DataPropiedad::getLastUpdate(){
+    return this->lastUpdate;
+}
+string DataPropiedad::getLastUpdateStr(){
+    char buff[20];
+    time_t now = this->lastUpdate;
+    strftime(buff, 20, "%d/%m/%Y %H:%M", localtime(&now));
+    return string (buff);
+}
+
+void DataPropiedad::setLastUpdate(time_t lastUpdate){
+    this->lastUpdate = lastUpdate;
+}
 
 DataPropiedad::~DataPropiedad(){}

@@ -19,6 +19,13 @@ list<DataMensaje> Conversacion::ListarMensajes() {
 }
 void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
     this->mensajes.push_front(new Mensaje(esInteresado, mensaje, codigoPropiedad, date));
+    if (date != ""){
+        struct tm tm_aux;
+        strptime(date.c_str(), "%Y-%m-%d %H:%M", &tm_aux);
+        this->lastUpdate = mktime(&tm_aux);
+    }else{
+        this->lastUpdate = time(NULL);
+    }
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {

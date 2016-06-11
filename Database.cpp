@@ -194,9 +194,9 @@ void Database::AddData(){
     Conversacion* conversacion;
 
     conversacion = new Conversacion();
-    conversacion->AgregarMensaje(true, "Estoy Interesado", "2111", "2016-05-25 13:02");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->AddConversacion("int1@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
+    conversacion->AgregarMensaje(true, "PERDON ME EQUIVOQUE", "2111", "2016-05-23 12:35");
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->AddConversacion("int3@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int3@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Cuanto cuesta?", "2114", "2016-05-24 12:30");
@@ -204,9 +204,9 @@ void Database::AddData(){
     dynamic_cast<Interesado*>(this->usuarios["int2@sis.com"])->AddConversacion("inm3@sis.com", conversacion);
 
     conversacion = new Conversacion();
-    conversacion->AgregarMensaje(true, "PERDON ME EQUIVOQUE", "2111", "2016-05-23 12:35");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->AddConversacion("int3@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int3@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
+    conversacion->AgregarMensaje(true, "Estoy Interesado", "2111", "2016-05-25 13:02");
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->AddConversacion("int1@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Quiero hacer una oferta ya!", "1111", "2016-06-01 00:30");

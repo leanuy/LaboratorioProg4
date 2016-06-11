@@ -18,8 +18,14 @@ DataConversacion::~DataConversacion() {
 
 }
 
-time_t DataConversacion::getLastUpdate() {
+time_t DataConversacion::getLastUpdate(){
     return this->lastUpdate;
+}
+string DataConversacion::getLastUpdateStr(){
+    char buff[20];
+    time_t now = this->lastUpdate;
+    strftime(buff, 20, "%d/%m/%Y %H:%M", localtime(&now));
+    return string (buff);
 }
 
 

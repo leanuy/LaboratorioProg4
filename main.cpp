@@ -411,6 +411,7 @@ void doAltaPropiedad(){
             getline(cin, m2TotStr);
             m2Tot = stof(m2TotStr);
             cout << endl;
+            bool coinciden = false;
             DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
             try{
                 interface->ingresarApartamento(NuevoApto);

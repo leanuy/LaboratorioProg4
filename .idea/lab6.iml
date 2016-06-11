@@ -3,7 +3,30 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Factory.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataConversacion.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataCasa.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataCasa.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataMensaje.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataApartamento.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataApartamento.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataMensaje.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataConversacion.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controllers/UsuariosController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controllers/LogController.h" isTestSource="false" />
@@ -13,36 +36,36 @@
       <sourceFolder url="file://$MODULE_DIR$/controllers/ConversacionesController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controllers/ConversacionesController.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controllers/PropiedadesController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Database.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Database.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Inmobiliaria.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Inmobiliaria.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Casa.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Admin.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Usuario.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Interesado.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Usuario.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Mensaje.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Admin.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Edificio.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Venta.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Zona.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Edificio.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Zona.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Venta.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Conversacion.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Departamento.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Usuario.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Venta.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Interesado.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Zona.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Admin.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Apartamento.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Casa.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Venta.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/Alquiler.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model/Departamento.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/model/Propiedad.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Database.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Factory.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IPropiedades.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IConversaciones.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/ILog.cpp" isTestSource="false" />
@@ -51,30 +74,7 @@
       <sourceFolder url="file://$MODULE_DIR$/interfaces/ILog.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IUsuarios.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interfaces/IPropiedades.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataConversacion.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataConversacion.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataCasa.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataMensaje.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataApartamento.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataApartamento.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataMensaje.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInmobiliaria.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataCasa.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataUsuario.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataInteresado.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataPropiedad.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataDepartamento.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataZona.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataEdificio.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/datatypes/DataReporteInmobiliaria.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Database.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sesion.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Factory.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sesion.cpp" isTestSource="false" />

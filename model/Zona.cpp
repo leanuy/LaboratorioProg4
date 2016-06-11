@@ -43,10 +43,12 @@ DataZona Zona::CrearDataZona() {
 
 list <DataEdificio> Zona::DevolverEdificios() {
     list<DataEdificio> l;
-    list<DataEdificio>::iterator ite = l.begin();
     map<string,Edificio*>::iterator it = edificios.begin();
+    if(it == edificios.end()){
+        throw std::invalid_argument("La zona no tiene edificios debe agregar");
+    }
     while(it != edificios.end()){
-        l.insert(ite,(*it->second).CrearDataEdificio());
+        l.push_back(it->second->CrearDataEdificio());
         it++;
     }
     return l;

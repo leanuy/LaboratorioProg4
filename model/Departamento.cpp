@@ -16,6 +16,9 @@ void Departamento::AddZona(Zona* zona){
 list<DataZona> Departamento::ListarZonas(){
     list<DataZona> data;
     map<string,Zona*>::iterator it = zonas.begin();
+    if(it == zonas.end()){
+        throw std::invalid_argument("El departamento no tiene zonas asignadas");
+    }
     while(it != zonas.end()){
         data.push_back(it->second->CrearDataZona());
         it++;

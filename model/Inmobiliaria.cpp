@@ -38,7 +38,7 @@ list<DataConversacion> Inmobiliaria::ListarConversaciones(){
 Conversacion* Inmobiliaria::SeleccionarConversacion(string idConversacion){
     map<string,Conversacion*>::iterator it = this->conversaciones.find(idConversacion);
     if(it == this->conversaciones.end()){
-        return NULL;
+        throw std::invalid_argument("No hay conversaciones con ese interesado");
     }
     return it->second;
 }

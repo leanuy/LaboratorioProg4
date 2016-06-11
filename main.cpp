@@ -830,6 +830,7 @@ void doEnviarMensaje(){
             interface->SeleccionarConversacion(idInteresado);
         }catch(invalid_argument e){
             cout << e.what() << endl;
+            delete interface;
             return;
         }
     }

@@ -291,7 +291,7 @@ void doAltaPropiedad(){
     }
     cout << "Departamentos:" << endl;
     for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
-        cout << "ID : " << it->getId() << endl;
+        cout << it->getId() << ": " << it->getNombre() << endl;
     }
     cout << "Ingrese el ID del departamento seleccionado :";
     getline(cin, id);
@@ -403,15 +403,21 @@ void doAltaPropiedad(){
             cout << "Direccion : ";
             getline(cin, dir);
             cout << endl;
-            cout << "M2 edificados : ";
-            getline(cin, m2EdifStr);
-            m2Edif = stof(m2EdifStr);
-            cout << endl;
-            cout << "M2 totales : ";
-            getline(cin, m2TotStr);
-            m2Tot = stof(m2TotStr);
-            cout << endl;
             bool coinciden = false;
+            while (!coinciden){
+                cout << "M2 edificados : ";
+                getline(cin, m2EdifStr);
+                m2Edif = stof(m2EdifStr);
+                cout << endl;
+                cout << "M2 totales : ";
+                getline(cin, m2TotStr);
+                m2Tot = stof(m2TotStr);
+                cout << endl;
+                coinciden = (m2Tot == m2Edif);
+                if (!coinciden){
+                    cout << "Los metros cuadrados totales y edificados no coinciden, vuelva a ingresarlos" << endl;
+                };
+            }
             DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
             try{
                 interface->ingresarApartamento(NuevoApto);
@@ -445,29 +451,25 @@ void doAltaPropiedad(){
             cout << "Direccion : ";
             getline(cin, dir);
             cout << endl;
-            cout << "M2 edificados : ";
-            getline(cin, m2EdifStr);
-            m2Edif = stof(m2EdifStr);
-            cout << endl;
-            cout << "M2 totales : ";
-            getline(cin, m2TotStr);
-            m2Tot = stof(m2TotStr);
-            cout << endl;
-            cout << "M2 verdes : ";
-            getline(cin, m2VerStr);
-            m2Ver = stof(m2VerStr);
-            cout << endl;
-            cout << "Estos son los datos ingresados:" << endl;
-            cout << "Cantidad de Ambientes: " << ambientes << endl;
-            cout << "Cantidad de Dormitorios: " << dormitorios << endl;
-            cout << "Cantidad de Banios: " << banios << endl;
-            cout << "Tiene Garage: " << (garage?"Si":"No") << endl;
-            cout << "Direccion: " << dir << endl;
-            cout << "Metros Cuadrados Edificados: " << m2Edif << endl;
-            cout << "Metros Cuadrados Totales: " << m2Tot << endl;
-            cout << "Metros Cuadrados Verdes: " << m2Ver << endl;
-            cout << "Si luego desea modificar los datos, puede hacerlo selecciononando Modificar Propiedad en el menu" << endl;
-            cout << endl;
+            bool coinciden = false;
+            while (!coinciden) {
+                cout << "M2 edificados : ";
+                getline(cin, m2EdifStr);
+                m2Edif = stof(m2EdifStr);
+                cout << endl;
+                cout << "M2 totales : ";
+                getline(cin, m2TotStr);
+                m2Tot = stof(m2TotStr);
+                cout << endl;
+                cout << "M2 verdes : ";
+                getline(cin, m2VerStr);
+                m2Ver = stof(m2VerStr);
+                cout << endl;
+                coinciden = (m2Tot == (m2Edif + m2Ver));
+                if (!coinciden){
+                    cout << "Los metros cuadrados totales, edificados y verdes no son correctos, ingresarlos nuevamente" << endl;
+                };
+            }
             DataCasa NuevaCasa(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
             try{
                 interface->ingresarCasa(NuevaCasa);
@@ -668,19 +670,31 @@ void doModificarPropiedad(){
     cout << "Direccion : ";
     getline(cin, dir);
     cout << endl;
-    cout << "M2 edificados : ";
-    getline(cin, m2EdifStr);
-    m2Edif = stof(m2EdifStr);
-    cout << endl;
-    cout << "M2 totales : ";
-    getline(cin, m2TotStr);
-    m2Tot = stof(m2TotStr);
-    cout << endl;
-    if(CasaOapto){
-        cout << "M2 verdes : ";
-        getline(cin, m2VerStr);
-        m2Ver = stof(m2VerStr);
+    bool coinciden = false;
+    while (!coinciden) {
+        cout << "M2 edificados : ";
+        getline(cin, m2EdifStr);
+        m2Edif = stof(m2EdifStr);
         cout << endl;
+        cout << "M2 totales : ";
+        getline(cin, m2TotStr);
+        m2Tot = stof(m2TotStr);
+        cout << endl;
+        if (CasaOapto) {
+            cout << "M2 verdes : ";
+            getline(cin, m2VerStr);
+            m2Ver = stof(m2VerStr);
+            cout << endl;
+            coinciden = (m2Tot == (m2Edif + m2Ver));
+            if (!coinciden){
+                cout << "Los metros cuadrados totales, edificados y verdes no son correctos, vuelva a ingresarlos" << endl;
+            }
+        }else{
+            coinciden = (m2Edif == m2Tot);
+            if (!coinciden){
+                cout << "Los metros cuadrados totales y edificados no coinciden, vuelva a ingresarlos" << endl;
+            };
+        };
     }
     if(CasaOapto){
         DataCasa actualizada(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);

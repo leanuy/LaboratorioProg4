@@ -411,6 +411,7 @@ void doAltaPropiedad(){
             getline(cin, m2TotStr);
             m2Tot = stof(m2TotStr);
             cout << endl;
+            bool coinciden = false;
             DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
             try{
                 interface->ingresarApartamento(NuevoApto);
@@ -455,6 +456,17 @@ void doAltaPropiedad(){
             cout << "M2 verdes : ";
             getline(cin, m2VerStr);
             m2Ver = stof(m2VerStr);
+            cout << endl;
+            cout << "Estos son los datos ingresados:" << endl;
+            cout << "Cantidad de Ambientes: " << ambientes << endl;
+            cout << "Cantidad de Dormitorios: " << dormitorios << endl;
+            cout << "Cantidad de Banios: " << banios << endl;
+            cout << "Tiene Garage: " << (garage?"Si":"No") << endl;
+            cout << "Direccion: " << dir << endl;
+            cout << "Metros Cuadrados Edificados: " << m2Edif << endl;
+            cout << "Metros Cuadrados Totales: " << m2Tot << endl;
+            cout << "Metros Cuadrados Verdes: " << m2Ver << endl;
+            cout << "Si luego desea modificar los datos, puede hacerlo selecciononando Modificar Propiedad en el menu" << endl;
             cout << endl;
             DataCasa NuevaCasa(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
             try{
@@ -587,6 +599,8 @@ void doConsultarPropiedad(){
         cout << "Codigo: " << i->getCodigo() << endl;
         cout << "Ambientes: " << i->getAmbientes() << endl;
         cout << "Dormitorios: " << i->getDormitorios() << endl;
+        cout << "Banios: " << i->getBanios() << endl;
+        cout << "Tiene Garage: " << (i->getGarage()?"Si":"No") << endl;
         cout << "Direccion: " << i->getDireccion() << endl;
         cout << "M2 edificados: " << i->getMetrosCuadradosEdificados() << endl;
         cout << "M2 totales: " << i->getMetrosCuadradosTotales() << endl;

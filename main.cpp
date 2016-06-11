@@ -439,10 +439,10 @@ void doAltaPropiedad(){
             cout << endl;
             cout << "Tiene garage? S/N: ";
             getline(cin, garageStr);
-            garage = ((garageStr == "s")||(garageStr == "S"));
+            garage = garageStr == "S" || garageStr == "s";
             cout << endl;
             cout << "Direccion : ";
-            getline(cin,dir);
+            getline(cin, dir);
             cout << endl;
             cout << "M2 edificados : ";
             getline(cin, m2EdifStr);
@@ -605,7 +605,7 @@ void doModificarPropiedad(){
     string letra, dir;
     string m2EdifStr, m2TotStr, m2VerStr;
     float m2Edif, m2Tot, m2Ver;
-    DataPropiedad* p;
+    DataPropiedad p;
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
     //ingresar el codigo de la propiedad a modificar
@@ -614,22 +614,25 @@ void doModificarPropiedad(){
     cout << endl;
     //mostrar los datos actuales
     try {
-        p = interface->verPropiedad(code);
+        p = interface->BuscarPropiedad(code);
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }
     cout << "Datos actuales de la propiedad" << endl;
-    cout << "Codigo        : " << p->getCodigo() << endl;
-    cout << "Ambientes     : " << p->getAmbientes() << endl;
-    cout << "Dormitorios   : " << p->getDormitorios() << endl;
-    cout << "Banios        : " << p->getBanios() << endl;
-    cout << "Garage        : " << (p->getGarage()?"Si":"No") << endl;
-    cout << "Direccion     : " << p->getDireccion() << endl;
-    cout << "M2 Edificados : " << p->getMetrosCuadradosEdificados() << endl;
-    cout << "M2 Totales    : " << p->getMetrosCuadradosTotales() << endl;
-    if(DataCasa* c = dynamic_cast<DataCasa*>(p)){
+    cout << "Codigo        : " << p.getCodigo() << endl;
+    cout << "Ambientes     : " << p.getAmbientes() << endl;
+    cout << "Dormitorios   : " << p.getDormitorios() << endl;
+    cout << "Banios        : " << p.getBanios() << endl;
+    cout << "Garage        : " << (p.getGarage()?"Si":"No") << endl;
+    cout << "Direccion     : " << p.getDireccion() << endl;
+    float m2edif = p.getMetrosCuadradosEdificados();
+    cout << "M2 Edificados : " << m2edif << endl;
+    float m2totales = p.getMetrosCuadradosTotales();
+    cout << "M2 Totales    : " << m2totales << endl;
+    if(p.getMetrosCuadradosEdificados() != p.getMetrosCuadradosTotales()){
         CasaOapto = true;
-        cout << "M2 Verdes     : " << c->getM2Verdes() << endl;
+        int pasto = p.getMetrosCuadradosTotales() - p.getMetrosCuadradosEdificados();
+        cout << "M2 Verdes     : " << pasto << endl;
     }
     cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;
     cout << "Cantidad de ambientes : ";
@@ -682,7 +685,6 @@ void doModificarPropiedad(){
             cout << e.what() << endl;
         }
     }
-    delete p;
     delete interface;
 }
 void doEliminarPropiedad(){
@@ -786,7 +788,7 @@ void doEnviarMensaje(){
         getline(cin, idInteresado);
         cout << endl;
         try {
-            interface->SeleccionarPropiedad(idInteresado);
+            interface->SeleccionarConversacion(idInteresado);
         }catch(invalid_argument e){
             cout << e.what() << endl;
             return;

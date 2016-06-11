@@ -574,7 +574,7 @@ void doConsultarPropiedad(){
         delete interface;
         return;
     }
-    cout << "Propiedades en la zona seleccionada: " << endl;
+
     try{
         l = interface->ListarPropiedades();
     }catch(invalid_argument e){
@@ -582,6 +582,13 @@ void doConsultarPropiedad(){
         delete interface;
         return;
     }
+    list<DataPropiedad>::iterator vacia = l.begin();
+    if(vacia == l.end()){
+        cout << "No existen propiedades en la zona seleccionada" << endl;
+        delete interface;
+        return;
+    }
+    cout << "Propiedades en la zona seleccionada: " << endl;
     for(list<DataPropiedad>::iterator iterador = l.begin(); iterador != l.end(); iterador++){
         cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion() << endl;
     }
@@ -709,6 +716,7 @@ void doEliminarPropiedad(){
     getline(cin, code);
     try{
         interface->EliminarPropiedad(code);
+        cout << "Propiedad Eliminada con exito!" << endl;
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }

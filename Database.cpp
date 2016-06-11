@@ -184,7 +184,7 @@ void Database::AddData(){
     this->departamentos["A"]->SeleccionarZona("102")->AddPropiedad(casa);
 
     casa = new Casa(3, 1, 1, false, "Venecia 3456", 25, 25, 0);
-    casa->setCodigo("2114");
+    casa->setCodigo("2115");
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"]);
     casa->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(56789, casa);

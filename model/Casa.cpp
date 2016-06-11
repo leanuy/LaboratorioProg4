@@ -11,7 +11,7 @@ Casa::Casa(int ambientes, int dormitorios, int banios, bool garage, string direc
     this->setBanios(banios);
     this->setGarage(garage);
     this->setDireccion(direccion);
-    this->setMetrosCuadradosTotales(m2Edificados);
+    this->setMetrosCuadradosEdificados(m2Edificados);
     this->setMetrosCuadradosTotales(m2Totales);
     this->setMetrosCuadradosVerdes(m2Verdes);
 }

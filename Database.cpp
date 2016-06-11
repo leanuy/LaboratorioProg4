@@ -143,7 +143,7 @@ void Database::AddData(){
     zona->AsignarEdificio(edificio);
 
     apartamento = new Apartamento(2, 1, 1, false, "Lucrecia 456 AP 2", 25, 25); //todo: direccion erronea
-    apartamento->setEdificio(this->edificiosN_A["El Burdel"]);
+    apartamento->setEdificio(edificio);
     apartamento->setCodigo("1116");
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);

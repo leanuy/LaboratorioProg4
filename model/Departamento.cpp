@@ -74,3 +74,15 @@ Edificio *Departamento::BuscarEdificio(string idEdificio) {
     }
     return ret;
 }
+
+void Departamento::devolverReporteInmo(list <DataPropPorDepro> &l) {
+    map<string,Zona*>::iterator it = zonas.begin();
+
+    if(it == zonas.end()){
+        throw std::invalid_argument("El departamento no tiene zonas");
+    }
+    while(it != zonas.end()){
+
+        it++;
+    }
+}

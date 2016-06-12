@@ -10,6 +10,8 @@
 #include <map>
 #include <list>
 #include "../model/Edificio.h"
+#include "../datatypes/DataReporteInmobiliaria.h"
+#include "../datatypes/DataPropPorDepro.h"
 
 using namespace std;
 
@@ -30,6 +32,7 @@ public:
     Zona* SeleccionarZona(string idZona);
     Propiedad* BuscarPropiedad(string idPropiedad);
 	Edificio* BuscarEdificio(string idEdificio);
+	void devolverReporteInmo(list<DataReporteInmobiliaria> &l);
     ~Departamento();
 
 	string getId();

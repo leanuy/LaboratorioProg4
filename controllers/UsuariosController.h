@@ -6,6 +6,7 @@
 #include "../interfaces/IUsuarios.h"
 #include "../datatypes/DataInmobiliaria.h"
 #include "../model/Inmobiliaria.h"
+#include "../datatypes/DataReporteInmobiliaria.h"
 
 
 using namespace std;
@@ -15,7 +16,7 @@ class UsuariosController: public IUsuarios {
 public:
     UsuariosController();
     void IngresarInmobiliaria(string nombre, string mail, string direccion);
-    map<string,DataInmobiliaria> ReportesInmobiliaria();
+    list<DataReporteInmobiliaria> ReportesInmobiliaria();
     bool CheckEmail(string mail);
     void DarAltaInteresado(string nombre, string apellido, string email, int edad);
     ~UsuariosController();

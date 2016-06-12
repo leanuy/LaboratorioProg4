@@ -19,9 +19,39 @@ void UsuariosController::IngresarInmobiliaria(string nombre, string mail, string
     }
 }
 
-map<string,DataInmobiliaria> UsuariosController::ReportesInmobiliaria(){
-    map<string,DataInmobiliaria> hola;
-    return hola;
+list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
+    list <DataReporteInmobiliaria> reporte;
+    reporte.clear();
+    Database *db = Database::getInstance();
+    map<string,Usuario*> users = db->getUsuarios();
+    map<string,Usuario*>::iterator i = users.begin();
+    if(i == users.end()){
+        throw std::invalid_argument("No hay usuarios en el sistema");
+    }
+    while(i != users.end()) {
+        if (i->second->esTipo("Inmobiliaria")) {
+            Inmobiliaria* inmob = (Inmobiliaria*)i->second;
+            list<DataPropPorDepro> propsPorD;
+            propsPorD.clear();
+            DataReporteInmobiliaria r(inmob->getNombre(),inmob->getEmail(),inmob->getDireccion());
+            map<string, Departamento *> deptos = db->getDepartamentos();
+            map<string, Departamento *>::iterator it = deptos.begin();
+            if (it == deptos.end()) {
+                throw std::invalid_argument("No hay departamentos en el sistema");
+            }
+            //seguir despues
+
+
+            while (it != deptos.end()) {
+                it->second->devolverReporteInmo(reporte);
+                it++;
+            }
+            r.setPropsPorZona(propsPorD);
+            reporte.push_back(r);
+        }
+        i++;
+    }
+    return reporte;
 }
 bool UsuariosController::CheckEmail(string mail){// para ver si ya existe el mail
     Database* db = Database::getInstance();

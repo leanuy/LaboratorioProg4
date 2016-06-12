@@ -15,7 +15,7 @@ DataReporteInmobiliaria::~DataReporteInmobiliaria() {
 
 }
 
-list <DataPropPorDepro> DataReporteInmobiliaria::getPropsPorZona() {
+list <DataPropPorDepro> DataReporteInmobiliaria::getPropsPorDepto() {
  return this->propsPorDepto;
 }
 
@@ -31,6 +31,6 @@ string DataReporteInmobiliaria::getDireccion() {
  return this->direccion;
 }
 
-void DataReporteInmobiliaria::setPropsPorZona(list<DataPropPorDepro> l) {
+void DataReporteInmobiliaria::setPropsPorDepto(list<DataPropPorDepro> l) {
     this->propsPorDepto = l;
 }

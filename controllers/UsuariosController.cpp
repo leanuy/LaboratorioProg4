@@ -29,7 +29,7 @@ list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
         throw std::invalid_argument("No hay usuarios en el sistema");
     }
     while(i != users.end()) {
-        if (i->second->esTipo("Inmobiliaria")) {
+        if (i->second->esTipo("inmobiliaria")) {
             Inmobiliaria* inmob = (Inmobiliaria*)i->second;
             DataReporteInmobiliaria r(inmob->getNombre(),inmob->getEmail(),inmob->getDireccion());
             list<DataPropPorDepro> propsPorD;
@@ -44,7 +44,7 @@ list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
                 propsPorD.push_back(x);
                 it++;
             }
-            r.setPropsPorZona(propsPorD);
+            r.setPropsPorDepto(propsPorD);
             reporte.push_back(r);
         }
         i++;

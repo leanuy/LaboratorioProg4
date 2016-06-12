@@ -891,6 +891,46 @@ void doObtenerReporteInmobiliarias(){
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
 
+    try{
+        list<DataReporteInmobiliaria> reporte = interface->ReportesInmobiliaria();
+        cout << "------------------------" << endl;
+        cout << "Reporte por Inmobiliaria" << endl;
+        cout << "------------------------" << endl;
+        list<DataReporteInmobiliaria>::iterator i = reporte.begin();
+        if(i == reporte.end()){
+            cout << "No hay reporte de inmobiliarias en el sistema" << endl;
+            delete interface;
+            return;
+        }
+        while(i != reporte.end()){
+            cout << "---------------------------------------------------------" << endl;
+            cout << "Datos de la inmobiliaria: " << endl;
+            cout << "                  nombre: " << i->getNombre() << endl;
+            cout << "                  E-mail: " << i->getMail() << endl;
+            cout << "               Direccion: " << i->getDireccion() << endl;
+            cout << "---------------------------------------------------------" << endl;
+            list<DataPropPorDepro> listDeptos = i->getPropsPorDepto();
+            list<DataPropPorDepro>::iterator it = listDeptos.begin();
+            if(it == listDeptos.end()){
+                cout << "La inmobiliaria no tiene propiedades" << endl;
+            }else{
+                cout << "Departamento: " << it->getIdDepto() << endl;
+                list<DataPropPorZona> listZonas = it->getPorDeptos();
+                list<DataPropPorZona>::iterator iter = listZonas.begin();
+                if(iter == listZonas.end()){
+                    cout << "No hay propiedades de esta inmobiliara en el departamento" << endl;
+                }else{
+                    cout << "Zona: " << iter->getIdZona() << "| Numero de Casas: ";
+                    cout << iter->getCantCasas() << "| Numero de Apartamentos: " << iter->getCantAptos()<< endl;
+                }
+            }
+            i++;
+        }
+        cout << "---------------------------------------------------------" << endl;
+    }catch(invalid_argument e){
+        cout << e.what() << endl;
+    }
+
     delete interface;
 }
 void doCerrarSesion(){

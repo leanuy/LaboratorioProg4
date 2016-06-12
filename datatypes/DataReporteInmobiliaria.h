@@ -20,11 +20,11 @@ private:
 public:
     DataReporteInmobiliaria(string name,string mail,string dir);
     ~DataReporteInmobiliaria();
-    list<DataPropPorDepro> getPropsPorZona();
+    list<DataPropPorDepro> getPropsPorDepto();
     string getNombre();
     string getMail();
     string getDireccion();
-    void setPropsPorZona(list<DataPropPorDepro> l);
+    void setPropsPorDepto(list<DataPropPorDepro> l);
 };
 
 

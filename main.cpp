@@ -913,15 +913,21 @@ void doObtenerReporteInmobiliarias(){
             list<DataPropPorDepro>::iterator it = listDeptos.begin();
             if(it == listDeptos.end()){
                 cout << "La inmobiliaria no tiene propiedades" << endl;
-            }else{
-                cout << "Departamento: " << it->getIdDepto() << endl;
-                list<DataPropPorZona> listZonas = it->getPorDeptos();
-                list<DataPropPorZona>::iterator iter = listZonas.begin();
-                if(iter == listZonas.end()){
-                    cout << "No hay propiedades de esta inmobiliara en el departamento" << endl;
-                }else{
-                    cout << "Zona: " << iter->getIdZona() << "| Numero de Casas: ";
-                    cout << iter->getCantCasas() << "| Numero de Apartamentos: " << iter->getCantAptos()<< endl;
+            }else {
+                while (it != listDeptos.end()){
+                    cout << "Departamento: " << it->getIdDepto() << endl;
+                    list <DataPropPorZona> listZonas = it->getPorDeptos();
+                    list<DataPropPorZona>::iterator iter = listZonas.begin();
+                    if (iter == listZonas.end()) {
+                        cout << "No hay propiedades de esta inmobiliara en el departamento" << endl;
+                    } else {
+                        while(iter != listZonas.end()) {
+                            cout << "Zona: " << iter->getIdZona() << "| Numero de Casas: ";
+                            cout << iter->getCantCasas() << "| Numero de Apartamentos: " << iter->getCantAptos() << endl;
+                            iter++;
+                        }
+                    }
+                    it++;
                 }
             }
             i++;

@@ -22,6 +22,7 @@ void UsuariosController::IngresarInmobiliaria(string nombre, string mail, string
 list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
     list <DataReporteInmobiliaria> reporte;
     reporte.clear();
+    Inmobiliaria* inmob;
     Database *db = Database::getInstance();
     map<string,Usuario*> users = db->getUsuarios();
     map<string,Usuario*>::iterator i = users.begin();
@@ -30,7 +31,7 @@ list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
     }
     while(i != users.end()) {
         if (i->second->esTipo("inmobiliaria")) {
-            Inmobiliaria* inmob = (Inmobiliaria*)i->second;
+            inmob = (Inmobiliaria*)i->second;
             DataReporteInmobiliaria r(inmob->getNombre(),inmob->getEmail(),inmob->getDireccion());
             list<DataPropPorDepro> propsPorD;
             propsPorD.clear();

@@ -31,19 +31,17 @@ list<DataReporteInmobiliaria> UsuariosController::ReportesInmobiliaria() {
     while(i != users.end()) {
         if (i->second->esTipo("Inmobiliaria")) {
             Inmobiliaria* inmob = (Inmobiliaria*)i->second;
+            DataReporteInmobiliaria r(inmob->getNombre(),inmob->getEmail(),inmob->getDireccion());
             list<DataPropPorDepro> propsPorD;
             propsPorD.clear();
-            DataReporteInmobiliaria r(inmob->getNombre(),inmob->getEmail(),inmob->getDireccion());
             map<string, Departamento *> deptos = db->getDepartamentos();
             map<string, Departamento *>::iterator it = deptos.begin();
             if (it == deptos.end()) {
                 throw std::invalid_argument("No hay departamentos en el sistema");
             }
-            //seguir despues
-
-
             while (it != deptos.end()) {
-                it->second->devolverReporteInmo(reporte);
+                DataPropPorDepro x = it->second->PropiedadesEnElDeptoDeLaInmobiliaria(inmob);
+                propsPorD.push_back(x);
                 it++;
             }
             r.setPropsPorZona(propsPorD);

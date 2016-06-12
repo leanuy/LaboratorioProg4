@@ -126,3 +126,19 @@ list <DataPropiedad> Zona::ListarPropiedadesEstaticas() {
 
     return l;
 }
+
+DataPropPorZona Zona::PropiedadesEnLaZonaDeLaInmobiliaria(Inmobiliaria *inm) {
+    DataPropPorZona data(this->codigo);
+    map<string,Propiedad*>::iterator it = this->propiedades.begin();
+    while(it != propiedades.end()){
+        if(it->second->getInmobiliaria() == inm) {
+            if (dynamic_cast<Casa *>(it->second)) {
+                data.incrementCasas();
+            } else {
+                data.incrementAptos();
+            }
+        }
+        it++;
+    }
+    return data;
+}

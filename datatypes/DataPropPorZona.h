@@ -15,7 +15,7 @@ private:
     int cantidadCasas;
     int cantidadAptos;
 public:
-    DataPropPorZona();
+    DataPropPorZona(string id);
     DataPropPorZona(string idZ,int casas,int aptos);
     ~DataPropPorZona();
     void incrementCasas();

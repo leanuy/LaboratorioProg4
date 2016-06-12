@@ -7,6 +7,7 @@
 
 #include <string>
 #include "../datatypes/DataPropPorZona.h"
+#include "../datatypes/DataPropPorDepro.h"
 #include <list>
 
 using namespace std;
@@ -15,15 +16,15 @@ private:
     string nombre;
     string mail;
     string direccion;
-    list<DataPropPorZona> propsPorZona;
+    list<DataPropPorDepro> propsPorDepto;
 public:
     DataReporteInmobiliaria(string name,string mail,string dir);
     ~DataReporteInmobiliaria();
-    list<DataPropPorZona> getPropsPorZona();
+    list<DataPropPorDepro> getPropsPorZona();
     string getNombre();
     string getMail();
     string getDireccion();
-    void setPropsPorZona(list<DataPropPorZona> l);
+    void setPropsPorZona(list<DataPropPorDepro> l);
 };
 
 

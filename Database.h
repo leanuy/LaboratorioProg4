@@ -12,6 +12,8 @@
 #include "model/Admin.h"
 #include "model/Edificio.h"
 
+class Departamento;
+
 class Database {
 private:
     static Database* instance;

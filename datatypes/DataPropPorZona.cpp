@@ -4,8 +4,8 @@
 
 #include "DataPropPorZona.h"
 
-DataPropPorZona::DataPropPorZona() {
-    this->idZona = "";
+DataPropPorZona::DataPropPorZona(string id) {
+    this->idZona = id;
     this->cantidadAptos = 0;
     this->cantidadCasas = 0;
 }

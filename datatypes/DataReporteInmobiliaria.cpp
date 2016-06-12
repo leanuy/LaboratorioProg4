@@ -8,15 +8,15 @@ DataReporteInmobiliaria::DataReporteInmobiliaria(string name, string mail, strin
     this->nombre = name;
     this->mail = mail;
     this->direccion = dir;
-    this->propsPorZona.clear();
+    this->propsPorDepto.clear();
 }
 
 DataReporteInmobiliaria::~DataReporteInmobiliaria() {
 
 }
 
-list <DataPropPorZona> DataReporteInmobiliaria::getPropsPorZona() {
- return this->propsPorZona;
+list <DataPropPorDepro> DataReporteInmobiliaria::getPropsPorZona() {
+ return this->propsPorDepto;
 }
 
 string DataReporteInmobiliaria::getNombre() {
@@ -31,6 +31,6 @@ string DataReporteInmobiliaria::getDireccion() {
  return this->direccion;
 }
 
-void DataReporteInmobiliaria::setPropsPorZona(list<DataPropPorZona> l) {
-    this->propsPorZona = l;
+void DataReporteInmobiliaria::setPropsPorZona(list<DataPropPorDepro> l) {
+    this->propsPorDepto = l;
 }

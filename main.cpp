@@ -386,18 +386,18 @@ void doAltaPropiedad(){
             cout << endl;
             if(option == 1){
                 doAltaEdificio(); // ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
-            }else{
-                cout << "Ingrese el edificio seleccionado: ";
-                getline(cin, edificioSeleccionado);
-                cout << endl;
-                try{
-                    interface->SeleccionarEdificio(edificioSeleccionado);
-                }catch(invalid_argument e){
-                    cout << e.what() << endl;
-                    delete interface;
-                    return;
-                }
             }
+            cout << "Ingrese el edificio seleccionado: ";
+            getline(cin, edificioSeleccionado);
+            cout << endl;
+            try{
+                interface->SeleccionarEdificio(edificioSeleccionado);
+            }catch(invalid_argument e){
+                cout << e.what() << endl;
+                delete interface;
+                return;
+            }
+
 
             //luego pedir los daqtos del apartamento.
             cout << "A continuacion ingrese los datos del apartamento:" << endl;

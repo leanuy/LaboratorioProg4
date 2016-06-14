@@ -417,215 +417,342 @@ void doAltaPropiedad(){
     //preguntar si es apartamento o casa y leer
     cout << "Si desea ingresar un Apartamento ingrese '1' o si desea ingresar una Casa ingrese '2': ";
     getline(cin, opcionStr);
-    opcion = stoi(opcionStr);
-    switch(opcion){
-        case 1: {
-            // si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
-            list <DataEdificio> edificiosZona;
-            bool noedif = false;
-            try {
-                edificiosZona = interface->VerEdificiosZona();
-            } catch (invalid_argument e) {
-                cout << e.what() << endl;
-                noedif = true;
-            }
-            if (!noedif) {
-                cout << "Edificios de la zona" << endl;
-                for (list<DataEdificio>::iterator it = edificiosZona.begin(); it != edificiosZona.end(); it++) {
-                    cout << "Edificio: " << it->getNombre() << endl;
-                }
-            }
-            noedif = false;
-            list<DataEdificio> ediSinAsignar;
-            try {
-                ediSinAsignar = interface->edificiosSinAsignar();
-            }catch(invalid_argument e){
-                cout << e.what() << endl;
-                noedif = true;
-            }
-            if(!noedif){
-                cout << "Edificios sin asignar" << endl;
-                for (list<DataEdificio>::iterator it2 = ediSinAsignar.begin(); it2 != ediSinAsignar.end(); it2++){
-                    cout << "Edificio: " << it2->getNombre() << endl;
-                }
-            }
 
-            //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
-            cout << "Si desea ingresar un nuevo edificio al sistema ingrese '1', de lo contrario ingrese 2 : ";
-            getline(cin, optionStr);
-            //option = stoi(optionStr);
-            cout << endl;
-            if(optionStr == "1"){
-                doAltaEdificio(); // ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
-            }
-            cout << "Ingrese el edificio seleccionado: ";
-            getline(cin, edificioSeleccionado);
-            cout << endl;
-            try{
-                interface->SeleccionarEdificio(edificioSeleccionado);
-            }catch(invalid_argument e){
-                cout << e.what() << endl;
-                delete interface;
-                return;
-            }
-
-
-            //luego pedir los daqtos del apartamento.
-            cout << "A continuacion ingrese los datos del apartamento:" << endl;
-            counter = 0;
-            while(!datoNumerico) {
-                cout << "Cantidad de ambientes : ";
-                getline(cin, ambientesStr);
-                try {
-                    ambientes = stoi(ambientesStr);
-                    datoNumerico = true;
-                }catch(invalid_argument e){
-                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
-                    if(counter == 3){
-                        cout << "Alta cancelada" << endl;
-                        delete interface;
-                        return;
-                    }
-                    counter++;
-                }
-            }
-            counter = 0;
-            datoNumerico = false;
-            while(!datoNumerico) {
-                cout << "Cantidad de dormitorios : ";
-                getline(cin, dormitoriosStr);
-                try {
-                    dormitorios = stoi(dormitoriosStr);
-                    datoNumerico = true;
-                }catch(invalid_argument e){
-                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
-                    if(counter == 3){
-                        cout << "Alta cancelada" << endl;
-                        delete interface;
-                        return;
-                    }
-                    counter++;
-                }
-            }
-            counter = 0;
-            datoNumerico = false;
-            while(!datoNumerico) {
-                cout << "Cantidad de banios : ";
-                getline(cin, baniosStr);
-                try {
-                    banios = stoi(baniosStr);
-                    datoNumerico = true;
-                }catch(invalid_argument e){
-                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
-                    if(counter == 3){
-                        cout << "Alta cancelada" << endl;
-                        delete interface;
-                        return;
-                    }
-                    counter++;
-                }
-            }
-
-            cout << "Tiene garage? S/N: ";
-            getline(cin, garageStr);
-            garage = ((garageStr == "s")||(garageStr == "S"));
-            cout << endl;
-            cout << "Direccion : ";
-            getline(cin, dir);
-            cout << endl;
-            bool coinciden = false;
-            while (!coinciden){
-
-                cout << "M2 edificados : ";           // todo seguir poniendo lo de los numeros.
-                getline(cin, m2EdifStr);
-                m2Edif = stof(m2EdifStr);
-
-                cout << endl;
-
-                cout << "M2 totales : ";
-                getline(cin, m2TotStr);
-                m2Tot = stof(m2TotStr);
-
-                cout << endl;
-
-                coinciden = (m2Tot == m2Edif);
-                if (!coinciden){
-                    cout << "Los metros cuadrados totales y edificados no coinciden, vuelva a ingresarlos" << endl;
-                };
-            }
-            DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
-            try{
-                interface->ingresarApartamento(NuevoApto);
-            }catch(invalid_argument e){
-                cout << e.what() << endl;
-                delete interface;
-                return;
-            }
-            break;
+    if(opcionStr == "1"){
+        // si es apartamento listar los edificios en esa zona y dar opcion a hacer alta de edificio
+        list <DataEdificio> edificiosZona;
+        bool noedif = false;
+        try {
+            edificiosZona = interface->VerEdificiosZona();
+        } catch (invalid_argument e) {
+            cout << e.what() << endl;
+            noedif = true;
         }
-        case 2:
-        {
-            //si queria ingresar una casa.. pedir datos y hacer ingresar casa/..
-            cout << "A continuacion ingrese los datos de la casa:" << endl;
+        if (!noedif) {
+            cout << "Edificios de la zona" << endl;
+            for (list<DataEdificio>::iterator it = edificiosZona.begin(); it != edificiosZona.end(); it++) {
+                cout << "Edificio: " << it->getNombre() << endl;
+            }
+        }
+        noedif = false;
+        list<DataEdificio> ediSinAsignar;
+        try {
+            ediSinAsignar = interface->edificiosSinAsignar();
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            noedif = true;
+        }
+        if(!noedif){
+            cout << "Edificios sin asignar" << endl;
+            for (list<DataEdificio>::iterator it2 = ediSinAsignar.begin(); it2 != ediSinAsignar.end(); it2++){
+                cout << "Edificio: " << it2->getNombre() << endl;
+            }
+        }
+
+        //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
+        cout << "Si desea ingresar un nuevo edificio al sistema ingrese '1', de lo contrario ingrese 2 : ";
+        getline(cin, optionStr);
+        //option = stoi(optionStr);
+        cout << endl;
+        if(optionStr == "1"){
+            doAltaEdificio(); // ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
+        }
+        cout << "Ingrese el edificio seleccionado: ";
+        getline(cin, edificioSeleccionado);
+        cout << endl;
+        try{
+            interface->SeleccionarEdificio(edificioSeleccionado);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            delete interface;
+            return;
+        }
+
+
+        //luego pedir los daqtos del apartamento.
+        cout << "A continuacion ingrese los datos del apartamento:" << endl;
+        counter = 0;
+        while(!datoNumerico) {
             cout << "Cantidad de ambientes : ";
             getline(cin, ambientesStr);
-            ambientes = stoi(ambientesStr);
-            cout << endl;
+            try {
+                ambientes = stoi(ambientesStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        }
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
             cout << "Cantidad de dormitorios : ";
             getline(cin, dormitoriosStr);
-            dormitorios = stoi(dormitoriosStr);
-            cout << endl;
+            try {
+                dormitorios = stoi(dormitoriosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        }
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
             cout << "Cantidad de banios : ";
             getline(cin, baniosStr);
-            banios = stoi(baniosStr);
-            cout << endl;
-            cout << "Tiene garage? S/N: ";
-            getline(cin, garageStr);
-            garage = garageStr == "S" || garageStr == "s";
-            cout << endl;
-            cout << "Direccion : ";
-            getline(cin, dir);
-            cout << endl;
-            bool coinciden = false;
-            while (!coinciden) {
+            try {
+                banios = stoi(baniosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        }
+        cout << "Tiene garage? S/N: ";
+        getline(cin, garageStr);
+        garage = ((garageStr == "s")||(garageStr == "S"));
+        cout << endl;
+        cout << "Direccion : ";
+        getline(cin, dir);
+        cout << endl;
+        bool coinciden = false;
+        while (!coinciden){
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
                 cout << "M2 edificados : ";
                 getline(cin, m2EdifStr);
-                m2Edif = stof(m2EdifStr);
                 cout << endl;
+                try {
+                    m2Edif = stof(m2EdifStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            }
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "M2 totales: ";
+                getline(cin, m2TotStr);
+                cout << endl;
+                try {
+                    m2Tot = stof(m2TotStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            }
+            coinciden = (m2Tot == m2Edif);
+            if (!coinciden){
+                cout << "Los metros cuadrados totales y edificados no coinciden, vuelva a ingresarlos" << endl;
+            };
+        }
+        DataApartamento NuevoApto(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot);
+        try{
+            interface->ingresarApartamento(NuevoApto);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            delete interface;
+            return;
+        }
+    }
+    else if(opcionStr == "2"){
+        //si queria ingresar una casa.. pedir datos y hacer ingresar casa/..
+        cout << "A continuacion ingrese los datos de la casa:" << endl;
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
+            cout << "Cantidad de ambientes : ";
+            getline(cin, ambientesStr);
+            cout << endl;
+            try {
+                ambientes = stoi(ambientesStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        };
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
+            cout << "Cantidad de dormitorios: ";
+            getline(cin, dormitoriosStr);
+            cout << endl;
+            try {
+                dormitorios = stoi(dormitoriosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        };
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
+            cout << "Cantidad de banios: ";
+            getline(cin, baniosStr);
+            cout << endl;
+            try {
+                banios = stoi(baniosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        };
+
+        cout << "Tiene garage? S/N: ";
+        getline(cin, garageStr);
+        garage = garageStr == "S" || garageStr == "s";
+        cout << endl;
+        cout << "Direccion : ";
+        getline(cin, dir);
+        cout << endl;
+        bool coinciden = false;
+        while (!coinciden) {
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "M2 edificados : ";
+                getline(cin, m2EdifStr);
+                cout << endl;
+                try {
+                    m2Edif = stof(m2EdifStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
                 cout << "M2 totales : ";
                 getline(cin, m2TotStr);
-                m2Tot = stof(m2TotStr);
                 cout << endl;
+                try {
+                    m2Tot = stof(m2TotStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
                 cout << "M2 verdes : ";
                 getline(cin, m2VerStr);
-                m2Ver = stof(m2VerStr);
                 cout << endl;
-                coinciden = (m2Tot == (m2Edif + m2Ver));
-                if (!coinciden){
-                    cout << "Los metros cuadrados totales, edificados y verdes no son correctos, ingresarlos nuevamente" << endl;
-                };
-            }
-            DataCasa NuevaCasa(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
-            try{
-                interface->ingresarCasa(NuevaCasa);
-            }catch(invalid_argument e){
-                cout << e.what() << endl;
-                delete interface;
-                return;
-            }
-            break;
+                try {
+                    m2Ver = stof(m2VerStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };
+            coinciden = (m2Tot == (m2Edif + m2Ver));
+            if (!coinciden){
+                cout << "Los metros cuadrados totales, edificados y verdes no son correctos, ingresarlos nuevamente" << endl;
+            };
         }
-        default:
-            // nada...
-            break;
+        DataCasa NuevaCasa(ambientes,dormitorios,banios,garage,dir,m2Edif,m2Tot,m2Ver);
+        try{
+            interface->ingresarCasa(NuevaCasa);
+        }catch(invalid_argument e){
+            cout << e.what() << endl;
+            delete interface;
+            return;
+        }
     }
     cout << "Si desea Alquilar la propiedad ingrese '1', de lo contrario ingrese '2': ";
     getline(cin, opcionStr);
     opcion = stoi(opcionStr);
+    bool algoquenoserepita = false;
     if(opcion == 1){
-        cout << "Ingrese el precio de alquiler : ";
-        getline(cin, precioStr);
-        precio = stof(precioStr);
+        while (!algoquenoserepita){
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "Ingrese el precio de alquiler : ";
+                getline(cin, precioStr);
+                cout << endl;
+                try {
+                    precio = stof(precioStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };
+            algoquenoserepita = (precio >= 0);
+        };
         try{
             interface->ponerEnAlquiler(precio);
             cout << "Puesta en alquiler exitosa!" << endl;
@@ -637,9 +764,28 @@ void doAltaPropiedad(){
     getline(cin, opcionStr);
     opcion = stoi(opcionStr);
     if(opcion == 1){
-        cout << "Ingrese el precio de Venta : ";
-        getline(cin, precioStr);
-        precio = stof(precioStr);
+        while (!algoquenoserepita){
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "Ingrese el precio de venta: ";
+                getline(cin, precioStr);
+                cout << endl;
+                try {
+                    precio = stof(precioStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };
+            algoquenoserepita = (precio >= 0);
+        };
         try{
             interface->ponerEnVenta(precio);
             cout << "Puesta en venta exitosa!" << endl;
@@ -809,32 +955,25 @@ void doModificarPropiedad(){
     cout << "Cantidad de ambientes : ";
     getline(cin, ambientesStr);
     ambientes = stoi(ambientesStr);
-    cout << endl;
     cout << "Cantidad de dormitorios : ";
     getline(cin, dormitoriosStr);
     dormitorios = stoi(dormitoriosStr);
-    cout << endl;
     cout << "Cantidad de banios : ";
     getline(cin, baniosStr);
     banios = stoi(baniosStr);
-    cout << endl;
     cout << "Tiene garage? S/N: ";
     getline(cin, garageStr);
     garage = garageStr == "S" || garageStr == "s";
-    cout << endl;
     cout << "Direccion : ";
     getline(cin, dir);
-    cout << endl;
     bool coinciden = false;
     while (!coinciden) {
         cout << "M2 edificados : ";
         getline(cin, m2EdifStr);
         m2Edif = stof(m2EdifStr);
-        cout << endl;
         cout << "M2 totales : ";
         getline(cin, m2TotStr);
         m2Tot = stof(m2TotStr);
-        cout << endl;
         if (CasaOapto) {
             cout << "M2 verdes : ";
             getline(cin, m2VerStr);

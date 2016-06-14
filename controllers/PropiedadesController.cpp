@@ -88,12 +88,12 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
 }
 
 DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
-
-    if(dynamic_cast<Casa*>(zActual->SeleccionarPropiedad(codigoPropiedad))){
-        DataCasa* c = dynamic_cast<Casa*>(zActual->SeleccionarPropiedad(codigoPropiedad))->CrearPtrDataPropiedad();
+    this->pActual = buscarPropiedadPriv(codigoPropiedad);
+    if(dynamic_cast<Casa*>(this->pActual)){
+        DataCasa* c = dynamic_cast<Casa*>(this->pActual)->CrearPtrDataPropiedad();
         return c;
     }else{
-        DataApartamento* d = dynamic_cast<Apartamento*>(zActual->SeleccionarPropiedad(codigoPropiedad))->CrearPtrDataPropiedad();
+        DataApartamento* d = dynamic_cast<Apartamento*>(this->pActual)->CrearPtrDataPropiedad();
         return d;
     }
 }

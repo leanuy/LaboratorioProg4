@@ -28,11 +28,12 @@ class Inmobiliaria: public Usuario {
 private:
     string nombre;
     string direccion;
-    map<string, Conversacion*> conversaciones;
     map<string,Alquiler*> alquileres;
     map<string,Venta*> ventas;
     map<string,Propiedad*> propiedades;
     Inmobiliaria(string nombre, string mail, string direccion, string password);
+    Propiedad *SeleccionarPropiedad(string idPropiedad);
+    Conversacion *SeleccionarConversacion(string basic_string);
 public:
     Inmobiliaria(string nombre, string mail, string direccion);
     bool ExisteConversacion();
@@ -40,17 +41,19 @@ public:
     void setNombre(string name);
     string getDireccion();
     void setDireccion(string dir);
-    void AddConversacion(string idInteresado, Conversacion* conversacion);
-    list<DataConversacion> ListarConversaciones();
-    Conversacion* SeleccionarConversacion(string idConversacion);
     void Alquilar(float precio, Propiedad* p);
     void Vender(float precio, Propiedad* p);
     bool esTipo(string tipo);
     void DesvincularPropiedad(string code);
     void AddPropiedad(Propiedad* p);
+    list <DataConversacion> ListarConversaciones();
     ~Inmobiliaria();
 
     friend class Database;
+    friend class ConversacionesController;
+
+
+
 };
 
 #endif //LAB6_INMOBILIARIA_H

@@ -20,12 +20,14 @@ DataPropiedad Apartamento::CrearDataPropiedad() {
     DataApartamento data = DataApartamento(this->getAmbientes(), this->getDormitorios(), this->getBanios(),
                                           this->tieneGarage(), this->getDireccion(),
                                           this->getMetrosCuadradosEdificados(), this->getMetrosCuadradosTotales());
-    data.setCodigo(this->getCodigo());
+
     Sesion* sesion = Sesion::getInstance();
     if(sesion->esTipo("interesado")){
-        Database* db = Database::getInstance();
-        Interesado* interesado = dynamic_cast<Interesado*>(db->getUsuario(sesion->getEmail()));
-        data.setCantidadMensajes(interesado->getCantidadMensajes(this->getInmobiliaria()->getEmail(), this->getCodigo()));
+        data.setCodigo(this->getCodigo());
+        map<string, Conversacion*>::iterator it = this->conversaciones.find(this->getCodigo()+"-"+sesion->getEmail());
+        if(it != this->conversaciones.end()){
+            data.setCantidadMensajes(it->second->CantidadMensajes());
+        }
     }
     return data;
 }

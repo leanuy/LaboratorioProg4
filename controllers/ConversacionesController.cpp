@@ -1,4 +1,4 @@
-
+#include <cstring>
 #include "ConversacionesController.h"
 #include "../Sesion.h"
 #include "../model/Interesado.h"
@@ -48,11 +48,11 @@ string ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
     Sesion* sesion = Sesion::getInstance();
     Interesado* interesado = dynamic_cast<Interesado*>(sesion->getUsuario());
-    this->cActual = this->pActual->getInmobiliaria()->SeleccionarConversacion(interesado->getEmail());
+    this->cActual = this->pActual->SeleccionarConversacion(interesado->getEmail());
     if(this->cActual == NULL){
         this->cActual = new Conversacion;
-        this->pActual->getInmobiliaria()->AddConversacion(interesado->getEmail(), this->cActual);
-        interesado->AddConversacion(this->pActual->getInmobiliaria()->getEmail(), this->cActual);
+        this->pActual->AddConversacion(this->pActual->getCodigo() + "-"+ interesado->getEmail(), this->cActual);
+        interesado->AddConversacion(this->pActual->getCodigo(), this->cActual);
     }
     return this->pActual->getInmobiliaria()->getEmail();
 }

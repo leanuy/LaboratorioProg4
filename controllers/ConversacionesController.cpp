@@ -2,6 +2,9 @@
 #include "ConversacionesController.h"
 #include "../Sesion.h"
 #include "../model/Interesado.h"
+#include "../model/Casa.h"
+#include "../model/Apartamento.h"
+#include "../datatypes/DataInmobiliaria.h"
 
 ConversacionesController::ConversacionesController(){
     this->dActual = NULL;
@@ -46,6 +49,9 @@ list<DataPropiedad> ConversacionesController::ListarPropiedades(){
 }
 string ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
+    if(this->pActual == NULL){
+        throw std::invalid_argument("La propiedad que intentas seleccionar no pertenece a la zona");
+    }
     Sesion* sesion = Sesion::getInstance();
     Interesado* interesado = dynamic_cast<Interesado*>(sesion->getUsuario());
     this->cActual = this->pActual->SeleccionarConversacion(this->pActual->getCodigo() + "-"+ interesado->getEmail());
@@ -81,6 +87,17 @@ void ConversacionesController::AgregarMensaje(string mensaje){
         codigoPropiedad = "";
     this->cActual->AgregarMensaje(sesion->getUsuario()->esTipo("interesado"), mensaje, codigoPropiedad);
     this->cActual->setLastUpdate();
+}
+
+string ConversacionesController::getPropiedadActual(){
+    if(this->pActual != NULL){
+        return this->pActual->getCodigo();
+    }else{
+
+    }
+}
+string ConversacionesController::getInmobiliariaActual(){
+    return this->pActual->getInmobiliaria()->getEmail();
 }
 ConversacionesController::~ConversacionesController(){
     //No se crea memoria dinamica que deba ser destruida al destruir el controller.

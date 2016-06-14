@@ -25,6 +25,8 @@ public:
     virtual void SeleccionarConversacion(string idConversacion) = 0;
     virtual list<DataMensaje> ListarMensajes() = 0;
     virtual void AgregarMensaje(string mensaje) = 0;
+    virtual string getPropiedadActual()=0;
+    virtual string getInmobiliariaActual()=0;
     virtual ~IConversaciones();
 };
 

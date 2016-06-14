@@ -916,8 +916,9 @@ void doModificarPropiedad(){
     string code;
     bool CasaOapto = false; // true si es casa, false si es apto
     string ambientesStr, dormitoriosStr, baniosStr, garageStr;
-    int ambientes, dormitorios, banios;
+    int ambientes, dormitorios, banios, counter;
     bool garage = false;
+    bool datoNumerico = false;
     string letra, dir;
     string m2EdifStr, m2TotStr, m2VerStr;
     float m2Edif, m2Tot, m2Ver;
@@ -952,33 +953,131 @@ void doModificarPropiedad(){
     }
     delete p;
     cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;
-    cout << "Cantidad de ambientes : ";
-    getline(cin, ambientesStr);
-    ambientes = stoi(ambientesStr);
-    cout << "Cantidad de dormitorios : ";
-    getline(cin, dormitoriosStr);
-    dormitorios = stoi(dormitoriosStr);
-    cout << "Cantidad de banios : ";
-    getline(cin, baniosStr);
-    banios = stoi(baniosStr);
+    counter = 0;
+    datoNumerico = false;
+    while(!datoNumerico) {
+        cout << "Cantidad de ambientes : ";
+        getline(cin, ambientesStr);
+        cout << endl;
+        try {
+            ambientes = stoi(ambientesStr);
+            datoNumerico = true;
+        }catch(invalid_argument e){
+            cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+            if(counter == 3){
+                cout << "Alta cancelada" << endl;
+                delete interface;
+                return;
+            }
+            counter++;
+        }
+    };
+    counter = 0;
+    datoNumerico = false;
+    while(!datoNumerico) {
+        cout << "Cantidad de dormitorios: ";
+        getline(cin, dormitoriosStr);
+        cout << endl;
+        try {
+            dormitorios = stoi(dormitoriosStr);
+            datoNumerico = true;
+        }catch(invalid_argument e){
+            cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+            if(counter == 3){
+                cout << "Alta cancelada" << endl;
+                delete interface;
+                return;
+            }
+            counter++;
+        }
+    };
+    counter = 0;
+    datoNumerico = false;
+    while(!datoNumerico) {
+        cout << "Cantidad de banios: ";
+        getline(cin, baniosStr);
+        cout << endl;
+        try {
+            banios = stoi(baniosStr);
+            datoNumerico = true;
+        }catch(invalid_argument e){
+            cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+            if(counter == 3){
+                cout << "Alta cancelada" << endl;
+                delete interface;
+                return;
+            }
+            counter++;
+        }
+    };
+
     cout << "Tiene garage? S/N: ";
     getline(cin, garageStr);
     garage = garageStr == "S" || garageStr == "s";
+    cout << endl;
     cout << "Direccion : ";
     getline(cin, dir);
+    cout << endl;
     bool coinciden = false;
     while (!coinciden) {
-        cout << "M2 edificados : ";
-        getline(cin, m2EdifStr);
-        m2Edif = stof(m2EdifStr);
-        cout << "M2 totales : ";
-        getline(cin, m2TotStr);
-        m2Tot = stof(m2TotStr);
-        if (CasaOapto) {
-            cout << "M2 verdes : ";
-            getline(cin, m2VerStr);
-            m2Ver = stof(m2VerStr);
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
+            cout << "M2 edificados : ";
+            getline(cin, m2EdifStr);
             cout << endl;
+            try {
+                m2Edif = stof(m2EdifStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        };
+        counter = 0;
+        datoNumerico = false;
+        while(!datoNumerico) {
+            cout << "M2 totales : ";
+            getline(cin, m2TotStr);
+            cout << endl;
+            try {
+                m2Tot = stof(m2TotStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        };
+        if (CasaOapto) {
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "M2 verdes : ";
+                getline(cin, m2VerStr);
+                cout << endl;
+                try {
+                    m2Ver = stof(m2VerStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            };;
             coinciden = (m2Tot == (m2Edif + m2Ver));
             if (!coinciden){
                 cout << "Los metros cuadrados totales, edificados y verdes no son correctos, vuelva a ingresarlos" << endl;

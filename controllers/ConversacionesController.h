@@ -38,7 +38,8 @@ public:
     //Interesado e Inmobiliaria (indiferente, no es necesario hacer casteo)
     list<DataMensaje> ListarMensajes();
     void AgregarMensaje(string mensaje);
-
+    string getPropiedadActual();
+    string getInmobiliariaActual();
     ~ConversacionesController();
 };
 

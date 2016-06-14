@@ -74,8 +74,6 @@ Propiedad* Zona::SeleccionarPropiedad(string idPropiedad) {
     map<string,Propiedad*>::iterator it = propiedades.find(idPropiedad);
     if(it == propiedades.end()){
         return NULL;
-        //todo: thow exeption no se encontro la propiedad que se intento seleccionar
-        //nota leandro: si tiras excepcion aca no sigue buscando en otra zona. se debe tirar en el bucle principal
     }
     return it->second;
 }

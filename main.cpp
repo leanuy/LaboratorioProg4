@@ -1126,8 +1126,8 @@ void doEnviarMensaje(){
     Factory* factroy = Factory::getInstance();
     IConversaciones* interface = factroy->getIConversaciones();
     Sesion* sesion = Sesion::getInstance();
-    string idInteresado;
-    string idInmobiliaria;
+    string idConversacion;
+    string codigoPropiedad;
 
     if(sesion->esTipo("interesado")){
         string idDepartamento, idZona, idPropiedad;
@@ -1187,6 +1187,7 @@ void doEnviarMensaje(){
         cout << "Propiedades :" << endl;
         for(list<DataPropiedad>::iterator it = propiedades.begin(); it != propiedades.end(); it++){
             cout << "Codigo : " << it->getCodigo() << endl;
+            cout << "Inmobiliaria : " << it->getInmobiliaria().getMail() << endl;
             cout << "Direccion : " << it->getDireccion() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
             if(it->getCantidadMensajes() > 0){
@@ -1198,7 +1199,7 @@ void doEnviarMensaje(){
         getline(cin, idPropiedad);
         cout << endl;
         try {
-            idInmobiliaria = interface->SeleccionarPropiedad(idPropiedad);
+            codigoPropiedad = interface->SeleccionarPropiedad(idPropiedad);
         }catch(invalid_argument e){
             cout << e.what() << endl;
             return;
@@ -1212,26 +1213,40 @@ void doEnviarMensaje(){
             cout << e.what() << endl;
         }
         cout << "Conversaciones :" << endl;
-        for(list<DataConversacion>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++){
-            cout << "Codigo de interesado : " << it->getInteresado() << endl;
+        for(list<DataConversacion>::reverse_iterator it = conversaciones.rbegin(); it != conversaciones.rend(); it--){
+            cout << "Codigo de la conversacion : " << it->getInteresado() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
             cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
             cout << "----------------------------------------" << endl;
         }
         cout << "Ingrese el codigo del interesado a seleccionar :";
-        getline(cin, idInteresado);
+        getline(cin, idConversacion);
         cout << endl;
         try {
-            interface->SeleccionarConversacion(idInteresado);
+            interface->SeleccionarConversacion(idConversacion);
         }catch(invalid_argument e){
             cout << e.what() << endl;
             delete interface;
             return;
         }
     }
+    codigoPropiedad = idConversacion.substr(0,idConversacion.find("-"));
+    string idInteresado = idConversacion.substr(idConversacion.find("-")+1);
+    cout << idInteresado <<endl;
     string enviarMensaje, mensaje;
     list<DataMensaje> mensajes = interface->ListarMensajes();
-    for(list<DataMensaje>::iterator it = mensajes.begin(); it != mensajes.end(); it++){
+    list<DataMensaje>::reverse_iterator it = mensajes.rbegin();
+    if(sesion->esTipo("interesado")){
+        cout << "Conversacion con " << interface->getInmobiliariaActual() << " por la propiedad " << interface->getPropiedadActual() << endl;
+        cout << "========================================================" << endl;
+    }else{
+        cout << "Conversacion con " << idInteresado << " por la propiedad " << codigoPropiedad << endl;
+        cout << "========================================================" << endl;
+    }
+    if(it == mensajes.rend()){
+        cout << "No hay mensajes en la conversacion." << endl;
+    }
+    while( it != mensajes.rend()){
         cout << it->getTOA() << endl;
         if(sesion->esTipo("interesado")&&it->isInteresado()){
             cout << "Yo : " << it->getIdPropiedad() << endl;
@@ -1240,10 +1255,11 @@ void doEnviarMensaje(){
         }else if(!sesion->esTipo("interesado")&&!it->isInteresado()){
             cout << "Yo : "<< endl;
         }else{
-            cout << idInmobiliaria<<" : " << it->getIdPropiedad() << endl;
+            cout << interface->getInmobiliariaActual()<<" : " << it->getIdPropiedad() << endl;
         }
         cout << it->getTexto() << endl;
         cout << "----------------------------------------" << endl;
+        it++;
     }
     cout << "Deseas enviar un mensaje en esta conversacion?(si/no) :";
     getline(cin, enviarMensaje);

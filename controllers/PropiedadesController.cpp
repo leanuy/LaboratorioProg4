@@ -17,18 +17,7 @@ void PropiedadesController::SeleccionarDepartamento(string idDepartamento) {
 }
 
 void PropiedadesController::SeleccionarZona(string idZona) {
-    Database* db = Database::getInstance();
-    map<string,Departamento*> deptos = db->getDepartamentos();
-    map<string,Departamento*>::iterator it = deptos.begin();
-    Zona* z = NULL;
-    while((it != deptos.end())&&(z == NULL)){
-        z = it->second->SeleccionarZona(idZona);
-        it++;
-    }
-    if(it == deptos.end()){
-        throw std::invalid_argument("La zona no existe en el sistema");
-    }
-    this->zActual = z;
+    this->zActual= this->dActual->SeleccionarZona(idZona);
 }
 
 void PropiedadesController::SeleccionarEdificio(string idEdificio) {

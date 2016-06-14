@@ -104,15 +104,19 @@ list <DataConversacion> Inmobiliaria::ListarConversaciones() {
     map<string, Propiedad*>::iterator it = this->propiedades.begin();
     while(it != this->propiedades.end()){
         it->second->ListarConversaciones(l);
+        it++;
     }
     return l;
 }
 
 Conversacion *Inmobiliaria::SeleccionarConversacion(string codigoConversacion) {
     Conversacion* conversacion = NULL;
+    Propiedad* propiedad = NULL;
     map<string, Propiedad*>::iterator it = this->propiedades.begin();
     while(it != this->propiedades.end() && conversacion == NULL){
-        conversacion = it->second->SeleccionarConversacion(codigoConversacion);
+        propiedad = it->second;
+        conversacion = propiedad->SeleccionarConversacion(codigoConversacion);
+        it++;
     }
     if(conversacion == NULL){
         throw std::invalid_argument("No existe la conversacion que intentas seleccionar");

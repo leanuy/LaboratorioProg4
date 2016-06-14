@@ -147,7 +147,7 @@ list<DataConversacion> Propiedad::ListarConversaciones(list<DataConversacion> & 
 Conversacion* Propiedad::SeleccionarConversacion(string idConversacion){
     map<string,Conversacion*>::iterator it = this->conversaciones.find(idConversacion);
     if(it == this->conversaciones.end()){
-        throw std::invalid_argument("No hay conversaciones con ese interesado");
+        return NULL;
     }
     return it->second;
 }

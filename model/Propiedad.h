@@ -67,7 +67,6 @@ public:
 
     void LinkConversacion(Conversacion* c);
     bool ExisteConversacion();
-    //SET(DataMensaje) ListarMensajes();
     void InsertarNuevoMensaje(string mensaje);
     DataDepartamento ObtenerDepartamento();
     void Actualizar(DataPropiedad p);

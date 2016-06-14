@@ -48,7 +48,7 @@ string ConversacionesController::SeleccionarPropiedad(string idPropiedad){
     this->pActual = this->zActual->SeleccionarPropiedad(idPropiedad);
     Sesion* sesion = Sesion::getInstance();
     Interesado* interesado = dynamic_cast<Interesado*>(sesion->getUsuario());
-    this->cActual = this->pActual->SeleccionarConversacion(interesado->getEmail());
+    this->cActual = this->pActual->SeleccionarConversacion(this->pActual->getCodigo() + "-"+ interesado->getEmail());
     if(this->cActual == NULL){
         this->cActual = new Conversacion;
         this->pActual->AddConversacion(this->pActual->getCodigo() + "-"+ interesado->getEmail(), this->cActual);

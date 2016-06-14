@@ -32,14 +32,14 @@ DataCasa Casa::CrearDataPropiedad() {
         data.setVenta(this->getVenta()->getPrecio());
     }
     data.setInmobiliaria(this->getInmobiliaria()->getNombre(),this->getInmobiliaria()->getEmail(),this->getInmobiliaria()->getDireccion());
-    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
 
     Sesion* sesion = Sesion::getInstance();
     if(sesion->esTipo("interesado")){
-        data.setCodigo(this->getCodigo());
         map<string, Conversacion*>::iterator it = this->conversaciones.find(this->getCodigo()+"-"+sesion->getEmail());
         if(it != this->conversaciones.end()){
             data.setCantidadMensajes(it->second->CantidadMensajes());
+        }else{
+            data.setCantidadMensajes(0);
         }
     }
 
@@ -52,7 +52,6 @@ DataCasa* Casa::CrearPtrDataPropiedad() {
                              this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
 
     data->setCodigo(this->getCodigo());
-    //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
     return data;
 }
 

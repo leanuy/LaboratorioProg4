@@ -110,7 +110,7 @@ void Zona::eliminarPropiedad(string codigo) {
 }
 
 list <DataPropiedad> Zona::ListarPropiedadesEstaticas() {
-    list<DataPropiedad> l; // fixme ver entre todos.. pasaria a lista de DataPropiedad
+    list<DataPropiedad> l;
     map<string,Propiedad*>::iterator it = this->propiedades.begin();
     if(it == propiedades.end()){
         throw std::invalid_argument("La zona no tiene propiedades asignadas");

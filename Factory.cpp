@@ -29,3 +29,7 @@ IConversaciones* Factory::getIConversaciones(){
 IUsuarios* Factory::getIUsuarios(){
     return new UsuariosController;
 }
+
+ISesion *Factory::getISesion() {
+    return Sesion::getInstance();
+}

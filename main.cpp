@@ -2,7 +2,7 @@
 #include "Database.h"
 
 #include "interfaces/ILog.h"
-#include "Sesion.h"
+#include "interfaces/ISesion.h"
 #include "Factory.h"
 
 using namespace std;
@@ -26,7 +26,8 @@ void doCerrarSesion();//Usuario
 int main() {
     bool salir = false;
     string com, opcion;
-    Sesion *sesion = Sesion::getInstance();
+    Factory* factory = Factory::getInstance();
+    ISesion *sesion = factory->getISesion();
     cout << "BIENVENIDO AL SISTEMA DE INMOBILIARIAS MICASA" << endl;
     cout << "---------------------------------------------" << endl;
     while (!salir) {
@@ -52,7 +53,8 @@ int main() {
     return 0;
 }
 void doMenu(){
-    Sesion* sesion = Sesion::getInstance();
+    Factory* factory = Factory::getInstance();
+    ISesion *sesion = factory->getISesion();
     cout << "---------------------------------------------" << endl;
     if(sesion->isLogged()){
         if(sesion->esTipo("admin"))
@@ -77,7 +79,8 @@ void doMenu(){
     }
 }
 bool doComando(){
-    Sesion* sesion = Sesion::getInstance();
+    Factory* factory = Factory::getInstance();
+    ISesion *sesion = factory->getISesion();
 
     string command;
     cout << "Ingresar una opcion del menu: ";
@@ -1125,7 +1128,7 @@ void doEliminarPropiedad(){
 void doEnviarMensaje(){
     Factory* factroy = Factory::getInstance();
     IConversaciones* interface = factroy->getIConversaciones();
-    Sesion* sesion = Sesion::getInstance();
+    ISesion *sesion = factroy->getISesion();
     string idConversacion;
     string codigoPropiedad;
 

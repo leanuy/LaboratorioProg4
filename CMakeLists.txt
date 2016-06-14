@@ -72,5 +72,5 @@ set(SOURCE_FILES main.cpp
         Database.h
         Sesion.cpp
         Sesion.h
-        datatypes/DataUsuario.cpp datatypes/DataUsuario.h datatypes/DataInteresado.cpp datatypes/DataInteresado.h datatypes/DataReporteInmobiliaria.cpp datatypes/DataReporteInmobiliaria.h datatypes/DataPropPorZona.cpp datatypes/DataPropPorZona.h datatypes/DataPropPorDepro.cpp datatypes/DataPropPorDepro.h)
+        datatypes/DataUsuario.cpp datatypes/DataUsuario.h datatypes/DataInteresado.cpp datatypes/DataInteresado.h datatypes/DataReporteInmobiliaria.cpp datatypes/DataReporteInmobiliaria.h datatypes/DataPropPorZona.cpp datatypes/DataPropPorZona.h datatypes/DataPropPorDepro.cpp datatypes/DataPropPorDepro.h interfaces/ISesion.cpp interfaces/ISesion.h)
 add_executable(Lab6 ${SOURCE_FILES})

@@ -38,10 +38,12 @@ int main() {
                 if(sesion->isLogged()){
                     doMenu();
                 }
-            }else{
+            }else if(com == "salir"){
                 cout << "El programa se va a cerrar, desea salir? [S/N]: ";
                 getline(cin,opcion);
                 salir = ((opcion == "S")||(opcion == "s"));
+            }else{
+                cout << "Comando no reconocido, intente nuevamente" << endl;
             }
         } else {
             salir = doComando();
@@ -78,7 +80,6 @@ bool doComando(){
     Sesion* sesion = Sesion::getInstance();
 
     string command;
-    //todo: pedir comando
     cout << "Ingresar una opcion del menu: ";
     getline(cin,command);
     cout << endl;
@@ -96,7 +97,6 @@ bool doComando(){
     else if(command == "Enviar Mensaje"){if(sesion->esTipo("interesado")||sesion->esTipo("inmobiliaria"))doEnviarMensaje();return false;}
     else if(command == "Obtener Reporte Inmobiliarias"){if(sesion->esTipo("admin"))doObtenerReporteInmobiliarias();return false;}
     else if(command == "Cerrar Sesion"){doCerrarSesion();return false;}
-    //else if(command == ""){return false;}
     else if(command == "salir"){return true;}
     else {return false;}
 }
@@ -108,6 +108,7 @@ void doIniciarSesion(){
     string psw1, psw2;
     bool iguales;
     bool incorrecta;
+    int counter = 0;
     Factory* factroy = Factory::getInstance();
     ILog* interface = factroy->getILog();
     cout << "Ingrese su Email: ";
@@ -124,7 +125,7 @@ void doIniciarSesion(){
     if (first){
         iguales = false;
         cout << "Es la primera vez que ingresa al sistema, se le pedira que ingrese una contrasenia y luego la confirme" << endl;
-        while(! iguales) {
+        while(!iguales && (counter < 3)) {
             cout << "Ingresar Contrasenia:";
             getline(cin, psw1);
             cout << endl;
@@ -134,18 +135,22 @@ void doIniciarSesion(){
             iguales = interface->SetearPassword(psw1, psw2);
             if (! iguales){
                 cout << "Las contrasenias ingresadas no coinciden, vuelva a intentar" << endl;
+                counter++;
+                cout << "Le quedan " << 3 - counter << " intentos." << endl;
             };
         }
     }
     else{
         incorrecta = true;
-        while (incorrecta) {
+        while (incorrecta && (counter < 3)) {
             cout << "Ingresar Contrasenia:";
             getline(cin, psw1);
             cout << endl;
             incorrecta = !interface->IngresarPassword(psw1);
             if (incorrecta) {
-                cout << "La contrasenia ingresada es incorrecta" << endl;
+                cout << "La contrasenia ingresada es incorrecta, vuelva e intentar" << endl;
+                counter++;
+                cout << "Le quedan " << 3 - counter << " intentos." << endl;
             };
         }
     };
@@ -188,6 +193,10 @@ void doAltaInmobiliaria(){
         getline(cin, confirmar);
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
+        if(confirmar == "n" || confirmar == "N"){
+            delete interface;
+            return;
+        }
     }
     try {
         interface->IngresarInmobiliaria(nombre, mail, direccion);
@@ -222,12 +231,9 @@ void doAltaInteresado(){
         getline(cin, edadStr);
         edad = stoi(edadStr);
         cout << endl;
-        cout << "Ingrese el email: ";
-        getline(cin, email);
-        cout << endl;
         bool existe = true;
         while (existe) {
-            cout << "Ingrese el mail de la inmobiliaria:";
+            cout << "Ingrese el mail:";
             getline(cin, email);
             cout << endl;
             existe = interface->CheckEmail(email);
@@ -244,6 +250,10 @@ void doAltaInteresado(){
         getline(cin, confirmar);
         cout << endl;
         cambiar = (confirmar == "s" || confirmar == "S");
+        if(confirmar == "n" || confirmar == "N"){
+            delete interface;
+            return;
+        }
     }
     try{
         interface->DarAltaInteresado(nombre,apellido,email,edad);
@@ -257,24 +267,70 @@ void doAltaInteresado(){
     delete interface;
 }
 
-void doAltaEdificio(){ //todo: No tiene interface asignada
-    Factory* factroy = Factory::getInstance();
-    string name, pisosStr, gastosStr;
+void doAltaEdificio() {
+    Factory *factroy = Factory::getInstance();
+    string name, pisosStr, gastosStr, confirmar;
+    bool cambiar = false;
+    bool datoNumerico = false;
     int pisos;
+    int counter = 0;
     float gastosComunes;
-    IPropiedades* interface = factroy->getIPropiedades();
+    IPropiedades *interface = factroy->getIPropiedades();
     cout << "Ingrese los datos del nuevo edificio" << endl;
-    cout << "Nombre: ";
-    getline(cin, name);
-    cout << "Pisos:";
-    getline(cin,pisosStr);
-    pisos = stoi(pisosStr);
-    cout << "Gastos Comunes: ";
-    getline(cin,gastosStr);
-    gastosComunes = stof(gastosStr);
+    while (!cambiar){
+        cout << "Nombre: ";
+        getline(cin, name);
+        while(!datoNumerico) {
+            cout << "Pisos:";
+            getline(cin, pisosStr);
+            try{
+                pisos = stoi(pisosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        }
+        datoNumerico = false;
+        counter = 0;
+        while(!datoNumerico) {
+            cout << "Gastos Comunes: ";
+            getline(cin, gastosStr);
+            try{
+                gastosComunes = stof(gastosStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counter == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counter++;
+            }
+        }
+        cout << "Estos son los datos ingresados:" << endl;
+        cout << "Nombre: " << name << endl;
+        cout << "Pisos: " << pisosStr << endl;
+        cout << "Gastos comunes: " << gastosStr << endl;
+        cout << "Desea confirmar el interesado? [S/N] ";
+        getline(cin, confirmar);
+        cout << endl;
+        cambiar = (confirmar == "s" || confirmar == "S");
+        if (confirmar == "n" || confirmar == "N") {
+            delete interface;
+            return;
+        }
+    }
     DataEdificio edi(name,pisos,gastosComunes);
     try{
         interface->IngresarEdificio(edi);
+        cout << "Edificio dado de alta con exito" << endl;
     }catch(invalid_argument e){
         cout << e.what() << endl;
         delete interface;

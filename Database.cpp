@@ -65,19 +65,52 @@ Edificio* Database::RemoveEdificio(string idEdificio){
 }
 
 void Database::AddData(){
+
     //ADD ADMIN:
+
     this->AddUsuario(new Admin());
+
     //ADD INMOBILIARIAS:
-    this->AddUsuario(new Inmobiliaria("Selmo", "inm1@sis.com", "Benitez 1134", "pass4"));
-    this->AddUsuario(new Inmobiliaria("Garcia", "inm2@sis.com", "Rivera 1340", "pass5"));
-    this->AddUsuario(new Inmobiliaria("Invernissi", "inm3@sis.com", "Comercio 234", "pass6"));
-    this->AddUsuario(new Inmobiliaria("Solei", "inm4@sis.com", "Inca 3456", "pass7"));
+
+    Usuario* u;
+    u = new Inmobiliaria("Selmo", "inm1@sis.com", "Benitez 1134", "pass4");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Inmobiliaria("Garcia", "inm2@sis.com", "Rivera 1340", "pass5");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Inmobiliaria("Invernissi", "inm3@sis.com", "Comercio 234", "pass6");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Inmobiliaria("Solei", "inm4@sis.com", "Inca 3456", "pass7");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
     //ADD INTERESADOS:
-    this->AddUsuario(new Interesado("Julio", "Chaz", "int1@sis.com", 34, "passt1"));
-    this->AddUsuario(new Interesado("Andrea", "Berruti", "int2@sis.com", 56, "passt2"));
-    this->AddUsuario(new Interesado("Sonia", "Braga", "int3@sis.com", 45, "passt3"));
-    this->AddUsuario(new Interesado("Alfonso", "Mier", "int4@sis.com", 30, "passt4"));
-    this->AddUsuario(new Interesado("Juan", "Alpi", "int5@sis.com", 60, "passt5"));
+
+    u = new Interesado("Julio", "Chaz", "int1@sis.com", 34, "passt1");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Interesado("Andrea", "Berruti", "int2@sis.com", 56, "passt2");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Interesado("Sonia", "Braga", "int3@sis.com", 45, "passt3");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Interesado("Alfonso", "Mier", "int4@sis.com", 30, "passt4");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
+    u = new Interesado("Juan", "Alpi", "int5@sis.com", 60, "passt5");
+    u->setFirstTime(false);
+    this->AddUsuario(u);
+
     //ADD EDIFICIOS:
     this->AddEdificio(new Edificio("Apache Valiente", 4, 1300));
     this->AddEdificio(new Edificio("Mebeo", 20, 755));

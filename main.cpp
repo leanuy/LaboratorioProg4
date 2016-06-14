@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Database.h"
 
 #include "interfaces/ILog.h"
 #include "Sesion.h"

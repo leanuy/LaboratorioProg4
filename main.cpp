@@ -622,10 +622,14 @@ void doAltaPropiedad(){
     cout << "Si desea Alquilar la propiedad ingrese '1', de lo contrario ingrese '2': ";
     getline(cin, opcionStr);
     opcion = stoi(opcionStr);
+    bool algoquenoserepita = false;
     if(opcion == 1){
-        cout << "Ingrese el precio de alquiler : ";
-        getline(cin, precioStr);
-        precio = stof(precioStr);
+        while (!algoquenoserepita){
+            cout << "Ingrese el precio de alquiler : ";
+            getline(cin, precioStr);
+            precio = stof(precioStr);
+            algoquenoserepita = (precio >= 0);
+        };
         try{
             interface->ponerEnAlquiler(precio);
             cout << "Puesta en alquiler exitosa!" << endl;
@@ -637,9 +641,12 @@ void doAltaPropiedad(){
     getline(cin, opcionStr);
     opcion = stoi(opcionStr);
     if(opcion == 1){
-        cout << "Ingrese el precio de Venta : ";
-        getline(cin, precioStr);
-        precio = stof(precioStr);
+        while (!algoquenoserepita){
+            cout << "Ingrese el precio de Venta: ";
+            getline(cin, precioStr);
+            precio = stof(precioStr);
+            algoquenoserepita = (precio >= 0);
+        };
         try{
             interface->ponerEnVenta(precio);
             cout << "Puesta en venta exitosa!" << endl;

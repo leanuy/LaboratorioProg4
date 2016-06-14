@@ -93,7 +93,7 @@ string ConversacionesController::getPropiedadActual(){
     if(this->pActual != NULL){
         return this->pActual->getCodigo();
     }else{
-
+        throw std::invalid_argument("Propiedad Actual no existe");
     }
 }
 string ConversacionesController::getInmobiliariaActual(){

@@ -358,6 +358,7 @@ void doAltaPropiedad(){
     string id, codZona, codProp, edificioSeleccionado;
     string ambientesStr, dormitoriosStr, baniosStr;
     int ambientes, dormitorios, banios;
+    bool datoNumerico = false;
     string garageStr;
     bool garage = false;
     string letra, dir;
@@ -366,7 +367,7 @@ void doAltaPropiedad(){
     string precioStr;
     float precio;
     string opcionStr, optionStr;
-    int opcion, option;
+    int opcion, option, counter;
     //listar los departamentos y seleccionar
     list <DataDepartamento> deptos;
     try {
@@ -452,9 +453,9 @@ void doAltaPropiedad(){
             //si quier ingresar nuevo edificio correr alta edificio. y dejarlo como edificio actual.
             cout << "Si desea ingresar un nuevo edificio al sistema ingrese '1', de lo contrario ingrese 2 : ";
             getline(cin, optionStr);
-            option = stoi(optionStr);
+            //option = stoi(optionStr);
             cout << endl;
-            if(option == 1){
+            if(optionStr == "1"){
                 doAltaEdificio(); // ver donde poner esta alta. si dejarlo ya en la zona actual y que sea distinto al caso de uso Alta edificio
             }
             cout << "Ingrese el edificio seleccionado: ";
@@ -471,18 +472,60 @@ void doAltaPropiedad(){
 
             //luego pedir los daqtos del apartamento.
             cout << "A continuacion ingrese los datos del apartamento:" << endl;
-            cout << "Cantidad de ambientes : ";
-            getline(cin, ambientesStr);
-            ambientes = stoi(ambientesStr);
-            cout << endl;
-            cout << "Cantidad de dormitorios : ";
-            getline(cin, dormitoriosStr);
-            dormitorios = stoi(dormitoriosStr);
-            cout << endl;
-            cout << "Cantidad de banios : ";
-            getline(cin, baniosStr);
-            banios = stoi(baniosStr);
-            cout << endl;
+            counter = 0;
+            while(!datoNumerico) {
+                cout << "Cantidad de ambientes : ";
+                getline(cin, ambientesStr);
+                try {
+                    ambientes = stoi(ambientesStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            }
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "Cantidad de dormitorios : ";
+                getline(cin, dormitoriosStr);
+                try {
+                    dormitorios = stoi(dormitoriosStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            }
+            counter = 0;
+            datoNumerico = false;
+            while(!datoNumerico) {
+                cout << "Cantidad de banios : ";
+                getline(cin, baniosStr);
+                try {
+                    banios = stoi(baniosStr);
+                    datoNumerico = true;
+                }catch(invalid_argument e){
+                    cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                    if(counter == 3){
+                        cout << "Alta cancelada" << endl;
+                        delete interface;
+                        return;
+                    }
+                    counter++;
+                }
+            }
+
             cout << "Tiene garage? S/N: ";
             getline(cin, garageStr);
             garage = ((garageStr == "s")||(garageStr == "S"));
@@ -492,14 +535,19 @@ void doAltaPropiedad(){
             cout << endl;
             bool coinciden = false;
             while (!coinciden){
-                cout << "M2 edificados : ";
+
+                cout << "M2 edificados : ";           // todo seguir poniendo lo de los numeros.
                 getline(cin, m2EdifStr);
                 m2Edif = stof(m2EdifStr);
+
                 cout << endl;
+
                 cout << "M2 totales : ";
                 getline(cin, m2TotStr);
                 m2Tot = stof(m2TotStr);
+
                 cout << endl;
+
                 coinciden = (m2Tot == m2Edif);
                 if (!coinciden){
                     cout << "Los metros cuadrados totales y edificados no coinciden, vuelva a ingresarlos" << endl;

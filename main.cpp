@@ -217,6 +217,8 @@ void doAltaInteresado(){
     int edad;
     string email;
     bool cambiar = false;
+    bool datoNumerico = false;
+    int counterStrike = 0;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
@@ -227,10 +229,22 @@ void doAltaInteresado(){
         cout << "Ingrese el apellido: ";
         getline(cin, apellido);
         cout << endl;
-        cout << "Ingrese la edad: ";
-        getline(cin, edadStr);
-        edad = stoi(edadStr);
-        cout << endl;
+        while(!datoNumerico) {
+            cout << "Ingrese la edad: ";
+            getline(cin, edadStr);
+            try {
+                edad = stoi(edadStr);
+                datoNumerico = true;
+            }catch(invalid_argument e){
+                cout << "Dato numerico incorrecto, vuelva a intentar" << endl;
+                if(counterStrike == 3){
+                    cout << "Alta cancelada" << endl;
+                    delete interface;
+                    return;
+                }
+                counterStrike++;
+            }
+        }
         bool existe = true;
         while (existe) {
             cout << "Ingrese el mail:";

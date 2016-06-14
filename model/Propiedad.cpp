@@ -126,3 +126,28 @@ Venta *Propiedad::getVenta() {
 void Propiedad::setVenta(Venta *v) {
     this->venta = v;
 }
+
+
+void Propiedad::AddConversacion(string idInteresado, Conversacion* conversacion){
+    this->conversaciones.insert(this->conversaciones.begin(),pair<string, Conversacion*>(idInteresado, conversacion));
+}
+list<DataConversacion> Propiedad::ListarConversaciones(list<DataConversacion> & l){
+    map<string,Conversacion*>::iterator it = this->conversaciones.begin();
+    list<DataConversacion>::iterator iter;
+    while(it != this->conversaciones.end()){
+        iter = l.begin();
+        while(iter != l.end() && iter->getLastUpdate()< it->second->getLastUpdate()){
+            iter++;
+        }
+        l.insert(iter, it->second->CrearDataConversacion(it->first));
+        it++;
+    }
+    return l;
+}
+Conversacion* Propiedad::SeleccionarConversacion(string idConversacion){
+    map<string,Conversacion*>::iterator it = this->conversaciones.find(idConversacion);
+    if(it == this->conversaciones.end()){
+        throw std::invalid_argument("No hay conversaciones con ese interesado");
+    }
+    return it->second;
+}

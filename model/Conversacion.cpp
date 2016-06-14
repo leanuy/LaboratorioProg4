@@ -18,8 +18,8 @@ list<DataMensaje> Conversacion::ListarMensajes() {
     }
     return q;
 }
-void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
-    this->mensajes.push_front(new Mensaje(esInteresado, mensaje, codigoPropiedad, date));
+void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string date){
+    this->mensajes.push_front(new Mensaje(esInteresado, mensaje, date));
     this->lastUpdate = this->mensajes.front()->getTOA();
 }
 

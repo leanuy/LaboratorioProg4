@@ -17,31 +17,6 @@ Inmobiliaria::Inmobiliaria(string nombre, string mail, string direccion, string 
 }
 
 
-
-void Inmobiliaria::AddConversacion(string idInteresado, Conversacion* conversacion){
-    this->conversaciones.insert(this->conversaciones.begin(),pair<string, Conversacion*>(idInteresado, conversacion));
-}
-list<DataConversacion> Inmobiliaria::ListarConversaciones(){
-    list<DataConversacion> l;
-    map<string,Conversacion*>::iterator it = this->conversaciones.begin();
-    list<DataConversacion>::iterator iter;
-    while(it != this->conversaciones.end()){
-        iter = l.begin();
-        while(iter != l.end() && iter->getLastUpdate()< it->second->getLastUpdate()){
-            iter++;
-        }
-        l.insert(iter, it->second->CrearDataConversacion(it->first));
-        it++;
-    }
-    return l;
-}
-Conversacion* Inmobiliaria::SeleccionarConversacion(string idConversacion){
-    map<string,Conversacion*>::iterator it = this->conversaciones.find(idConversacion);
-    if(it == this->conversaciones.end()){
-        throw std::invalid_argument("No hay conversaciones con ese interesado");
-    }
-    return it->second;
-}
 void Inmobiliaria::Alquilar(float precio, Propiedad* p){
     Alquiler* a = new Alquiler(precio,p);
     p->setAlquiler(a);
@@ -123,3 +98,37 @@ void Inmobiliaria::AddPropiedad(Propiedad *p) {
     }
 
 }
+
+list <DataConversacion> Inmobiliaria::ListarConversaciones() {
+    list<DataConversacion> l;
+    map<string, Propiedad*>::iterator it = this->propiedades.begin();
+    while(it != this->propiedades.end()){
+        it->second->ListarConversaciones(l);
+    }
+    return l;
+}
+
+Conversacion *Inmobiliaria::SeleccionarConversacion(string codigoConversacion) {
+    Conversacion* conversacion = NULL;
+    map<string, Propiedad*>::iterator it = this->propiedades.begin();
+    while(it != this->propiedades.end() && conversacion == NULL){
+        conversacion = it->second->SeleccionarConversacion(codigoConversacion);
+    }
+    if(conversacion == NULL){
+        throw std::invalid_argument("No existe la conversacion que intentas seleccionar");
+    }
+    return conversacion;
+}
+
+Propiedad* Inmobiliaria::SeleccionarPropiedad(string idPropiedad) {
+    map<string, Propiedad*>::iterator it = this->propiedades.find(idPropiedad);
+    if(it == this->propiedades.end()){
+        throw std::invalid_argument(idPropiedad+" - La propiedad que intentas acceder no se encuentra entre las propiedades de la inmobiliaria con sesion iniciada");
+    }
+    return it->second;
+}
+
+
+
+
+

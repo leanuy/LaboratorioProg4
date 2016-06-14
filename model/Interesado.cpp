@@ -52,16 +52,12 @@ int Interesado::getEdad(){
 void Interesado::setEdad(int age){
     this->edad = age;
 }
-int Interesado::getCantidadMensajes(string idInmobiliaria, string idPropiedad){
+int Interesado::getCantidadMensajes(string idPropiedad){
     int cnt = 0;
-    map<string, Conversacion*>::iterator it = this->conversaciones.find(idInmobiliaria);
+    map<string, Conversacion*>::iterator it = this->conversaciones.find(idPropiedad);
     if(it != this->conversaciones.end()){
         Conversacion* conversacion = it->second;
-        list<DataMensaje> lista = conversacion->ListarMensajes();
-        for(list<DataMensaje>::iterator iter = lista.begin(); iter != lista.end(); it++)
-            if(iter->isInteresado())
-                if( iter->getIdPropiedad() == idPropiedad)
-                    cnt++;
+        return conversacion->CantidadMensajes();
     }
     return cnt;
 }

@@ -1,7 +1,7 @@
 #include "Mensaje.h"
 #include "../Sesion.h"
 
-Mensaje::Mensaje(bool esInteresado, string mensaje, string codigoPropiedad, string date){
+Mensaje::Mensaje(bool esInteresado, string mensaje, string date){
     if (date != ""){
         struct tm tm_aux;
         strptime(date.c_str(), "%Y-%m-%d %H:%M", &tm_aux);
@@ -11,7 +11,6 @@ Mensaje::Mensaje(bool esInteresado, string mensaje, string codigoPropiedad, stri
     }
     this->esInteresado = esInteresado;
     this->texto = mensaje;
-    this->codigoPropiedad = codigoPropiedad;
 }
 time_t Mensaje::getTOA(){
     return this->TOA;

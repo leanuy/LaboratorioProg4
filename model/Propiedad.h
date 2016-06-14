@@ -34,6 +34,8 @@ private:
     Zona* zona;
     Venta* venta;
     Alquiler* alquiler;
+protected:
+    map<string, Conversacion*> conversaciones;
 
 public:
     Propiedad();
@@ -70,6 +72,13 @@ public:
     DataDepartamento ObtenerDepartamento();
     void Actualizar(DataPropiedad p);
     virtual ~Propiedad() = 0;
+
+
+// CONVERSACIONES
+    void AddConversacion(string idInteresado, Conversacion* conversacion);
+    list<DataConversacion> ListarConversaciones(list<DataConversacion> &l);
+    Conversacion* SeleccionarConversacion(string idConversacion);
+
 };
 
 

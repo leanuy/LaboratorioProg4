@@ -3,6 +3,7 @@
 //
 
 #include "Casa.h"
+#include "../Sesion.h"
 
 Casa::Casa(int ambientes, int dormitorios, int banios, bool garage, string direccion, float m2Edificados,
            float m2Totales, float m2Verdes) {
@@ -23,6 +24,7 @@ DataCasa Casa::CrearDataPropiedad() {
                             this->getDireccion(), this->getMetrosCuadradosEdificados(),
                             this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
     data.setCodigo(this->getCodigo());
+
     if(this->getAlquiler() != NULL){
         data.setAlquiler(this->getAlquiler()->getPrecio());
     }
@@ -31,6 +33,16 @@ DataCasa Casa::CrearDataPropiedad() {
     }
     data.setInmobiliaria(this->getInmobiliaria()->getNombre(),this->getInmobiliaria()->getEmail(),this->getInmobiliaria()->getDireccion());
     //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
+
+    Sesion* sesion = Sesion::getInstance();
+    if(sesion->esTipo("interesado")){
+        data.setCodigo(this->getCodigo());
+        map<string, Conversacion*>::iterator it = this->conversaciones.find(this->getCodigo()+"-"+sesion->getEmail());
+        if(it != this->conversaciones.end()){
+            data.setCantidadMensajes(it->second->CantidadMensajes());
+        }
+    }
+
     return data;
 }
 

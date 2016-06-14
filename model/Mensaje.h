@@ -18,7 +18,7 @@ private:
     string codigoPropiedad;
     string texto;
 public:
-    Mensaje(bool esInteresado, string mensaje, string codigoPropiedad = "", string date = "");
+    Mensaje(bool esInteresado, string mensaje, string date = "");
     time_t getTOA();
     DataMensaje CrearDataMensaje();
     ~Mensaje();

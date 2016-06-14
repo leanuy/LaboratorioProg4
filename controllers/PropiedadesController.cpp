@@ -87,8 +87,15 @@ void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
 
 }
 
-DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) { // no se usa mas
-    return zActual->SeleccionarPropiedad(codigoPropiedad)->CrearPtrDataPropiedad();
+DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
+
+    if(dynamic_cast<Casa*>(zActual->SeleccionarPropiedad(codigoPropiedad))){
+        DataCasa* c = dynamic_cast<Casa*>(zActual->SeleccionarPropiedad(codigoPropiedad))->CrearPtrDataPropiedad();
+        return c;
+    }else{
+        DataApartamento* d = dynamic_cast<Apartamento*>(zActual->SeleccionarPropiedad(codigoPropiedad))->CrearPtrDataPropiedad();
+        return d;
+    }
 }
 
 void PropiedadesController::actualizarPropiedad(DataPropiedad p) {
@@ -161,7 +168,13 @@ PropiedadesController::~PropiedadesController() {
 
 DataPropiedad PropiedadesController::BuscarPropiedad(string codigo) {
     this->pActual = buscarPropiedadPriv(codigo);
-    return this->pActual->CrearDataPropiedad();
+    if(dynamic_cast<Casa*>(this->pActual)){
+        DataCasa c = dynamic_cast<Casa*>(this->pActual)->CrearDataPropiedad();
+        return c;
+    }else{
+        DataApartamento d = dynamic_cast<Apartamento*>(this->pActual)->CrearDataPropiedad();
+        return d;
+    }
 }
 
 list <DataDepartamento> PropiedadesController::ListarDepartamentos() {

@@ -609,7 +609,9 @@ void doConsultarPropiedad(){
     }
     cout << "Propiedades en la zona seleccionada: " << endl;
     for(list<DataPropiedad>::iterator iterador = l.begin(); iterador != l.end(); iterador++){
-        cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion() << endl;
+        cout << "Codigo: " << iterador->getCodigo() << " Direccion: " << iterador->getDireccion();
+        cout << " Alquiler: " << (iterador->getAlquiler()?" Si ":" No ");
+        cout << " Venta: " << (iterador->getVenta()?" Si ":" No ") << endl;
     }
     cout << "Ingrese la propiedad que desea consultar: ";
     getline(cin,codProp);
@@ -633,6 +635,16 @@ void doConsultarPropiedad(){
         if((i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados())!= 0){
             cout << "M2 verdes: " << i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados() << endl;
         }
+        cout << "Inmobiliaria: " << endl;
+        cout << "Nombre: " << i->getInmobiliaria().getNombre() << endl;
+        cout << "E-mail: " << i->getInmobiliaria().getMail() << endl;
+        cout << "Direccion: " << i->getInmobiliaria().getDireccion() << endl;
+        if(i->getVenta()){
+            cout << "Precio de venta: " << i->getVenta() << endl;
+        }
+        if(i->getAlquiler()){
+            cout << "Precio de alquiler: " << i->getAlquiler() << endl;
+        }
     }
     delete interface;
 }
@@ -645,7 +657,7 @@ void doModificarPropiedad(){
     string letra, dir;
     string m2EdifStr, m2TotStr, m2VerStr;
     float m2Edif, m2Tot, m2Ver;
-    DataPropiedad p;
+    DataPropiedad* p;
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
     //ingresar el codigo de la propiedad a modificar
@@ -654,26 +666,27 @@ void doModificarPropiedad(){
     cout << endl;
     //mostrar los datos actuales
     try {
-        p = interface->BuscarPropiedad(code);
+        p = interface->verPropiedad(code);
     }catch(invalid_argument e){
         cout << e.what() << endl;
     }
     cout << "Datos actuales de la propiedad" << endl;
-    cout << "Codigo        : " << p.getCodigo() << endl;
-    cout << "Ambientes     : " << p.getAmbientes() << endl;
-    cout << "Dormitorios   : " << p.getDormitorios() << endl;
-    cout << "Banios        : " << p.getBanios() << endl;
-    cout << "Garage        : " << (p.getGarage()?"Si":"No") << endl;
-    cout << "Direccion     : " << p.getDireccion() << endl;
-    float m2edif = p.getMetrosCuadradosEdificados();
+    cout << "Codigo        : " << p->getCodigo() << endl;
+    cout << "Ambientes     : " << p->getAmbientes() << endl;
+    cout << "Dormitorios   : " << p->getDormitorios() << endl;
+    cout << "Banios        : " << p->getBanios() << endl;
+    cout << "Garage        : " << (p->getGarage()?"Si":"No") << endl;
+    cout << "Direccion     : " << p->getDireccion() << endl;
+    float m2edif = p->getMetrosCuadradosEdificados();
     cout << "M2 Edificados : " << m2edif << endl;
-    float m2totales = p.getMetrosCuadradosTotales();
+    float m2totales = p->getMetrosCuadradosTotales();
     cout << "M2 Totales    : " << m2totales << endl;
-    if(p.getMetrosCuadradosEdificados() != p.getMetrosCuadradosTotales()){
+    if(p->getMetrosCuadradosEdificados() != p->getMetrosCuadradosTotales()){
         CasaOapto = true;
-        int pasto = p.getMetrosCuadradosTotales() - p.getMetrosCuadradosEdificados();
+        float pasto = p->getMetrosCuadradosTotales() - p->getMetrosCuadradosEdificados();
         cout << "M2 Verdes     : " << pasto << endl;
     }
+    delete p;
     cout << "A continuacion ingrese los datos de la propiedad nuevamente" << endl;
     cout << "Cantidad de ambientes : ";
     getline(cin, ambientesStr);

@@ -13,6 +13,8 @@ DataApartamento::DataApartamento(int ambientes, int dormitorios, int banios, boo
     this->setDireccion(direccion);
     this->setMetrosCuadradosEdificados(m2Edificados);
     this->setMetrosCuadradosTotales(m2Totales);
+    this->setVenta(0);
+    this->setAlquiler(0);
 }
 
 DataApartamento::~DataApartamento() {

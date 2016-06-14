@@ -14,22 +14,32 @@ Casa::Casa(int ambientes, int dormitorios, int banios, bool garage, string direc
     this->setMetrosCuadradosEdificados(m2Edificados);
     this->setMetrosCuadradosTotales(m2Totales);
     this->setMetrosCuadradosVerdes(m2Verdes);
+    this->setAlquiler(NULL);
+    this->setVenta(NULL);
 }
 
-DataPropiedad Casa::CrearDataPropiedad() {
+DataCasa Casa::CrearDataPropiedad() {
     DataCasa data = DataCasa(this->getAmbientes(), this->getDormitorios(), this->getBanios(), this->tieneGarage(),
                             this->getDireccion(), this->getMetrosCuadradosEdificados(),
                             this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
     data.setCodigo(this->getCodigo());
+    if(this->getAlquiler() != NULL){
+        data.setAlquiler(this->getAlquiler()->getPrecio());
+    }
+    if(this->getVenta() != NULL){
+        data.setVenta(this->getVenta()->getPrecio());
+    }
+    data.setInmobiliaria(this->getInmobiliaria()->getNombre(),this->getInmobiliaria()->getEmail(),this->getInmobiliaria()->getDireccion());
     //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
     return data;
 }
 
-DataPropiedad* Casa::CrearPtrDataPropiedad() {
+DataCasa* Casa::CrearPtrDataPropiedad() {
     DataCasa* data = new DataCasa(this->getAmbientes(), this->getDormitorios(), this->getBanios(), this->tieneGarage(),
                              this->getDireccion(), this->getMetrosCuadradosEdificados(),
                              this->getMetrosCuadradosTotales(), this->getMetrosCuadradosVerdes());
 
+    data->setCodigo(this->getCodigo());
     //data->setCantidadMensajes(0); agus: calcular cantidad de mensajes
     return data;
 }

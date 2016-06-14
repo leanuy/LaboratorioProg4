@@ -1,6 +1,9 @@
 #include "DataPropiedad.h"
 
-DataPropiedad::DataPropiedad(){}
+
+DataPropiedad::DataPropiedad(){
+    this->inmobiliaria = DataReporteInmobiliaria();
+}
 
 string DataPropiedad::getCodigo(){
     return this->codigo;
@@ -88,3 +91,29 @@ void DataPropiedad::setLastUpdate(time_t lastUpdate){
 }
 
 DataPropiedad::~DataPropiedad(){}
+
+float DataPropiedad::getAlquiler() {
+    return this->precioAlquiler;
+}
+
+float DataPropiedad::getVenta() {
+    return this->precioVenta;
+}
+
+void DataPropiedad::setAlquiler(float precio) {
+    this->precioAlquiler = precio;
+}
+
+void DataPropiedad::setVenta(float precio) {
+    this->precioVenta = precio;
+}
+
+DataReporteInmobiliaria DataPropiedad::getInmobiliaria() {
+    return this->inmobiliaria;
+}
+
+void DataPropiedad::setInmobiliaria(string nombre, string mail, string dir) {
+    this->inmobiliaria = DataReporteInmobiliaria(nombre,mail,dir);
+}
+
+

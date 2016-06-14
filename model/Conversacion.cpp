@@ -8,6 +8,7 @@ int Conversacion::CantidadMensajes(){
 }
 list<DataMensaje> Conversacion::ListarMensajes() {
     list<DataMensaje> q;
+    q.clear();
     list<Mensaje *>::iterator it = this->mensajes.begin();
     int cnt = 0;
     while (it != this->mensajes.end() && cnt < 5){

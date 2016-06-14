@@ -64,8 +64,6 @@ public:
     void setVenta(Venta* v);
 
     void LinkConversacion(Conversacion* c);
-    virtual DataPropiedad CrearDataPropiedad() = 0;
-    virtual DataPropiedad* CrearPtrDataPropiedad() = 0;
     bool ExisteConversacion();
     //SET(DataMensaje) ListarMensajes();
     void InsertarNuevoMensaje(string mensaje);

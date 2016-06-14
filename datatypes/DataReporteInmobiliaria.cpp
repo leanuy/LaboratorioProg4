@@ -34,3 +34,10 @@ string DataReporteInmobiliaria::getDireccion() {
 void DataReporteInmobiliaria::setPropsPorDepto(list<DataPropPorDepro> l) {
     this->propsPorDepto = l;
 }
+
+DataReporteInmobiliaria::DataReporteInmobiliaria() {
+    this->nombre = "";
+    this->mail = "";
+    this->direccion = "";
+    this->propsPorDepto.clear();
+}

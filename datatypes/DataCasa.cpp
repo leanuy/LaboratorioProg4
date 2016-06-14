@@ -14,6 +14,8 @@ DataCasa::DataCasa(int ambientes, int dormitorios, int banios, bool garage, stri
     this->setMetrosCuadradosEdificados(m2Edificados);
     this->setMetrosCuadradosTotales(m2Totales);
     this->metrosCuadradosVerdes = m2Verdes;
+    this->setVenta(0);
+    this->setAlquiler(0);
 }
 
 DataCasa::~DataCasa() {

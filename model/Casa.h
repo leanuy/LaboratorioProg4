@@ -16,8 +16,8 @@ public:
     Casa(int ambientes,int dormitorios,int banios,bool garage,
          string direccion,float m2Edificados,float m2Totales,
          float m2Verdes);
-    DataPropiedad CrearDataPropiedad();
-    DataPropiedad* CrearPtrDataPropiedad();
+    DataCasa CrearDataPropiedad();
+    DataCasa* CrearPtrDataPropiedad();
     float getMetrosCuadradosVerdes();
     void setMetrosCuadradosVerdes(float m2verdes);
     ~Casa();

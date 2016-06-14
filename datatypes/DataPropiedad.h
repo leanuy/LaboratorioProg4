@@ -6,6 +6,7 @@
 #define LAB6_DATAPROPIEDAD_H
 
 #include <string>
+#include "../datatypes/DataReporteInmobiliaria.h"
 
 using namespace std;
 
@@ -22,6 +23,12 @@ private:
     int CantidadMensajes;
     time_t lastUpdate;
 
+    bool enAlquiler;
+    bool enVenta;
+    float precioAlquiler;
+    float precioVenta;
+    DataReporteInmobiliaria inmobiliaria;
+
 protected:
     void setCodigo(string codigo);
     void setAmbientes(int ambientes);
@@ -33,6 +40,9 @@ protected:
     void setMetrosCuadradosTotales(float metrosCuadradosTotales);
     void setCantidadMensajes(int CantidadMensajes);
     void setLastUpdate(time_t lastUpdate);
+    void setAlquiler(float precio);
+    void setVenta(float precio);
+    void setInmobiliaria(string nombre,string mail,string dir);
 public:
     DataPropiedad();
     string getCodigo();
@@ -46,6 +56,10 @@ public:
     int getCantidadMensajes();
     time_t getLastUpdate();
     string getLastUpdateStr();
+    float getAlquiler();
+    float getVenta();
+    DataReporteInmobiliaria getInmobiliaria();
+
     virtual ~DataPropiedad();
 
     friend class Casa;

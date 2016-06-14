@@ -18,6 +18,7 @@ private:
     string direccion;
     list<DataPropPorDepro> propsPorDepto;
 public:
+    DataReporteInmobiliaria();
     DataReporteInmobiliaria(string name,string mail,string dir);
     ~DataReporteInmobiliaria();
     list<DataPropPorDepro> getPropsPorDepto();

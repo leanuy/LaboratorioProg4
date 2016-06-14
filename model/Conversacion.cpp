@@ -4,7 +4,7 @@ Conversacion::Conversacion(){
     this->lastUpdate = time(NULL);
 }
 int Conversacion::CantidadMensajes(){
-    return this->mensajes.size();
+    return int(this->mensajes.size());
 }
 list<DataMensaje> Conversacion::ListarMensajes() {
     list<DataMensaje> q;
@@ -24,7 +24,7 @@ void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string date
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {
-    DataConversacion data = DataConversacion(interesado, this->lastUpdate, this->mensajes.size());
+    DataConversacion data = DataConversacion(interesado, this->lastUpdate, int(this->mensajes.size()));
     return data;
 }
 

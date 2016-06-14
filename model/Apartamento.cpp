@@ -38,6 +38,8 @@ DataApartamento Apartamento::CrearDataPropiedad() {
         map<string, Conversacion*>::iterator it = this->conversaciones.find(this->getCodigo()+"-"+sesion->getEmail());
         if(it != this->conversaciones.end()){
             data.setCantidadMensajes(it->second->CantidadMensajes());
+        }else{
+            data.setCantidadMensajes(0);
         }
     }
     return data;

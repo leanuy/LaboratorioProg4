@@ -6,8 +6,9 @@
 #define LAB6_SESION_H
 #include "model/Usuario.h"
 #include "controllers/LogController.h"
+#include "interfaces/ISesion.h"
 
-class Sesion {
+class Sesion: public ISesion {
 private:
     static Sesion* instance;
     Usuario* user;

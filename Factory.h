@@ -10,7 +10,7 @@
 #include "interfaces/IPropiedades.h"
 #include "interfaces/ILog.h"
 #include "interfaces/IUsuarios.h"
-
+#include "interfaces/ISesion.h"
 
 class Factory {
 private:
@@ -22,6 +22,7 @@ public:
     IPropiedades* getIPropiedades();
     IConversaciones* getIConversaciones();
     IUsuarios* getIUsuarios();
+    ISesion* getISesion();
 };
 
 

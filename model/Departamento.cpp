@@ -46,7 +46,8 @@ Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
 }
 
 Departamento::~Departamento(){
-
+    if(this->zonas.size() > 0)
+        this->zonas.clear();
 }
 
 string Departamento::getId() {

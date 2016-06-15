@@ -63,5 +63,9 @@ Edificio *Apartamento::getEdificio() {
 }
 
 Apartamento::~Apartamento() {
-
+    for(map<string, Conversacion*>::iterator it = this->conversaciones.begin(); it != this->conversaciones.end(); it++)
+        it->second = NULL;
+    this->conversaciones.clear();
+    this->setInmobiliaria(NULL);
+    this->edif = NULL;
 }

@@ -321,15 +321,12 @@ void Database::AddData(){
 */
      }
 void Database::DeleteData(){
-    //DELETE PROPIEDADES:
-    //DELETE EDIFICIOS N_A:
-    //DELETE EDIFICIOS DE ZONAS:
-    //DELETE ZONAS:
-    //DELETE DEPARTAMENTOS:
-    //DELETE ALQUILERES:
-    //DELETE VENTAS:
-    //DELETE CONVERSACIONES (MENSAJES PRIMERO) RECCORRER SOLO POR INMOBILIARIAS:
-    //DELETE USUARIOS:
+    if(this->departamentos.size() > 0)
+        this->departamentos.clear();
+    if(this->usuarios.size() > 0)
+        this->usuarios.clear();
+    if(this->edificiosN_A.size() > 0)
+        this->edificiosN_A.clear();
 }
 Database::~Database(){}
 

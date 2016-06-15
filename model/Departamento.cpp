@@ -1,7 +1,7 @@
 #include "Departamento.h"
 
 
-Departamento::Departamento(string nombre,string id){
+Departamento::Departamento(string id,string nombre){
     this->nombre = nombre;
     this->id = id;
 }

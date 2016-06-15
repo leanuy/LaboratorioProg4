@@ -75,3 +75,8 @@ void UsuariosController::DarAltaInteresado(string nombre, string apellido, strin
 }
 
 UsuariosController::~UsuariosController(){}
+
+void UsuariosController::checkName(string name) {
+    Database* b = Database::getInstance();
+    b->checkNombre(name);
+}

@@ -330,3 +330,15 @@ void Database::DeleteData(){
 }
 Database::~Database(){}
 
+void Database::checkNombre(string name) {
+    map<string,Usuario*>::iterator i = this->usuarios.begin();
+    while(i != this->usuarios.end()){
+        if(dynamic_cast<Inmobiliaria*>(i->second)){
+            Inmobiliaria* inmo = dynamic_cast<Inmobiliaria*>(i->second);
+            if(inmo->getNombre() == name){
+                throw std::invalid_argument("El nombre de la inmobiliaria ya existe, reingrese un nombre");
+            }
+        }
+        i++;
+    }
+}

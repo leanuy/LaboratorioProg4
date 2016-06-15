@@ -19,6 +19,7 @@ public:
     list<DataReporteInmobiliaria> ReportesInmobiliaria();
     bool CheckEmail(string mail);
     void DarAltaInteresado(string nombre, string apellido, string email, int edad);
+    void checkName(string name);
     ~UsuariosController();
 };
 #endif //LAB6_USUARIOSCONTROLLER_H

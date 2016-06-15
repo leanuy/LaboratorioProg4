@@ -32,6 +32,7 @@ public:
     void DeleteData();
     void AddEdificio(Edificio* edificio);
     Edificio* RemoveEdificio(string idEdificio);
+    void checkNombre(string name);
     ~Database();
 };
 

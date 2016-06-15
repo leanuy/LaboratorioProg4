@@ -26,7 +26,8 @@ void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversaci
 }
 
 Interesado::~Interesado(){
-
+    if(this->conversaciones.size() >0)
+        this->conversaciones.clear();
 }
 
 string Interesado::getNombre(){

@@ -10,7 +10,10 @@ void Zona::AddPropiedad(Propiedad* propiedad){
     this->propiedades[propiedad->getCodigo()] = propiedad;
 }
 Zona::~Zona() {
-
+    if(this->edificios.size() > 0)
+        this->edificios.clear();
+    if(this->propiedades.size() > 0)
+        this->propiedades.clear();
 }
 
 void Zona::setNombre(string name) {

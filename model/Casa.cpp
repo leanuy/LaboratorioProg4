@@ -65,7 +65,10 @@ void Casa::setMetrosCuadradosVerdes(float m2verdes) {
 
 
 Casa::~Casa() {
-
+    for(map<string, Conversacion*>::iterator it = this->conversaciones.begin(); it != this->conversaciones.end(); it++)
+        it->second = NULL;
+    this->conversaciones.clear();
+    this->setInmobiliaria(NULL);
 }
 
 

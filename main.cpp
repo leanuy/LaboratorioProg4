@@ -1272,7 +1272,7 @@ void doObtenerReporteInmobiliarias(){
                     list <DataPropPorZona> listZonas = it->getPorDeptos();
                     list<DataPropPorZona>::iterator iter = listZonas.begin();
                     if (iter == listZonas.end()) {
-                        cout << "No hay propiedades de esta inmobiliara en el departamento" << endl;
+                        cout << "No hay zonas en este departamento" << endl;
                     } else {
                         while(iter != listZonas.end()) {
                             cout << "Zona: " << iter->getIdZona() << "| Numero de Casas: ";

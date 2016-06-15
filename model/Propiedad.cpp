@@ -2,7 +2,9 @@
 // Created by leandro on 31/05/16.
 //
 
+#include <iostream>
 #include "Propiedad.h"
+#include "Interesado.h"
 
 Propiedad::Propiedad() {
 
@@ -150,4 +152,23 @@ Conversacion* Propiedad::SeleccionarConversacion(string idConversacion){
         return NULL;
     }
     return it->second;
+}
+
+void Propiedad::DesvincularConversaciones(){
+    Database* db = Database::getInstance();
+    map<string, Usuario*> usuarios = db->getUsuarios();
+    map<string, Conversacion*>::iterator it;
+    map<string, Usuario*>::iterator iter;
+    string idInteresado;
+    while(this->conversaciones.begin() != this->conversaciones.end()){
+        it = this->conversaciones.begin();
+        idInteresado = it->first.substr(it->first.find("-")+1,it->first.length());
+        iter = usuarios.find(idInteresado);
+        if(iter != usuarios.end()){
+            Interesado* interesado = dynamic_cast<Interesado*>(iter->second);
+            interesado->DesvincularConversacion(codigo);
+            it->second = NULL;
+            this->conversaciones.erase(it);
+        }
+    }
 }

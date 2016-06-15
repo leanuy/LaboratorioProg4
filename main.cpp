@@ -1217,7 +1217,7 @@ void doEnviarMensaje(){
         }
     }
     codigoPropiedad = idConversacion.substr(0,idConversacion.find("-"));
-    string idInteresado = idConversacion.substr(idConversacion.find("-")+1);
+    string idInteresado = idConversacion.substr(idConversacion.find("-")+1, idConversacion.length());
     cout << idInteresado <<endl;
     string enviarMensaje, mensaje;
     list<DataMensaje> mensajes = interface->ListarMensajes();

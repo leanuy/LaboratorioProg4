@@ -76,6 +76,7 @@ string PropiedadesController::getCodigPropiedad() {
 
 void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
     this->pActual = buscarPropiedadPriv(codigoPropiedad);
+    this->pActual->DesvincularConversaciones();
     Zona* z = this->pActual->getZona();
     z->eliminarPropiedad(codigoPropiedad);
 

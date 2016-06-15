@@ -103,6 +103,7 @@ void Zona::eliminarPropiedad(string codigo) {
         // y eliminar instancias).. luego sacarla de la inmobiliaria(remove de la coleccion) por ultimo eliminarla de la zona y dejar el puntero a null;
         //ver tambien las conversaciones que onda. y si es un edificio quitarle el apartamento.
         Propiedad* p = iter->second;
+
         Inmobiliaria* i = p->getInmobiliaria();
         i->DesvincularPropiedad(codigo);
         propiedades.erase(codigo);

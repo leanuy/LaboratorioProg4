@@ -21,8 +21,8 @@ Interesado::Interesado(string nombre, string apellido, string email, int edad, s
     this->setFirstTime(true);
 }
 
-void Interesado::AddConversacion(string idInmobiliaria, Conversacion* conversacion){
-    this->conversaciones.insert(this->conversaciones.begin(), pair<string, Conversacion*>(idInmobiliaria, conversacion));
+void Interesado::AddConversacion(string idPropiedad, Conversacion* conversacion){
+    this->conversaciones.insert(this->conversaciones.begin(), pair<string, Conversacion*>(idPropiedad, conversacion));
 }
 
 Interesado::~Interesado(){
@@ -65,4 +65,16 @@ int Interesado::getCantidadMensajes(string idPropiedad){
 bool Interesado::esTipo(string tipo){
     return (tipo == "interesado");
 }
+
+void Interesado::DesvincularConversacion(string idPropiedad) {
+    map<string, Conversacion*>::iterator it = this->conversaciones.find(idPropiedad);
+    if(it == this->conversaciones.end()){
+        throw std::invalid_argument("La conversacion que intentas desvincular no existe");
+    }else{
+        delete it->second;
+        this->conversaciones.erase(it);
+    }
+}
+
+
 

@@ -291,33 +291,33 @@ void Database::AddData(){
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "PERDON ME EQUIVOQUE" , "2016-05-23 12:35");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("2111")->AddConversacion("2111-int3@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int3@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int3@sis.com"])->AddConversacion("2111", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Cuanto cuesta?", "2016-05-24 12:30");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm3@sis.com"])->SeleccionarPropiedad("2114")->AddConversacion("2114-int2@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int2@sis.com"])->AddConversacion("inm3@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int2@sis.com"])->AddConversacion("2114", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Estoy Interesado", "2016-05-25 13:02");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("2111")->AddConversacion("2111-int1@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("2111", conversacion);
 
   // FIXME: Error en los datos, el apartamento al que se envia el mensaje no pertenece a la inmobiliaria a la cual se le manda.
     /*conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Quiero hacer una oferta ya!", "2016-06-01 00:30");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"])->SeleccionarPropiedad("1111")->AddConversacion("int4@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int4@sis.com"])->AddConversacion("inm2@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int4@sis.com"])->AddConversacion("1111", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "tiene humedad?", "2016-06-02 12:45");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"])->SeleccionarPropiedad("1112")->AddConversacion("int1@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("inm4@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("1112", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Cual es el precio?", "2016-06-03 02:05");
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1113")->AddConversacion("int5@sis.com", conversacion);
-    dynamic_cast<Interesado*>(this->usuarios["int5@sis.com"])->AddConversacion("inm1@sis.com", conversacion);
+    dynamic_cast<Interesado*>(this->usuarios["int5@sis.com"])->AddConversacion("1113", conversacion);
 */
      }
 void Database::DeleteData(){

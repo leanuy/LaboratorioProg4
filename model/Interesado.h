@@ -22,7 +22,7 @@ private:
     Interesado(string nombre, string apellido, string email, int edad, string password);
 public:
     Interesado(string nombre, string apellido, string email, int edad);
-    void AddConversacion(string idInmobiliaria, Conversacion* conversacion);
+    void AddConversacion(string idPropiedad, Conversacion* conversacion);
     ~Interesado();
     string getNombre();
     void setNombre(string name);
@@ -34,5 +34,7 @@ public:
     bool esTipo(string tipo);
 
     friend class Database;
+
+    void DesvincularConversacion(string idPropiedad);
 };
 #endif //LAB6_INTERESADO_H

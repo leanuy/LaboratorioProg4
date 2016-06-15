@@ -77,7 +77,7 @@ public:
     void AddConversacion(string idInteresado, Conversacion* conversacion);
     list<DataConversacion> ListarConversaciones(list<DataConversacion> &l);
     Conversacion* SeleccionarConversacion(string idConversacion);
-
+    void DesvincularConversaciones();
 };
 
 

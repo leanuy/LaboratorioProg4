@@ -16,6 +16,7 @@ public:
     virtual bool CheckEmail(string mail) = 0;
     virtual void DarAltaInteresado(string nombre, string apellido, string email, int edad) = 0;
     virtual ~IUsuarios();
+    virtual void checkName(string name) = 0;
 };
 
 

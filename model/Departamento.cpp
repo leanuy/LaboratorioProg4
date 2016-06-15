@@ -88,3 +88,13 @@ DataPropPorDepro Departamento::PropiedadesEnElDeptoDeLaInmobiliaria(Inmobiliaria
     data.setPropsPorDeptos(l);
     return data;
 }
+
+void Departamento::chequearEdificioEnZonas(string nombre) {
+    map<string,Zona*>::iterator i = zonas.begin();
+    while(i != zonas.end()){
+        if(i->second->BuscarEdificio(nombre) != NULL){
+            throw std::invalid_argument("El edificio ya existe");
+        }
+        i++;
+    }
+}

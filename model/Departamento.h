@@ -35,6 +35,7 @@ public:
     Propiedad* BuscarPropiedad(string idPropiedad);
 	Edificio* BuscarEdificio(string idEdificio);
 	DataPropPorDepro PropiedadesEnElDeptoDeLaInmobiliaria(Inmobiliaria* inm);
+	void chequearEdificioEnZonas(string nombre);
     ~Departamento();
 
 	string getId();

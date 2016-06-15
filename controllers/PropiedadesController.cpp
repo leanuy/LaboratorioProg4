@@ -219,5 +219,11 @@ list<DataPropiedad> PropiedadesController::ListarPropiedades(){
 void PropiedadesController::IngresarEdificio(DataEdificio e) {
     Edificio* edi = new Edificio(e.getNombre(),e.getPisos(),e.getGastoComunes());
     Database* db = Database::getInstance();
+    map<string,Departamento*> deptos = db->getDepartamentos();
+    map<string,Departamento*>::iterator i = deptos.begin();
+    while(i != deptos.end()){
+        i->second->chequearEdificioEnZonas(e.getNombre());
+        i++;
+    }
     db->AddEdificio(edi);
 }

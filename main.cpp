@@ -162,14 +162,23 @@ void doAltaInmobiliaria(){
     string mail;
     string direccion;
     bool cambiar = false;
+    bool existe = true;
     string confirmar;
     Factory* factroy = Factory::getInstance();
     IUsuarios* interface = factroy->getIUsuarios();
 
     while (!cambiar) {
-        cout << "Ingrese el nombre de la inmobiliaria: ";
-        getline(cin, nombre);
-        bool existe = true;
+        while(existe) {
+            cout << "Ingrese el nombre de la inmobiliaria: ";
+            getline(cin, nombre);
+            try{
+                interface->checkName(nombre);
+                existe = false;
+            }catch(invalid_argument e){
+                cout << e.what() << endl;
+            }
+        }
+        existe = true;
         while (existe) {
             cout << "Ingrese el mail de la inmobiliaria:";
             getline(cin, mail);

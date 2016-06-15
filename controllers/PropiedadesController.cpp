@@ -34,7 +34,9 @@ void PropiedadesController::ingresarApartamento(DataApartamento apartamento) {
     apto->setEdificio(eActual);
     apto->setCodigo(generarCodigo());
     Sesion* s = Sesion::getInstance();
-    apto->setInmobiliaria((Inmobiliaria*)s->getUsuario());
+    Inmobiliaria* inmobiliaria =(Inmobiliaria*)s->getUsuario();
+    apto->setInmobiliaria(inmobiliaria);
+    inmobiliaria->AddPropiedad(apto);
     apto->setZona(this->zActual);
     this->zActual->AgregarPropiedad(apto);
     this->pActual = apto;
@@ -47,7 +49,10 @@ void PropiedadesController::ingresarCasa(DataCasa casa) {
                                         casa.getM2Verdes());
     ca->setCodigo(generarCodigo());
     Sesion* s = Sesion::getInstance();
-    ca->setInmobiliaria((Inmobiliaria*)s->getUsuario());
+    Inmobiliaria* inmobiliaria =(Inmobiliaria*)s->getUsuario();
+    ca->setInmobiliaria(inmobiliaria);
+    inmobiliaria->AddPropiedad(ca);
+
     ca->setZona(this->zActual);
     this->zActual->AgregarPropiedad(ca);
     this->pActual = ca;

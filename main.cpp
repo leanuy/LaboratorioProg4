@@ -892,7 +892,7 @@ void doModificarPropiedad(){
     string letra, dir;
     string m2EdifStr, m2TotStr, m2VerStr;
     float m2Edif, m2Tot, m2Ver;
-    DataPropiedad* p;
+    DataPropiedad* p = NULL;
     Factory* factroy = Factory::getInstance();
     IPropiedades* interface = factroy->getIPropiedades();
     //ingresar el codigo de la propiedad a modificar
@@ -904,6 +904,11 @@ void doModificarPropiedad(){
         p = interface->verPropiedad(code);
     }catch(invalid_argument e){
         cout << e.what() << endl;
+        delete interface;
+        if(p != NULL){
+            delete p;
+        }
+        return;
     }
     cout << "Datos actuales de la propiedad" << endl;
     cout << "   Codigo        : " << p->getCodigo() << endl;

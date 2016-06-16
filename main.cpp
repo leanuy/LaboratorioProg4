@@ -331,7 +331,7 @@ void doAltaEdificio() {
         cout << "Nombre: " << name << endl;
         cout << "Pisos: " << pisosStr << endl;
         cout << "Gastos comunes: " << gastosStr << endl;
-        cout << "Desea confirmar el interesado? [S/N] ";
+        cout << "Desea confirmar el edificio? [S/N] ";
         getline(cin, confirmar);
         cambiar = (confirmar == "s" || confirmar == "S");
         if (confirmar == "n" || confirmar == "N") {
@@ -376,7 +376,7 @@ void doAltaPropiedad(){
         return;
     }
     cout << "Departamentos:" << endl;
-    for(list<DataDepartamento>::iterator it = deptos.begin(); it != deptos.end(); it++){
+    for(list<DataDepartamento>::reverse_iterator it = deptos.rbegin(); it != deptos.rend(); it++){
         cout << it->getId() << ": " << it->getNombre() << endl;
     }
     cout << "Ingrese el ID del departamento seleccionado :";

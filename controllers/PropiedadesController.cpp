@@ -148,7 +148,7 @@ Propiedad *PropiedadesController::buscarPropiedadPriv(string codigoPropiedad) {
         p = it->second->BuscarPropiedad(codigoPropiedad);
         it++;
     }
-    if(it == deptos.end()){
+    if(it == deptos.end() && p == NULL){
         throw std::invalid_argument( "La propiedad no se encuentra en el sistema" );
     }
     return p;

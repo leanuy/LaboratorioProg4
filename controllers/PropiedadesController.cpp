@@ -76,20 +76,31 @@ string PropiedadesController::getCodigPropiedad() {
 
 void PropiedadesController::EliminarPropiedad(string codigoPropiedad) {
     this->pActual = buscarPropiedadPriv(codigoPropiedad);
-    this->pActual->DesvincularConversaciones();
-    Zona* z = this->pActual->getZona();
-    z->eliminarPropiedad(codigoPropiedad);
-
+    Sesion* sesion = Sesion::getInstance();
+    Usuario* u = sesion->getUsuario();
+    if(this->pActual->getInmobiliaria() == u) {
+        this->pActual->DesvincularConversaciones();
+        Zona *z = this->pActual->getZona();
+        z->eliminarPropiedad(codigoPropiedad);
+    }else{
+        throw std::invalid_argument("La propiedad no pertenece a su inmobiliaria");
+    }
 }
 
 DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
     this->pActual = buscarPropiedadPriv(codigoPropiedad);
-    if(dynamic_cast<Casa*>(this->pActual)){
-        DataCasa* c = dynamic_cast<Casa*>(this->pActual)->CrearPtrDataPropiedad();
-        return c;
+    Sesion* sesion = Sesion::getInstance();
+    Usuario* u = sesion->getUsuario();
+    if(this->pActual->getInmobiliaria() == u) {
+        if (dynamic_cast<Casa *>(this->pActual)) {
+            DataCasa *c = dynamic_cast<Casa *>(this->pActual)->CrearPtrDataPropiedad();
+            return c;
+        } else {
+            DataApartamento *d = dynamic_cast<Apartamento *>(this->pActual)->CrearPtrDataPropiedad();
+            return d;
+        }
     }else{
-        DataApartamento* d = dynamic_cast<Apartamento*>(this->pActual)->CrearPtrDataPropiedad();
-        return d;
+        throw std::invalid_argument("La propiedad no pertenece a su inmobiliaria");
     }
 }
 

@@ -28,7 +28,7 @@ private:
 	map<string,Zona*> zonas;
 	void AddZona(Zona*);
 public:
-    Departamento(string nombre,string id);
+    Departamento(string id,string nombre);
     DataDepartamento CrearDataDepartamento();
 	list<DataZona> ListarZonas();
     Zona* SeleccionarZona(string idZona);

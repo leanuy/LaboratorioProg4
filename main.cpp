@@ -709,10 +709,21 @@ void doAltaPropiedad(){
             return;
         }
     }
-    cout << "Si desea Alquilar la propiedad ingrese '1', de lo contrario ingrese '2': ";
-    getline(cin, opcionStr);
+    bool alquilar = false;
+    bool vender = false;
+    do {
+        cout << "Desea Alquilar la propiedad? [S/N]: ";
+        getline(cin, opcionStr);
+        alquilar = (opcionStr == "s" || opcionStr == "S");
+        cout << "Desea Vender la propiedad? [S/N]: ";
+        getline(cin, opcionStr);
+        vender = (opcionStr == "s" || opcionStr == "S");
+        if(!alquilar && !vender ){
+            cout << "La propiedad debe estar en alquiler y/o en venta" << endl;
+        }
+    }while(!alquilar && !vender );
     bool algoquenoserepita = false;
-    if(opcionStr == "1"){
+    if(alquilar){
         while (!algoquenoserepita){
             counter = 0;
             datoNumerico = false;
@@ -741,10 +752,8 @@ void doAltaPropiedad(){
             cout << e.what() << endl;
         }
     }
-    cout << "Si desea Vender la propiedad ingrese '1', de lo contrario ingrese '2': ";
-    getline(cin, opcionStr);
     algoquenoserepita = false;
-    if(opcionStr == "1"){
+    if(vender){
         while (!algoquenoserepita){
             counter = 0;
             datoNumerico = false;
@@ -877,7 +886,7 @@ void doConsultarPropiedad(){
         if((i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados())!= 0){
             cout << "   M2 verdes: " << i->getMetrosCuadradosTotales()-i->getMetrosCuadradosEdificados() << endl;
         }
-        cout << "   Inmobiliaria: " << endl;
+        cout << "Inmobiliaria: " << endl;
         cout << "   Nombre: " << i->getInmobiliaria().getNombre() << endl;
         cout << "   E-mail: " << i->getInmobiliaria().getMail() << endl;
         cout << "   Direccion: " << i->getInmobiliaria().getDireccion() << endl;

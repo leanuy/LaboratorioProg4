@@ -50,6 +50,11 @@ int main() {
             salir = doComando();
         }
     }
+    ILog* interface = factory->getILog();
+    interface->Salir();
+    delete interface;
+    delete sesion;
+    delete factory;
     return 0;
 }
 void doMenu(){

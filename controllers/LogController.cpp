@@ -59,3 +59,9 @@ void LogController::CerrarSesion()
 LogController::~LogController(){
 
 }
+
+void LogController::Salir() {
+    Database* db = Database::getInstance();
+    delete db;
+}
+

@@ -17,6 +17,7 @@ public:
     bool SetearPassword(string psw1, string psw2);
     bool IngresarPassword(string psw);
     void CerrarSesion();
+    void Salir();
     ~LogController();
 };
 

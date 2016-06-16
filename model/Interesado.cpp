@@ -26,8 +26,13 @@ void Interesado::AddConversacion(string idPropiedad, Conversacion* conversacion)
 }
 
 Interesado::~Interesado(){
-    if(this->conversaciones.size() >0)
-        this->conversaciones.clear();
+    map<string, Conversacion*>::iterator it = this->conversaciones.begin();
+    Conversacion* conversacion;
+    while(it != this->conversaciones.end()){
+        conversacion = it->second;
+        it = this->conversaciones.erase(it);
+        delete conversacion;
+    }
 }
 
 string Interesado::getNombre(){

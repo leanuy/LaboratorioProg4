@@ -46,8 +46,13 @@ Propiedad* Departamento::BuscarPropiedad(string idPropiedad){
 }
 
 Departamento::~Departamento(){
-    if(this->zonas.size() > 0)
-        this->zonas.clear();
+    map<string, Zona*>::iterator it = this->zonas.begin();
+    Zona* zona;
+    while(it != this->zonas.end()){
+        zona = it->second;
+        it = this->zonas.erase(it);
+        delete zona;
+    }
 }
 
 string Departamento::getId() {

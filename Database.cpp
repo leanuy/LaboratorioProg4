@@ -318,14 +318,47 @@ void Database::AddData(){
 
      }
 void Database::DeleteData(){
-    if(this->departamentos.size() > 0)
-        this->departamentos.clear();
-    if(this->usuarios.size() > 0)
-        this->usuarios.clear();
-    if(this->edificiosN_A.size() > 0)
-        this->edificiosN_A.clear();
+    if(this->departamentos.size() > 0){
+        Departamento* departamento;
+        map<string, Departamento*>::iterator it = this->departamentos.begin();
+        while(it != this->departamentos.end()){
+            departamento = it->second;
+            it = this->departamentos.erase(it);
+            delete departamento;
+        }
+    }
+    if(this->usuarios.size() > 0){
+        if(this->usuarios.size() > 0){
+            Usuario * usuario;
+            map<string, Usuario*>::iterator it = this->usuarios.begin();
+            while(it != this->usuarios.end()){
+                usuario = it->second;
+                it = this->usuarios.erase(it);
+                if(dynamic_cast<Admin*>(usuario))
+                    delete dynamic_cast<Admin*>(usuario);
+                else if(dynamic_cast<Inmobiliaria*>(usuario))
+                    delete dynamic_cast<Inmobiliaria*>(usuario);
+                else if(dynamic_cast<Interesado*>(usuario))
+                    delete dynamic_cast<Interesado*>(usuario);
+            }
+        }
+    }
+    if(this->edificiosN_A.size() > 0){
+        if(this->edificiosN_A.size() > 0){
+            Edificio* edificio;
+            map<string, Edificio*>::iterator it = this->edificiosN_A.begin();
+            while(it != this->edificiosN_A.end()){
+                edificio = it->second;
+                it = this->edificiosN_A.erase(it);
+                delete edificio;
+            }
+        }
+    }
 }
-Database::~Database(){}
+
+Database::~Database(){
+    this->DeleteData();
+}
 
 void Database::checkNombre(string name) {
     map<string,Usuario*>::iterator i = this->usuarios.begin();

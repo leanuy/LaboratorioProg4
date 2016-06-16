@@ -42,8 +42,20 @@ void Inmobiliaria::Vender(float precio, Propiedad* p){
 }
 
 Inmobiliaria::~Inmobiliaria(){
-
-
+    map<string, Alquiler*>::iterator it = this->alquileres.begin();
+    Alquiler* alquiler;
+    while(it != this->alquileres.end()){
+        alquiler = it->second;
+        it = this->alquileres.erase(it);
+        delete alquiler;
+    }
+    map<string, Venta*>::iterator iter = this->ventas.begin();
+    Venta* venta;
+    while(iter != this->ventas.end()){
+        venta = iter->second;
+        iter = this->ventas.erase(iter);
+        delete venta;
+    }
 }
 
 

@@ -37,6 +37,10 @@ time_t Conversacion::getLastUpdate() {
 }
 
 Conversacion::~Conversacion(){
-    if(this->mensajes.size() > 0)
-        this->mensajes.clear();
+        Mensaje* mensaje;
+        while(!this->mensajes.empty()){
+            mensaje = this->mensajes.front();
+            this->mensajes.pop_front();
+            delete mensaje;
+        }
 }

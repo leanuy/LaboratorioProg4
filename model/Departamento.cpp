@@ -7,7 +7,7 @@ Departamento::Departamento(string id,string nombre){
 }
 
 DataDepartamento Departamento::CrearDataDepartamento(){
-    return DataDepartamento(this->nombre,this->id);
+    return DataDepartamento(this->id, this->nombre);
 }
 void Departamento::AddZona(Zona* zona){
     this->zonas[zona->getCodigo()] = zona;

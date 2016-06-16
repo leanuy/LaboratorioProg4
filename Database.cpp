@@ -120,9 +120,7 @@ void Database::AddData(){
     //ADD DEPARTAMENTOS:
         this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("A", new Departamento("A", "Canelones")));
         this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("B", new Departamento("B", "Maldonado")));
-        this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("C", new Departamento("C", "Rocha")));
-        this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("D", new Departamento("D", "Salto")));
-        this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("E", new Departamento("E", "Montevideo")));
+        this->departamentos.insert(this->departamentos.end(), pair<string, Departamento*>("C", new Departamento("C", "Montevideo")));
     //ADD ZONAS:
     Zona* zone;
     Departamento* depto;
@@ -143,12 +141,12 @@ void Database::AddData(){
     zone->setDepartamento(depto);
 
     zone = new Zona("104", "Zona4");
-    depto = this->departamentos.find("D")->second;
+    depto = this->departamentos.find("C")->second;
     depto->AddZona(zone);
     zone->setDepartamento(depto);
 
     zone = new Zona("105", "Zona5");
-    depto = this->departamentos.find("D")->second;
+    depto = this->departamentos.find("C")->second;
     depto->AddZona(zone);
     zone->setDepartamento(depto);
 
@@ -213,7 +211,7 @@ void Database::AddData(){
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm3@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(7890, apartamento);
-    zona = this->departamentos["D"]->SeleccionarZona("104");
+    zona = this->departamentos["C"]->SeleccionarZona("104");
     zona->AddPropiedad(apartamento);
     edificio = this->RemoveEdificio("El Burdel");
     zona->AsignarEdificio(edificio);
@@ -226,7 +224,7 @@ void Database::AddData(){
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"]);
     apartamento->setInmobiliaria(inmobiliaria);
     inmobiliaria->Alquilar(768, apartamento);
-    this->departamentos["D"]->SeleccionarZona("104")->AddPropiedad(apartamento);
+    this->departamentos["C"]->SeleccionarZona("104")->AddPropiedad(apartamento);
     apartamento->setZona(zona);
     inmobiliaria->AddPropiedad(apartamento);
 
@@ -240,7 +238,7 @@ void Database::AddData(){
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
     casa->setInmobiliaria(inmobiliaria);
     inmobiliaria->Vender(45000, casa);
-    zona = this->departamentos["D"]->SeleccionarZona("105");
+    zona = this->departamentos["C"]->SeleccionarZona("105");
     zona->AddPropiedad(casa);
     casa->setZona(zona);
     inmobiliaria->AddPropiedad(casa);
@@ -250,7 +248,7 @@ void Database::AddData(){
     inmobiliaria = dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"]);
     casa->setInmobiliaria(inmobiliaria);
     inmobiliaria->Vender(34560, casa);
-    zona = this->departamentos["D"]->SeleccionarZona("105");
+    zona = this->departamentos["C"]->SeleccionarZona("105");
     zona->AddPropiedad(casa);
     casa->setZona(zona);
     inmobiliaria->AddPropiedad(casa);
@@ -303,22 +301,21 @@ void Database::AddData(){
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("2111")->AddConversacion("2111-int1@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("2111", conversacion);
 
-  // FIXME: Error en los datos, el apartamento al que se envia el mensaje no pertenece a la inmobiliaria a la cual se le manda.
-    /*conversacion = new Conversacion();
+    conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Quiero hacer una oferta ya!", "2016-06-01 00:30");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"])->SeleccionarPropiedad("1111")->AddConversacion("int4@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1111")->AddConversacion("1111-int4@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int4@sis.com"])->AddConversacion("1111", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "tiene humedad?", "2016-06-02 12:45");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"])->SeleccionarPropiedad("1112")->AddConversacion("int1@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1112")->AddConversacion("1112-int1@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("1112", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Cual es el precio?", "2016-06-03 02:05");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1113")->AddConversacion("int5@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"])->SeleccionarPropiedad("1113")->AddConversacion("1113-int5@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int5@sis.com"])->AddConversacion("1113", conversacion);
-*/
+
      }
 void Database::DeleteData(){
     if(this->departamentos.size() > 0)

@@ -92,7 +92,7 @@ DataPropiedad* PropiedadesController::verPropiedad(string codigoPropiedad) {
     Sesion* sesion = Sesion::getInstance();
     Usuario* u = sesion->getUsuario();
     if(this->pActual->getInmobiliaria() == u) {
-        if (dynamic_cast<Casa *>(this->pActual)) {
+        if (dynamic_cast<Casa *>(this->pActual)){
             DataCasa *c = dynamic_cast<Casa *>(this->pActual)->CrearPtrDataPropiedad();
             return c;
         } else {

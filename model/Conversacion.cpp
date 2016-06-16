@@ -20,7 +20,7 @@ list<DataMensaje> Conversacion::ListarMensajes() {
 }
 void Conversacion::AgregarMensaje(bool esInteresado, string mensaje, string date){
     this->mensajes.push_front(new Mensaje(esInteresado, mensaje, date));
-    this->lastUpdate = this->mensajes.front()->getTOA();
+    this->setLastUpdate();
 }
 
 DataConversacion Conversacion::CrearDataConversacion(string interesado) {
@@ -29,7 +29,7 @@ DataConversacion Conversacion::CrearDataConversacion(string interesado) {
 }
 
 void Conversacion::setLastUpdate() {
-    this->lastUpdate = time(NULL);
+    this->lastUpdate = this->mensajes.front()->getTOA();
 }
 
 time_t Conversacion::getLastUpdate() {

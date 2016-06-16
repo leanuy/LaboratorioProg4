@@ -303,22 +303,21 @@ void Database::AddData(){
     dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("2111")->AddConversacion("2111-int1@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("2111", conversacion);
 
-  // FIXME: Error en los datos, el apartamento al que se envia el mensaje no pertenece a la inmobiliaria a la cual se le manda.
-    /*conversacion = new Conversacion();
+    conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Quiero hacer una oferta ya!", "2016-06-01 00:30");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"])->SeleccionarPropiedad("1111")->AddConversacion("int4@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1111")->AddConversacion("1111-int4@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int4@sis.com"])->AddConversacion("1111", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "tiene humedad?", "2016-06-02 12:45");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm4@sis.com"])->SeleccionarPropiedad("1112")->AddConversacion("int1@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1112")->AddConversacion("1112-int1@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int1@sis.com"])->AddConversacion("1112", conversacion);
 
     conversacion = new Conversacion();
     conversacion->AgregarMensaje(true, "Cual es el precio?", "2016-06-03 02:05");
-    dynamic_cast<Inmobiliaria*>(this->usuarios["inm1@sis.com"])->SeleccionarPropiedad("1113")->AddConversacion("int5@sis.com", conversacion);
+    dynamic_cast<Inmobiliaria*>(this->usuarios["inm2@sis.com"])->SeleccionarPropiedad("1113")->AddConversacion("1113-int5@sis.com", conversacion);
     dynamic_cast<Interesado*>(this->usuarios["int5@sis.com"])->AddConversacion("1113", conversacion);
-*/
+
      }
 void Database::DeleteData(){
     if(this->departamentos.size() > 0)

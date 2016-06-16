@@ -1191,7 +1191,7 @@ void doEnviarMensaje(){
         }
         cout << "Conversaciones :" << endl;
         for(list<DataConversacion>::reverse_iterator it = conversaciones.rbegin(); it != conversaciones.rend(); it--){
-            cout << "Codigo de la conversacion : " << it->getInteresado() << endl;
+            cout << "Codigo de la conversacion : " << it->getCodigo() << endl;
             cout << "Cantidad mensajes : " << it->getCantidadMensajes() << endl;
             cout << "Ultimo mensaje : " << it->getLastUpdateStr() << endl;
             cout << "----------------------------------------" << endl;

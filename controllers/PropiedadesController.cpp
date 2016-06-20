@@ -135,6 +135,7 @@ Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
         if(iter != edifs.end()){
             p = iter->second;
             db->RemoveEdificio(p->getNombre());
+            this->zActual->AsignarEdificio(p);
         }
     }
     return p;

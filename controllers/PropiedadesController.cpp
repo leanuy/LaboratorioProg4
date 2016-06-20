@@ -134,6 +134,7 @@ Edificio *PropiedadesController::SeleccionarEdificioPriv(string idEdificio) {
         map<string,Edificio*>::iterator iter = edifs.find(idEdificio);
         if(iter != edifs.end()){
             p = iter->second;
+            db->RemoveEdificio(p->getNombre());
         }
     }
     return p;
